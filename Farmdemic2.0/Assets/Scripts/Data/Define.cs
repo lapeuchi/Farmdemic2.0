@@ -24,4 +24,13 @@ public class Define
             this.model = model;
         }
     }
+
+    public struct Quiz_OX
+    {
+        public string text;
+        public int answer;
+        public string explanation;
+    }
+
+
 }

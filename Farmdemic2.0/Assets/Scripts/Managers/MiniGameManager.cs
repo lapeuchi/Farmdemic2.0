@@ -22,7 +22,7 @@ public class MiniGameManager : MonoBehaviour
     void Init()
     {
         curMiniGame = MiniGameTrigger.MiniGame;
-        result_UI = GameObject.Find("Result_UI").GetComponent<ResultUI>();
+        result_UI = transform.Find("Result_UI").GetComponent<ResultUI>();
     }
 
     void Update()
@@ -30,12 +30,11 @@ public class MiniGameManager : MonoBehaviour
 
     }
 
-    public void GameOver(bool isWin)
+
+    public void GameOver(bool isClear)
     {   
         result_UI.gameObject.SetActive(true);
         
-        result_UI.SetResult(isWin, Score);
-
-        
+        result_UI.SetResult(isClear, Score);
     }
 }

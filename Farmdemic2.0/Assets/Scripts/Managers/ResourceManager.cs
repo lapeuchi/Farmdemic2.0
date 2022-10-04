@@ -24,7 +24,7 @@ public class ResourceManager
         {
             return null;
         }
-
+        
         return Object.Instantiate(go, parents);
     }
 
