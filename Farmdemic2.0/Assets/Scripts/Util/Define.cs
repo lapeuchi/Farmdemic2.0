@@ -17,6 +17,16 @@ public class Define
         OX_Quiz
     }
 
+    public enum BGM
+    {
+
+    }
+
+    public enum SFX
+    {
+        
+    }
+
     public struct Dialogue : IDataLoader
     {
         public string name;
