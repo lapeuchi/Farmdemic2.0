@@ -38,7 +38,8 @@ public class Managers : MonoBehaviour
             }
 
             _instance = go.GetComponent<Managers>();
-
+            DontDestroyOnLoad(go);
+            
             Dialogue.Init();
         }
     }
