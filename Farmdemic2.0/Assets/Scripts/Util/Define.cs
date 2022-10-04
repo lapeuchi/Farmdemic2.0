@@ -11,17 +11,21 @@ public class Define
         Game_3
     }
 
-    public struct Dialogue
+    public enum DataType
+    {
+        Dialogue,
+        OX_Quiz
+    }
+
+    public struct Dialogue : IDataLoader
     {
         public string name;
         public string word;
         public Sprite model;
 
-        public Dialogue(string name, string word, Sprite model)
+        public void Load<T>(string path) where T : IDataLoader
         {
-            this.name = name;
-            this.word = word;
-            this.model = model;
+             
         }
     }
 
@@ -31,6 +35,8 @@ public class Define
         public int answer;
         public string explanation;
     }
-
-
+}
+public interface IDataLoader
+{
+    public void Load<T>(string path) where T : IDataLoader;
 }

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager 
+public class DataManager
 {
-    //Todo@ wrrite date load function
-    public void Load()
+    public Dictionary<Define.DataType, TextAsset> datas { get; private set; } = new Dictionary<Define.DataType, TextAsset>();
+    
+    public void Init()
     {
 
     }

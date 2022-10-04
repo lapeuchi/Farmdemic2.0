@@ -8,26 +8,17 @@ public class DialogueManager
     private int _index = 0;
     private const int maxChapter = 5;
 
-    private Dictionary<int, List<Define.Dialogue>> dialogues = new Dictionary<int, List<Define.Dialogue>>();
-    private Define.Dialogue []dialogue = null;
+    private List<Define.Dialogue> dialogues = new List<Define.Dialogue>();
     
     public void Init()
     {
-        NextChapter();   
+           
     }
 
     public void NextTalk()
     {
-        string name = dialogue[_index].name;
-        string message = dialogue[_index].word;
+        string name = dialogues[_index].name;
+        string message = dialogues[_index].word;
         _index++;
-    }
-
-    public void NextChapter()
-    {
-        if (Chapter == maxChapter) return;
-
-        dialogue = dialogues[Chapter].ToArray();
-        Chapter++;
     }
 }

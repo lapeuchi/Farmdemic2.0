@@ -38,8 +38,13 @@ public class Managers : MonoBehaviour
             }
 
             _instance = go.GetComponent<Managers>();
-        }
 
-        Dialogue.Init();
+            Dialogue.Init();
+        }
+    }
+
+    void Start()
+    {
+        Init();    
     }
 }
