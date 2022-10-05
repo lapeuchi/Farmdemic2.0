@@ -45,11 +45,11 @@ public class ResultUI : MonoBehaviour
     void ClickedExit()
     {
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("LobbyScene");
-        MiniGameTrigger.Clear();
+        MinigameTrigger.Clear();
     } 
 
     void ClickedRestart()
     {
-        MiniGameTrigger.LoadMiniGame(MiniGameTrigger.MiniGame);
+        MinigameTrigger.LoadMiniGame(MinigameTrigger.Minigame);
     }
 }

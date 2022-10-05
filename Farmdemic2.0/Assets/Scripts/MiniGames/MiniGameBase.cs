@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MiniGameBase : MonoBehaviour
+public abstract class MinigameBase : MonoBehaviour
 {
-    private Define.MiniGame _miniGame;
-    public Define.MiniGame MiniGame { get {return _miniGame;} protected set {_miniGame = value;} }
+    private Define.Minigame _miniGame;
+    public Define.Minigame MiniGame { get {return _miniGame;} protected set {_miniGame = value;} }
 
     protected abstract void Init();
 
+    private void OnEnable() 
+    {
+        Init();
+    }
+    
     protected virtual void GameOver(bool isClear)
     {
-        MiniGameManager.instance.GameOver(isClear);
+        MinigameManager.instance.GameOver(isClear);
     }
 
 }

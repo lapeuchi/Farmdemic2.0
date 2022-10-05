@@ -9,26 +9,31 @@ using UnityEngine.SceneManagement;
 /// 
 /// </summary>
 
-public static class MiniGameTrigger
+public static class MinigameTrigger
 {
-    static Define.MiniGame _miniGame = Define.MiniGame.none;
-    public static Define.MiniGame MiniGame {private set {_miniGame = value;} get {return _miniGame;}}
+    static Define.Minigame _minigame = Define.Minigame.none;
+    public static Define.Minigame Minigame {private set {_minigame = value;} get {return _minigame;}}
 
-    public static void LoadMiniGame(Define.MiniGame miniGame = Define.MiniGame.none)
+    public static void LoadMiniGame(Define.Minigame miniGame = Define.Minigame.none)
     {
-        if (miniGame == Define.MiniGame.none) 
+        if (miniGame == Define.Minigame.none)
         {   
             Debug.Log("MiniGame is not Selected");
             return;
         }
 
         SceneManager.LoadSceneAsync("MiniGameScene");
-        MiniGame = miniGame;
+        Minigame = miniGame;
         Debug.Log("Load MiniGame " + miniGame);
+    }
+
+    public static void SetMiniGame(Define.Minigame game)
+    {
+        Minigame = game;
     }
 
     public static void Clear()
     {
-        MiniGame = Define.MiniGame.none;
+        Minigame = Define.Minigame.none;
     }    
 }
