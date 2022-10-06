@@ -26,7 +26,7 @@ public class DialogueManager
     public void NextChapter()
     {
         if (Chapter == maxChapter) return;
-
+        
         dialogue = dialogues[Chapter].ToArray();
         Chapter++;
     }

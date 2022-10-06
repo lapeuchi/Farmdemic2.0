@@ -4,12 +4,22 @@ public class Define
 {
     public enum Minigame
     {  
-        none,
+        None,
         OXQuiz,
         Game_0,
         Game_1,
         Game_2,
         Game_3
+    }
+
+    public enum Rank
+    {
+        None,
+        S,
+        A,
+        B,
+        C,
+        D
     }
 
     public struct Dialogue
@@ -41,4 +51,5 @@ public class Define
             this.answer = answer;
         }
     }
+
 }
