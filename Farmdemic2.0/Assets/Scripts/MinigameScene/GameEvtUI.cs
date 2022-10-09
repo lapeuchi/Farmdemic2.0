@@ -14,7 +14,7 @@ public class GameEvtUI : MonoBehaviour
     int count = 5;
     float originSize;
     float maxSize;
-
+    
     void Awake()
     {
         evt_Text = GameObject.Find("Evt_Text").GetComponent<TMP_Text>();
@@ -55,13 +55,13 @@ public class GameEvtUI : MonoBehaviour
 
     public IEnumerator GameOver()
     {
-        evt_Text.fontSize = 0.1f;
+        evt_Text.fontSize = 1f;
         evt_Text.text = "게임 종료";
         
         float tiemr = 0;
         while(true)
         {
-            evt_Text.fontSize = Mathf.Lerp(evt_Text.fontSize, originSize, 0.3f);     
+            evt_Text.fontSize = Mathf.Lerp(evt_Text.fontSize, originSize, 0.02f); 
             
             tiemr += Time.deltaTime;
             if(tiemr > 2f)

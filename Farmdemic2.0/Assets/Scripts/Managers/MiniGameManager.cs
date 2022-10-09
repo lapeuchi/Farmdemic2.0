@@ -20,10 +20,10 @@ public class MinigameManager : MonoBehaviour
 
     private int _score;
     public int Score {get {return _score;} private set {_score = value;}}
-
+    
     private Define.Rank _grade;
     public Define.Rank Grade {get {return _grade;} private set {_grade = value;}}
-
+    
     public static bool isGameOver = false;
     public static bool isGameStart = false;
 
@@ -33,7 +33,7 @@ public class MinigameManager : MonoBehaviour
 
         minigameParent = GameObject.Find("MinigameParent").transform;
         
-#if Debug  
+#if Debug 
         if(curMiniGame == Define.Minigame.None)
         {
             MinigameTrigger.SetMiniGame(Define.Minigame.OXQuiz);
@@ -47,7 +47,6 @@ public class MinigameManager : MonoBehaviour
         GameObject game = minigameParent.Find(curMiniGame.ToString()).gameObject;
         minigameController = game.GetComponent<IMinigame>();
         game.SetActive(true);
-        
     }
 
     void Start() 
@@ -80,6 +79,7 @@ public class MinigameManager : MonoBehaviour
 
     private IEnumerator GameOverEffect(bool isClear)
     {
+        gameEvt_UI.gameObject.SetActive(true);
         StartCoroutine(gameEvt_UI.GameOver());
         yield return new WaitUntil(()=> gameEvt_UI.isGameOver == true);
         result_UI.gameObject.SetActive(true);
