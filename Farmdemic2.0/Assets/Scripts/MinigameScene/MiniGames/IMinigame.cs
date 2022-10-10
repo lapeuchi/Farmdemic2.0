@@ -6,9 +6,7 @@ using System.Collections.Generic;
 /// </summary>
 public interface IMinigame
 {
-    
     void GameStart();
 
     void GameOver(bool isClear);    
-
 }

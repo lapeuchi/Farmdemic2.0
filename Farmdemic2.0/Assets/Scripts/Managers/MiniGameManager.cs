@@ -80,7 +80,7 @@ public class MinigameManager : MonoBehaviour
     private IEnumerator GameOverEffect(bool isClear)
     {
         gameEvt_UI.gameObject.SetActive(true);
-        StartCoroutine(gameEvt_UI.GameOver());
+        StartCoroutine(gameEvt_UI.GameOverEffect());
         yield return new WaitUntil(()=> gameEvt_UI.isGameOver == true);
         result_UI.gameObject.SetActive(true);
         result_UI.SetResult(isClear);
@@ -96,7 +96,7 @@ public class MinigameManager : MonoBehaviour
         yield return null;
 
         gameEvt_UI.gameObject.SetActive(true);
-        StartCoroutine(gameEvt_UI.CountDown());
+        StartCoroutine(gameEvt_UI.GameStartEffect());
 
         yield return new WaitUntil(()=> gameEvt_UI.isZeroCount == true);
         

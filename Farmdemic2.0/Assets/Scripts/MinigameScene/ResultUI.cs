@@ -41,14 +41,15 @@ public class ResultUI : MonoBehaviour
         rank_Text.text = $"Rank: {MinigameManager.instance.Grade}";
     }
 
-    void ClickedExit()
+    private void ClickedExit()
     {
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("LobbyScene");
         MinigameTrigger.Clear();
     } 
 
-    void ClickedRestart()
+    private void ClickedRestart()
     {
         MinigameTrigger.LoadMiniGame(MinigameTrigger.Minigame);
     }
+
 }

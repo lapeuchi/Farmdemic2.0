@@ -11,11 +11,11 @@ public class GameEvtUI : MonoBehaviour
     public bool isZeroCount = false;
     public bool isGameOver = false;
 
-    int count = 5;
-    float originSize;
-    float maxSize;
+    private int count = 5;
+    private float originSize;
+    private float maxSize;
     
-    void Awake()
+    private void Awake()
     {
         evt_Text = GameObject.Find("Evt_Text").GetComponent<TMP_Text>();
         originSize = evt_Text.fontSize;
@@ -23,7 +23,7 @@ public class GameEvtUI : MonoBehaviour
         evt_Text.text = "게임이 곧 시작됩니다.";
     }
 
-    public IEnumerator CountDown()
+    public IEnumerator GameStartEffect()
     {   
         yield return null;
 
@@ -53,7 +53,7 @@ public class GameEvtUI : MonoBehaviour
         isZeroCount = true;
     }
 
-    public IEnumerator GameOver()
+    public IEnumerator GameOverEffect()
     {
         evt_Text.fontSize = 1f;
         evt_Text.text = "게임 종료";
