@@ -33,13 +33,13 @@ public class MinigameManager : MonoBehaviour
 
         minigameParent = GameObject.Find("MinigameParent").transform;
         
-#if Debug 
+#if Debug
         if(curMiniGame == Define.Minigame.None)
         {
-            MinigameTrigger.SetMiniGame(Define.Minigame.OXQuiz);
+            MinigameTrigger.SetMinigame(Define.Minigame.OXQuiz);
         }
 #endif
-
+        
         result_UI = transform.Find("Result_UI").GetComponent<ResultUI>();
         gameEvt_UI = transform.Find("GameEvt_UI").GetComponent<GameEvtUI>();
 
