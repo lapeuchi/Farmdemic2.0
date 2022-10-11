@@ -27,37 +27,51 @@ public class MinigameManager : MonoBehaviour
     public static bool isGameOver = false;
     public static bool isGameStart = false;
 
-    void Awake()
+    private void Awake()
     {
-        instance = this;
+        Init();
+        FindAndSetGame();
+    }
+
+    private void Init()
+    {
+        if(instance == null)
+            instance = this;
+        else Destroy(gameObject);
 
         minigameParent = GameObject.Find("MinigameParent").transform;
-        
+        result_UI = transform.Find("Result_UI").GetComponent<ResultUI>();
+        gameEvt_UI = transform.Find("GameEvt_UI").GetComponent<GameEvtUI>();
+    }
+
+    private void FindAndSetGame()
+    {
 #if Debug
         if(curMiniGame == Define.Minigame.None)
         {
             MinigameTrigger.SetMinigame(Define.Minigame.OXQuiz);
         }
 #endif
-        
-        result_UI = transform.Find("Result_UI").GetComponent<ResultUI>();
-        gameEvt_UI = transform.Find("GameEvt_UI").GetComponent<GameEvtUI>();
-
         curMiniGame = MinigameTrigger.Minigame;
         GameObject game = minigameParent.Find(curMiniGame.ToString()).gameObject;
         minigameController = game.GetComponent<IMinigame>();
         game.SetActive(true);
     }
 
-    void Start() 
+    private void Start()
     {
         GameStart();
         Score = 0;
     }
 
-    public void PlusScore(int score)
+    public void AddScore(int score)
     {
         this.Score += score;
+    }
+    
+    public void MultipleScore(int score, int n)
+    {
+        this.Score *= score * n;
     }
 
     public void SetScore(int score)

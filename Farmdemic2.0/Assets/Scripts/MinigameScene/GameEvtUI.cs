@@ -11,7 +11,7 @@ public class GameEvtUI : MonoBehaviour
     public bool isZeroCount = false;
     public bool isGameOver = false;
 
-    private int count = 5;
+    private int count = 3;
     private float originSize;
     private float maxSize;
     
@@ -25,7 +25,7 @@ public class GameEvtUI : MonoBehaviour
 
     public IEnumerator GameStartEffect()
     {   
-        yield return null;
+        yield return new WaitForSeconds(1f);
 
         for (int i = count; i >= 0; i--)
         {

@@ -9,7 +9,7 @@ public class OXQuiz : MonoBehaviour, IMinigame
     [SerializeField] int answer;
     
     [SerializeField] bool lockButton;
-
+    
     [SerializeField] Button O_Button;
     [SerializeField] Button X_Button;
 
@@ -32,7 +32,7 @@ public class OXQuiz : MonoBehaviour, IMinigame
         index = 0;
         CreateQuiz();
         
-        Debug.Log("Init!");   
+        Debug.Log("Init!");
     }
 
     void Start()
@@ -87,13 +87,6 @@ public class OXQuiz : MonoBehaviour, IMinigame
     {
         lockButton = true;
         
-        Define.Rank rank;
-
-        if(MinigameManager.instance.Score == 0)
-        {
-            MinigameManager.instance.SetRank(Define.Rank.D);
-        }
-
         switch(MinigameManager.instance.Score % point)
         {
             case 0:
@@ -130,7 +123,7 @@ public class OXQuiz : MonoBehaviour, IMinigame
         if (input == answer)
         {
             pannel_Text.text = "정답입니다!\n";
-            MinigameManager.instance.SetScore(point);
+            MinigameManager.instance.AddScore(point);
         }
         else
         {
