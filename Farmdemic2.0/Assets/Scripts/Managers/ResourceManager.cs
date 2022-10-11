@@ -19,7 +19,7 @@ public class ResourceManager
     public GameObject Instantiate(string path, Transform parents = null)
     {
         GameObject go = Load<GameObject>($"Prefabs/path");
-
+        
         if(go == null)
         {
             return null;
