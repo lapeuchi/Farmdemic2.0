@@ -12,6 +12,16 @@ public class Define
         Game_2,
         Game_3
     }
+    
+    public enum Rank
+    {
+        None,
+        S,
+        A,
+        B,
+        C,
+        D
+    }
 
     public enum DataType
     {
