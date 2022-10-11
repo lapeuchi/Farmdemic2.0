@@ -19,6 +19,9 @@ public class Managers : MonoBehaviour
     
     public static DataManager Data { get { return Instance._data; } }
     DataManager _data = new DataManager();
+
+    public static UIManager UI { get { return Instance._ui; } }
+    UIManager _ui = new UIManager();
     #endregion
 
     static void Init()
@@ -40,7 +43,8 @@ public class Managers : MonoBehaviour
             _instance = go.GetComponent<Managers>();
             DontDestroyOnLoad(go);
             
-            Dialogue.Init();
+            //Dialogue.Init();
+            //UI.Init();
         }
     }
 
