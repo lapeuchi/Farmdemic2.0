@@ -39,13 +39,6 @@ public class Define
         
     }
 
-    public struct Dialogue
-    {
-        public string name;
-        public string word;
-        public Sprite model;
-    }
-
     public struct Quiz_OX
     {
         public string text;

@@ -18,14 +18,16 @@ public class ResourceManager
 
     public GameObject Instantiate(string path, Transform parents = null)
     {
-        GameObject go = Load<GameObject>($"Prefabs/path");
+        GameObject go = Load<GameObject>($"Prefabs/{path}");
         
         if(go == null)
         {
             return null;
         }
         
-        return Object.Instantiate(go, parents);
+        GameObject prefab = Object.Instantiate(go, parents);
+        prefab.transform.position = Vector3.zero;
+        return prefab;
     }
 
     public GameObject Instantiate(string path, Vector3 position, Quaternion rotation, Transform parents = null)

@@ -5,20 +5,22 @@ using UnityEngine.UI;
 
 public class UIManager
 {
-    public GameObject root;
-    Canvas canvas;
-
+    public GameObject Root;
+    
     public void Init()
     {
-        root = GameObject.Find("@UI");
+        Root = GameObject.Find("@UI");
 
-        if(root == null)
+        if(Root == null)
         {
-            root = new GameObject { name = "@UI" };
-            root.AddComponent<Canvas>();
-            canvas = root.GetComponent<Canvas>();
+            Root = new GameObject { name = "@UI_Root" };
+            Root.AddComponent<Canvas>();
+            Root.AddComponent<CanvasScaler>();
+            Root.AddComponent<GraphicRaycaster>();
+            Root.transform.parent = GameObject.Find("@Managers").transform;
         }
-
+        
+        Canvas canvas = Root.GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
     }
 }
