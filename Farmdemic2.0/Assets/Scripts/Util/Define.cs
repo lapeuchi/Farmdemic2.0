@@ -39,16 +39,11 @@ public class Define
         
     }
 
-    public struct Dialogue : IDataLoader
+    public struct Dialogue
     {
         public string name;
         public string word;
         public Sprite model;
-
-        public void Load<T>(string path) where T : IDataLoader
-        {
-             
-        }
     }
 
     public struct Quiz_OX
@@ -66,9 +61,4 @@ public class Define
             this.answer = answer;
         }
     }
-}
-
-public interface IDataLoader
-{
-    public void Load<T>(string path) where T : IDataLoader;
 }
