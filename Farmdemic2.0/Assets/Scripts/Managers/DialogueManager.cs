@@ -22,16 +22,14 @@ public class DialogueManager
         }
 
         Root.gameObject.name = "@Dialogue";
-        dialogueUI = Root.GetComponent<DialogueUI>();        
-        dialogues.Add(new Dialogue("aaa", "abbcccccccccc", null));
-        dialogues.Add(new Dialogue("aba", "aabcccccccc", null));
-        dialogues.Add(new Dialogue("aac", "aaaccccccccccc", null));
+        dialogues = Managers.Data.dialogueDatas;
+        dialogueUI = Root.GetComponent<DialogueUI>();
         dialogueUI.Init();
 
-        NextTalk();
+        UpdateDialogue();
     }
 
-    public void NextTalk()
+    public void UpdateDialogue()
     {
         if(index == dialogues.Count) return;
         Debug.Log("Next");

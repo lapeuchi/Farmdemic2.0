@@ -1,0 +1,20 @@
+{
+    "Dialogue":
+    [
+        {
+            "name"  : "농장주",
+            "word"  : "어이 알바 왔어. 어서오고",
+            "model" : "Farmer"
+        },
+        {
+            "name"  : "농장주",
+            "word"  : "휴가는 잘 다녀왔고 ?",
+            "model" : "Farmer"
+        },
+        {
+            "name"  : "알바생",
+            "word"  : "네. 휴가 달달 하게 다녀왔습니다 wwww",
+            "model" : "Employee"
+        }
+    ]
+}

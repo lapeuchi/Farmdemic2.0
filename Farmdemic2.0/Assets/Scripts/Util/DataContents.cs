@@ -14,17 +14,17 @@ public struct Dialogue
     public string word;
     public Sprite model;
 
-    public Dialogue(string _name, string _word, Sprite _model)
+    public Dialogue(string name, string word, Sprite model)
     {
-        name = _name;
-        word = _word;
-        model = _model;
+        this.name  = name;
+        this.word  = word;
+        this.model = model;
     }
 }
-
+[System.Serializable]
 public class DialogueLoader : ILoader<Dialogue>
 {
-    List<Dialogue> myList = new List<Dialogue>();
+    public List<Dialogue> myList { get; set; } = new List<Dialogue>();
 
     public List<Dialogue> MakeList()
     {
