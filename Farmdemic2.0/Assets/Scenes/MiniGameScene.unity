@@ -820,6 +820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CleanSwipe
       objectReference: {fileID: 0}
+    - target: {fileID: 6618747723478477691, guid: 646947e18607e4544bffcbbb5821cca1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 646947e18607e4544bffcbbb5821cca1, type: 3}
 --- !u!1001 &6741221566000860646
