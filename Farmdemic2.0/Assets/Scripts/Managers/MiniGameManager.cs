@@ -46,7 +46,10 @@ public class MinigameManager : MonoBehaviour
 
     private void FindAndSetGame()
     {
+#if Release
         curMiniGame = MinigameTrigger.Minigame;
+#endif
+
 #if Debug
         if(curMiniGame == Define.Minigame.None)
         {
@@ -100,7 +103,7 @@ public class MinigameManager : MonoBehaviour
         result_UI.gameObject.SetActive(true);
         result_UI.SetResult(isClear);
     }
-
+    
     public void GameStart()
     {
         StartCoroutine(GameStartEffect());

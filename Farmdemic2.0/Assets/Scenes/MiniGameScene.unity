@@ -682,6 +682,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4469706599522068357, guid: 2012f3cb5de3641bd8c442a615d681c1, type: 3}
+      propertyPath: curMiniGame
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4469706599522068359, guid: 2012f3cb5de3641bd8c442a615d681c1, type: 3}
       propertyPath: m_Name
       value: MiniGameManager
@@ -752,6 +756,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1927591833}
     m_Modifications:
+    - target: {fileID: 1159259359, guid: 646947e18607e4544bffcbbb5821cca1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159259359, guid: 646947e18607e4544bffcbbb5821cca1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.185
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952278512, guid: 646947e18607e4544bffcbbb5821cca1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.155
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952278512, guid: 646947e18607e4544bffcbbb5821cca1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.129
+      objectReference: {fileID: 0}
     - target: {fileID: 6618747723478477688, guid: 646947e18607e4544bffcbbb5821cca1, type: 3}
       propertyPath: m_RootOrder
       value: 3
