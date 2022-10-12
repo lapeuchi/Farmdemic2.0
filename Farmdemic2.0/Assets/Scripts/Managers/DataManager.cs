@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class DataManager
 {
-    public T Load<T>(string path) where T : ILoader
+    public List<Dialogue> dialogueDatas = new List<Dialogue>();
+
+    public void Init()
+    {
+        dialogueDatas = Load<DialogueLoader, Dialogue>("Dialogue").MakeList();
+    }
+
+    public Loader Load<Loader, T>(string path) where Loader : ILoader<T>
     {
         TextAsset textAsset = Managers.Resource.Load<TextAsset>($"Data{path}");
-        return JsonUtility.FromJson<T>(textAsset.text);
+        return JsonUtility.FromJson<Loader>(textAsset.text);
     }
 }
