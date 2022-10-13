@@ -11,7 +11,7 @@ public class Define
         BuildingPosPuzzle = 2,
         CleanList = 3,
         CleanSwipe = 4,
-        ConcentrationMatching = 5,
+        MatchingDisinfectant = 5,
         MixDisinfectant = 6,
         HarmfulBirds = 7,
         RatDefence = 8,
