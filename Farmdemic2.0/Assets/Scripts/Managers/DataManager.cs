@@ -9,7 +9,6 @@ public class DataManager
     public void Init()
     {
         dialogueDatas = Load<DialogueLoader, Dialogue>("Dialogue").MakeList();
-        Debug.Log(dialogueDatas[0]);
     }
 
     public Loader Load<Loader, T>(string path) where Loader : ILoader<T>
