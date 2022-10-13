@@ -17,7 +17,7 @@ public class MinigameManager : MonoBehaviour
 
     public ResultUI result_UI;
     public GameEvtUI gameEvt_UI;
-
+    
     private int _score;
     public int Score {get {return _score;} private set {_score = value;}}
     

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConcentrationMatching : MonoBehaviour, IMinigame
+public class MatchingDisinfectant : MonoBehaviour, IMinigame
 {
     [SerializeField]
     private GameObject[] disinfectant = new GameObject[6];
