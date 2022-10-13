@@ -46,18 +46,22 @@ public class MinigameManager : MonoBehaviour
 
     private void FindAndSetGame()
     {
+#if Release
+        curMiniGame = MinigameTrigger.Minigame;
+#endif
+
 #if Debug
         if(curMiniGame == Define.Minigame.None)
         {
-            MinigameTrigger.SetMinigame(Define.Minigame.OXQuiz);
+            Debug.LogError("Game is not Selected");
+            return;
         }
 #endif
-        curMiniGame = MinigameTrigger.Minigame;
         GameObject game = minigameParent.Find(curMiniGame.ToString()).gameObject;
         minigameController = game.GetComponent<IMinigame>();
         game.SetActive(true);
     }
-
+    
     private void Start()
     {
         GameStart();
@@ -99,7 +103,7 @@ public class MinigameManager : MonoBehaviour
         result_UI.gameObject.SetActive(true);
         result_UI.SetResult(isClear);
     }
-
+    
     public void GameStart()
     {
         StartCoroutine(GameStartEffect());
