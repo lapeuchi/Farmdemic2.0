@@ -22,7 +22,6 @@ public class Managers : MonoBehaviour
     void Start()
     {
         Init();
-        Managers.UI.ShowPopupUI<UI_Dialogue>();
     }
 
     static void Init()
