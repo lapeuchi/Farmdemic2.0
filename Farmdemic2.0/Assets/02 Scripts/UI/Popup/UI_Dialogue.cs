@@ -63,7 +63,7 @@ public class UI_Dialogue : UI_Popup
         //GetImage((int)Images.ModelImage).sprite = _dialogueList[_index].sprite;
         StartCoroutine(TypingEffect(_dialogueList[_index].word));
     }
-
+    //asdfsd
     IEnumerator TypingEffect(string word)
     {
         WaitForSeconds wait = new WaitForSeconds(_delay);
@@ -74,6 +74,8 @@ public class UI_Dialogue : UI_Popup
             GetText((int)Texts.WordText).text = message;
             yield return wait;
         }
+
+        GetText((int)Texts.WordText).text = word;
     }
 
     void OnNextButtonClicked()
