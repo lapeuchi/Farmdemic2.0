@@ -8,49 +8,37 @@ public class Managers : MonoBehaviour
     static Managers Instance { get { Init(); return _instance; } }
     static Managers _instance = null;
 
-    public static ResourceManager Resource { get { return Instance._resource; } }
-    ResourceManager _resource = new ResourceManager();
-
-    public static DialogueManager Dialogue { get { return Instance._dialogue; } }
-    DialogueManager _dialogue = new DialogueManager();
-
-    public static GameManager Game { get { return Instance._game; } }
-    GameManager _game = new GameManager();
-    
-    public static DataManager Data { get { return Instance._data; } }
     DataManager _data = new DataManager();
-
-    public static UIManager UI { get { return Instance._ui; } }
+    ResourceManager _resource = new ResourceManager();
+    GameManager _game = new GameManager();
     UIManager _ui = new UIManager();
+
+    public static ResourceManager Resource { get { return Instance._resource; } }
+    public static GameManager Game { get { return Instance._game; } }
+    public static DataManager Data { get { return Instance._data; } }
+    public static UIManager UI { get { return Instance._ui; } }
     #endregion
+    
+    void Start()
+    {
+        Init();
+    }
 
     static void Init()
     {
-        if(_instance == null)
+        if (_instance == null)
         {
             GameObject go = GameObject.Find("@Managers");
 
-            if(go == null)
+            if (go == null)
             {
                 go = new GameObject { name = "@Managers" };
             }
 
-            if(go.GetComponent<Managers>() == null)
-            {
-                go.AddComponent<Managers>();
-            }
-
-            _instance = go.GetComponent<Managers>();
+            _instance = Util.GetOrAddComponent<Managers>(go);
             DontDestroyOnLoad(go);
 
             Data.Init();
-            UI.Init();
-            Dialogue.Init();
         }
-    }
-
-    void Start()
-    {
-        Init();    
     }
 }

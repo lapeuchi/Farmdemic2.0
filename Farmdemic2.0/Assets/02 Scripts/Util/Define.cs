@@ -5,18 +5,12 @@ public class Define
 {
     public enum Minigame
     {  
-        None = 0,
-
-        OXQuiz = 1,
-        BuildingPosPuzzle = 2,
-        CleanList = 3,
-        CleanSwipe = 4,
-        MatchingDisinfectant = 5,
-        MixDisinfectant = 6,
-        HarmfulBirds = 7,
-        RatDefence = 8,
-        CheckComingAndGoing = 9,
-
+        None,
+        OXQuiz,
+        Game_0,
+        Game_1,
+        Game_2,
+        Game_3
     }
     
     public enum Rank
@@ -37,12 +31,20 @@ public class Define
 
     public enum BGM
     {
-
+        MiniGameBgm
     }
 
     public enum SFX
     {
         
+    }
+
+    public enum Scene
+    {
+        None,
+        Title,
+        Game,
+        Minigame
     }
 
     public struct Quiz_OX

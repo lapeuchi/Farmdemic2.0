@@ -12,22 +12,20 @@ public struct Dialogue
 {
     public string name;
     public string word;
-    public Sprite model;
+    public Sprite sprite;
+    string modelName;
 
-    public Dialogue(string name, string word, Sprite model)
+    public Dialogue(string name, string word, string modelName)
     {
         this.name  = name;
         this.word  = word;
-        this.model = model;
+        this.modelName = modelName;
+        sprite = Managers.Resource.Load<Sprite>($"Sprite/{modelName}");
     }
 }
 [System.Serializable]
 public class DialogueLoader : ILoader<Dialogue>
 {
-    public List<Dialogue> myList { get; set; } = new List<Dialogue>();
-
-    public List<Dialogue> MakeList()
-    {
-        return myList;
-    }
+    public List<Dialogue> Dialogue = new List<Dialogue>();
+    public List<Dialogue> MakeList() { return Dialogue; }
 }

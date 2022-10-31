@@ -14,7 +14,6 @@ public class DataManager
     public Loader Load<Loader, T>(string path) where Loader : ILoader<T>
     {
         TextAsset textAsset = Managers.Resource.Load<TextAsset>($"Data/{path}");
-        Debug.Log($"Succed data load {textAsset.name}");
         return JsonUtility.FromJson<Loader>(textAsset.text);
     }
 }

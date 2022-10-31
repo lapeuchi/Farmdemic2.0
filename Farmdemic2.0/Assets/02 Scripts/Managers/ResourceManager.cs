@@ -42,7 +42,7 @@ public class ResourceManager
         return Object.Instantiate(go, position, rotation, parents);
     }
 
-    public void Destroy(GameObject gameObject, float time)
+    public void Destroy(GameObject gameObject, float time = 0)
     {
         Object.Destroy(gameObject, time);
     }
