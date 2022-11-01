@@ -15,12 +15,12 @@ public class Stain : MonoBehaviour
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         Drag = gameObject.GetComponent<Dragable>();
-        hp = 100;
+        if(Drag == null) Drag = gameObject.AddComponent<Dragable>();
     }
 
     void Update()
     {
-        if (Drag.isDrag)
+        if (Drag.isDrag && Drag.isOnMouse)
         {
             timer += Time.deltaTime;
             if(timer > time)
@@ -28,8 +28,12 @@ public class Stain : MonoBehaviour
                 hp -= 10;
                 spriteRenderer.color = new Color (spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, hp / 100);
                 timer = 0;
-            }   
-        }   
+            } 
+            if(hp <= 0)
+            {
+                Destroy(gameObject);
+            }  
+        }
     }
 
 }

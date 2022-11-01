@@ -6,18 +6,16 @@ using TMPro;
 
 public class OXQuiz : MonoBehaviour, IMinigame
 {
-    [SerializeField] int answer;
-    
-    [SerializeField] bool lockButton;
-    
     [SerializeField] Button O_Button;
     [SerializeField] Button X_Button;
-
     [SerializeField] TMP_Text pannel_Text;
+    [SerializeField] bool lockButton;
 
-    [SerializeField] public List<Define.Quiz_OX> quizs = new List<Define.Quiz_OX>();
-    [SerializeField] int index = 0;
+    [SerializeField] public List<Quiz_OX> quiz_List = new List<Quiz_OX>();
     
+    [SerializeField] int quizIndex = 0;
+    int quizLength = 5;
+
     int point = 20;
 
     private void Awake()
@@ -26,10 +24,10 @@ public class OXQuiz : MonoBehaviour, IMinigame
         X_Button = GameObject.Find("X_Button").GetComponent<Button>();
         pannel_Text = GameObject.Find("Pannel_Text").GetComponent<TMP_Text>();
         
-        O_Button.onClick.AddListener(()=>Input(1));
-        X_Button.onClick.AddListener(()=>Input(2));
+        O_Button.onClick.AddListener(()=>Input("O"));
+        X_Button.onClick.AddListener(()=>Input("X"));
         lockButton = true;
-        index = 0;
+        quizIndex = 0;
         CreateQuiz();
         
         Debug.Log("Init!");
@@ -37,45 +35,19 @@ public class OXQuiz : MonoBehaviour, IMinigame
 
     void Start()
     {
-
+        
     }
 
     void CreateQuiz()
     {
-        for(int i = 0; i < 3; i++)
+        List<Quiz_OX> jsonList = Managers.Data.OXQuizDatas;
+        int[] rands = RandomF(jsonList.Count, quizLength);
+
+        for(int i = 0; i < quizLength; i++)
         {
-            int a = Random.Range(-100, 1000);
-            int b = Random.Range(-100, 1000);
-
-            int rand = Random.Range(0, 3);
-            int ans = rand == 0 ? a + b : Random.Range(-200, 2000);
-            if (rand == 0)
-            {
-                ans = a + b;
-            }
-            else if (rand == 1)
-            {
-                ans = Random.Range(-20000, 20000);
-            }
-
-            string text = $"({a}) + ({b}) = {ans}";
-            string answerText = (a + b).ToString();
-
-            if(rand == 0)
-            {
-                answer = 1;
-            }
-            else 
-            {
-                answer = 2;
-            }
-
-            string explanation = "해설 내용";
-
-            Define.Quiz_OX q = new Define.Quiz_OX(text, answerText, answer, explanation);
-
-            quizs.Add(q);
+            quiz_List.Add(jsonList[rands[i]]);
         }
+        
     }
 
     public void GameStart()
@@ -109,18 +81,18 @@ public class OXQuiz : MonoBehaviour, IMinigame
         MinigameManager.instance.GameOver(isClear);
     }
     
-    void Input(int input)
+    void Input(string inputAnswer)
     {
         if (lockButton == true) return;
 
         lockButton = true;
 
-        StartCoroutine(Explanation(input));
+        StartCoroutine(Explanation(inputAnswer));
     }
 
-    IEnumerator Explanation(int input)
+    IEnumerator Explanation(string inputAnswer)
     {
-        if (input == answer)
+        if (inputAnswer == quiz_List[quizIndex].answer)
         {
             pannel_Text.text = "정답입니다!\n";
             MinigameManager.instance.AddScore(point);
@@ -130,13 +102,13 @@ public class OXQuiz : MonoBehaviour, IMinigame
             pannel_Text.text = "오답입니다.\n";
         }
 
-        pannel_Text.text += $"해설: {quizs[index].explanation}";
+        pannel_Text.text += $"해설: {quiz_List[quizIndex].explanation}";
 
         yield return new WaitForSeconds(5f);
 
-        index++;
+        quizIndex++;
 
-        if(index != quizs.Count)
+        if(quizIndex != quiz_List.Count)
             StartCoroutine(ChangeQuiz());
         else
         {
@@ -145,14 +117,12 @@ public class OXQuiz : MonoBehaviour, IMinigame
     }
 
     IEnumerator ChangeQuiz()
-    {       
-        answer = 0;
-        
-        if(index != 0)
+    {               
+        if(quizIndex != 0)
         {
             pannel_Text.text = "다음 문제입니다.";
         }
-        else if (index == quizs.Count)
+        else if (quizIndex == quiz_List.Count)
         {
             pannel_Text.text = "마지막 문제입니다.";
         }
@@ -163,8 +133,29 @@ public class OXQuiz : MonoBehaviour, IMinigame
         
         yield return new WaitForSeconds(2f);
 
-        pannel_Text.text = quizs[index].text;
-        answer = quizs[index].answer;
+        pannel_Text.text = quiz_List[quizIndex].text;
         lockButton = false;   
     }
+
+    public int[] RandomF(int maxCount, int n)
+	{
+		int[] defaults = new int[maxCount];
+		int[] results = new int[n];
+
+		for (int i = 0; i < maxCount; ++i)
+		{
+			defaults[i] = i;
+		}
+
+		for (int i = 0; i < n; ++i)
+		{
+			int index = Random.Range(0, maxCount);
+			results[i] = defaults[index];
+			defaults[index] = defaults[maxCount - 1];
+			maxCount--;
+		}
+
+		return results;
+	}
+
 }

@@ -5,12 +5,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Clickable : MonoBehaviour
+public class Dragable : MonoBehaviour
 {
     public bool isDrag;
-    public bool isDragable;
+    public bool isDragable = true;
     public bool isOnMouse;
-    public bool isLongRangeDrag; 
+    public bool isLongRangeDrag;
     public bool isClick;
 
     Collider coll;
@@ -18,16 +18,13 @@ public class Clickable : MonoBehaviour
 
     Vector3 prevPos;
 
-    private void Awake()
+    private void Start()
     {
         coll = gameObject.GetComponent<Collider>();
 
         coll2D = gameObject.GetComponent<Collider2D>();
         
         isDragable = true;
-        isDrag = false;
-        isOnMouse = false;
-        isClick = false;
     }
 
     private void OnMouseDrag()
@@ -72,7 +69,9 @@ public class Clickable : MonoBehaviour
         {
             // 싱글 터치
             Touch touch = Input.GetTouch(0);
+            Vector3 touchPos;
             Vector3 touchPosToVector3 = new Vector3(touch.position.x,touch.position.y,100);
+            touchPos = Camera.main.ScreenToWorldPoint(touchPosToVector3);
 
             if (touch.phase == TouchPhase.Moved)
             {

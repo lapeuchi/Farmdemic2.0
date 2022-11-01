@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class CleanSwipe : MonoBehaviour, IMinigame
 {
+    List<GameObject> trash = new List<GameObject>();
+    public float fasfasdsa;
+
     void Start()
     {
-        Camera.main.gameObject.SetActive(false);
+        Camera.main.gameObject.SetActive(false);    
+    }
+
+    void Load()
+    {
+        
     }
 
     public void GameStart()

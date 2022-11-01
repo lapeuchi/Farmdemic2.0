@@ -45,7 +45,7 @@ public class GameEvtUI : MonoBehaviour
                 yield return null;
             }
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
         }   
 
         yield return new WaitForEndOfFrame();
