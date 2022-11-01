@@ -18,28 +18,39 @@ public class ResourceManager
 
     public GameObject Instantiate(string path, Transform parents = null)
     {
-        GameObject go = Load<GameObject>($"Prefabs/{path}");
+        GameObject prefab = Load<GameObject>($"Prefabs/{path}");
         
-        if(go == null)
+        if(prefab == null)
         {
             return null;
         }
         
-        GameObject prefab = Object.Instantiate(go, parents);
-        prefab.transform.position = Vector3.zero;
-        return prefab;
+        GameObject go = Object.Instantiate(prefab, parents);
+
+        int index = go.name.IndexOf("(Clone)");
+
+        if (index > 0)
+            go.name = go.name.Substring(0, index);
+
+        return go;
     }
 
     public GameObject Instantiate(string path, Vector3 position, Quaternion rotation, Transform parents = null)
     {
-        GameObject go = Load<GameObject>($"Prefabs/path");
+        GameObject prefab = Load<GameObject>($"Prefabs/path");
 
-        if (go == null)
+        if (prefab == null)
         {
             return null;
         }
 
-        return Object.Instantiate(go, position, rotation, parents);
+        GameObject go = Object.Instantiate(prefab, position, rotation, parents);
+        int index = go.name.IndexOf("(Clone)");
+
+        if (index > 0)
+            go.name = go.name.Substring(0, index);
+
+        return go;
     }
 
     public void Destroy(GameObject gameObject, float time = 0)
