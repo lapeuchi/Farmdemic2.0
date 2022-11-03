@@ -1,5 +1,5 @@
-#define Debug
-//#define Release
+//#define Debug
+#define Release
 
 using System.Collections;
 using System.Collections.Generic;
