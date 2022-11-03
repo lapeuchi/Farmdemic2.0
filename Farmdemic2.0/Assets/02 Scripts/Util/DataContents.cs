@@ -26,7 +26,7 @@ public struct Dialogue
 [System.Serializable]
 public class DialogueLoader : ILoader<Dialogue>
 {
-    public List<Dialogue> Dialogue { get; set; } = new List<Dialogue>();
+    public List<Dialogue> Dialogue = new List<Dialogue>();
 
     public List<Dialogue> MakeList()
     {

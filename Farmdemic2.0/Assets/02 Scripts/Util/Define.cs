@@ -49,7 +49,7 @@ public class Define
         None,
         Title,
         Game,
-        Minigame d
+        Minigame
     }
     
     public enum Story
