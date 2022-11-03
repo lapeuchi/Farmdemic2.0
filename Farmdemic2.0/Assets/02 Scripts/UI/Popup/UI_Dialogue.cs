@@ -94,6 +94,7 @@ public class UI_Dialogue : UI_Popup
         {
             Managers.UI.ClosePopupUI();
             MinigameTrigger.LoadMiniGame(Define.Minigame.OXQuiz);
+            //StartCoroutine(GameObject.Find("@Scene").GetComponent<GameScene>().LoadMnigameWithEffect(Define.Minigame.OXQuiz));
             return;
         }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class MainCameraMovement : MonoBehaviour
 {
@@ -14,5 +15,10 @@ public class MainCameraMovement : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ZoomEffect()
+    {
+        transform.DOMove(transform.forward * 5, 0.4f);
     }
 }
