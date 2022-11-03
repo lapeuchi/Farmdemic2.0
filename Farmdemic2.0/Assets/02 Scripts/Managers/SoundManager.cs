@@ -7,7 +7,8 @@ public class SoundManager
     private Dictionary<Define.BGM, AudioClip> bgms = new Dictionary<Define.BGM, AudioClip>();
     private Dictionary<Define.SFX, AudioClip> sfxs = new Dictionary<Define.SFX, AudioClip>();
     private GameObject root;
-    private AudioSource bgmSoruce;
+    private AudioSource bgmSource;
+    private AudioSource[] sfxSource = new AudioSource[5];
     public void Init()
     {
         root = GameObject.Find("@Sound");
@@ -26,7 +27,7 @@ public class SoundManager
             bgmRoot.AddComponent<AudioSource>();
         }
 
-        bgmSoruce = bgmRoot.GetComponent<AudioSource>();
+        bgmSource = bgmRoot.GetComponent<AudioSource>();
 
         for(int i = 0; i < System.Enum.GetValues(typeof(Define.BGM)).Length; i++)
         {
@@ -39,6 +40,32 @@ public class SoundManager
         if(sfxRoot == null)
         {
             sfxRoot = new GameObject { name = "@SFX" };
+        }
+
+        for(int i = 0; i < sfxSource.Length; i++)
+        {
+            GameObject go = new GameObject { name = "SFX_Source" };
+            go.transform.SetParent(sfxRoot.transform);
+            sfxSource[i] = go.AddComponent<AudioSource>();
+        }
+    }
+
+    public void PlayBGM(Define.BGM type)
+    {
+        bgmSource.clip = bgms[type];
+        bgmSource.Play();
+    }
+
+    public void PlaySFX(Define.SFX type)
+    {
+        for(int i = 0; i < sfxSource.Length; i++)
+        {
+            if(sfxSource[i].isPlaying == false)
+            {
+                sfxSource[i].clip = sfxs[type];
+                sfxSource[i].Play();
+                return;
+            }
         }
     }
 }
