@@ -9,6 +9,7 @@ public class SoundManager
     private GameObject root;
     private AudioSource bgmSource;
     private AudioSource[] sfxSource = new AudioSource[5];
+    
     public void Init()
     {
         root = GameObject.Find("@Sound");
@@ -19,8 +20,9 @@ public class SoundManager
         }
         
         root.transform.parent = GameObject.Find("@Managers").transform;
-        GameObject bgmRoot = root.transform.Find("@BGM").gameObject;
-
+        
+        GameObject bgmRoot = GameObject.Find("@BGM"); //root.transform.Find("@BGM").gameObject;
+        
         if(bgmRoot == null)
         {
             bgmRoot = new GameObject { name = "@BGM" };
@@ -35,7 +37,7 @@ public class SoundManager
             bgms.Add((Define.BGM) i, clip);
         }
 
-        GameObject sfxRoot = root.transform.Find("@SFX").gameObject;
+        GameObject sfxRoot = GameObject.Find("@SFX");
 
         if(sfxRoot == null)
         {
@@ -47,6 +49,11 @@ public class SoundManager
             GameObject go = new GameObject { name = "SFX_Source" };
             go.transform.SetParent(sfxRoot.transform);
             sfxSource[i] = go.AddComponent<AudioSource>();
+        }
+
+        for(int i = 0; i < sfxSource.Length; i++)
+        {
+            
         }
     }
 

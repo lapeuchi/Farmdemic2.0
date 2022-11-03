@@ -7,6 +7,7 @@ public class GameScene : SceneBase
     private void Start()
     {
         OnLoad();
+        //Managers.Sound.PlayBGM(Define.BGM.MainBgm);
     }
 
     public override void Init()

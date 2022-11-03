@@ -33,15 +33,17 @@ public class Define
         Dialogue,
         OX_Quiz
     }
-
+    
     public enum BGM
     {
-        MiniGameBgm
+        MainBgm
     }
 
     public enum SFX
     {
-        
+        ClickDialogue,
+        Collect,
+        Worth
     }
     
     public enum Scene

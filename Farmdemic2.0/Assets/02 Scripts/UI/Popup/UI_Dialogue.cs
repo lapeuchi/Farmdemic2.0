@@ -89,6 +89,7 @@ public class UI_Dialogue : UI_Popup
             return;
 
         _index++;
+        //Managers.Sound.PlaySFX(Define.SFX.ClickDialogue);
         if (_index == (int) Define.Story.Chater1)
         {
             Managers.UI.ClosePopupUI();

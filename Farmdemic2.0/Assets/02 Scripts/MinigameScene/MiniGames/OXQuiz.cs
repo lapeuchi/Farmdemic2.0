@@ -96,10 +96,12 @@ public class OXQuiz : MonoBehaviour, IMinigame
         {
             pannel_Text.text = "정답입니다!\n";
             MinigameManager.instance.AddScore(point);
+            //Managers.Sound.PlaySFX(Define.SFX.Collect);
         }
         else
         {
             pannel_Text.text = "오답입니다.\n";
+            //Managers.Sound.PlaySFX(Define.SFX.Worth);
         }
 
         pannel_Text.text += $"해설: {quiz_List[quizIndex].explanation}";
