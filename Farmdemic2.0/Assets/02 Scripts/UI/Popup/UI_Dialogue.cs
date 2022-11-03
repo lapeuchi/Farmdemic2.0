@@ -6,23 +6,6 @@ using TMPro;
 
 public class UI_Dialogue : UI_Popup
 {
-    [SerializeField] List<Dialogue> _dialogueList = new List<Dialogue>();
-    int _index = 0;
-    float _delay = 0.025f;
-    public GameObject Root
-    {
-        get
-        {
-            GameObject root = GameObject.Find("@UI_Root");
-
-            if(root == null)
-            {
-                root = new GameObject { name = "@UI_Root" };
-            }
-
-            return root;
-        }
-    }
     enum Texts
     {
         NameText,
@@ -39,9 +22,31 @@ public class UI_Dialogue : UI_Popup
         NextButton
     }
 
-    private void Start()
+    enum Sprite
     {
-        Init();
+        ModelSprite
+    }
+
+    [SerializeField] List<Dialogue> _dialogueList = new List<Dialogue>();
+    Define.Story currentChapter = Define.Story.None;
+
+    int _index = 0;
+    float _delay = 0.025f;
+    bool typing = false;
+
+    public GameObject Root
+    {
+        get
+        {
+            GameObject root = GameObject.Find("@UI_Root");
+
+            if(root == null)
+            {
+                root = new GameObject { name = "@UI_Root" };
+            }
+
+            return root;
+        }
     }
 
     public override void Init()
@@ -67,24 +72,30 @@ public class UI_Dialogue : UI_Popup
     IEnumerator TypingEffect(string word)
     {
         WaitForSeconds wait = new WaitForSeconds(_delay);
-        
+        typing = true;
         for(int i = 0; i < word.Length; i++)
         {
-            string message = word.Substring(0, i);
-            GetText((int)Texts.WordText).text = message;
+            GetText((int)Texts.WordText).text = word.Substring(0, i);
             yield return wait;
         }
+
+        GetText((int)Texts.WordText).text = word;
+        typing = false;
     }
 
     void OnNextButtonClicked()
     {
+        if (typing)
+            return;
+
         _index++;
-        if (_index == _dialogueList.Count)
+        if (_index == (int) Define.Story.Chater1)
         {
             Managers.UI.ClosePopupUI();
+            MinigameTrigger.LoadMiniGame(Define.Minigame.OXQuiz);
             return;
         }
 
-        ShowDialogue();        
+        ShowDialogue();
     }
 }

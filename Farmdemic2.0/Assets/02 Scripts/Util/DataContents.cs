@@ -13,14 +13,14 @@ public struct Dialogue
     public string name;
     public string word;
     public Sprite sprite;
-    string modelName;
+    string model;
 
-    public Dialogue(string name, string word, string modelName)
+    public Dialogue(string name, string word, string model)
     {
         this.name  = name;
         this.word  = word;
-        this.modelName = modelName;
-        sprite = Managers.Resource.Load<Sprite>($"Sprite/{modelName}");
+        this.model = model;
+        sprite = Managers.Resource.Load<Sprite>($"Sprite/{model}");
     }
 }
 [System.Serializable]

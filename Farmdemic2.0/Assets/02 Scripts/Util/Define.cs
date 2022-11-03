@@ -46,6 +46,13 @@ public class Define
         Game,
         Minigame
     }
+    
+    public enum Story
+    {
+        None = 0,
+        Chater1 = 11,
+        Chater2,
+    }
 
     public struct Quiz_OX
     {
