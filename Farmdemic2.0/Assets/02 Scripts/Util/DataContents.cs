@@ -20,7 +20,8 @@ public struct Dialogue
         this.name  = name;
         this.word  = word;
         this.model = model;
-        sprite = Managers.Resource.Load<Sprite>($"Sprite/{model}");
+        sprite = Managers.Resource.Load<Sprite>($"Sprites/{model}");
+        Debug.Log($"{model} {sprite}");
     }
 }
 [System.Serializable]

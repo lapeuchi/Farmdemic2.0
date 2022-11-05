@@ -22,14 +22,10 @@ public class UI_Dialogue : UI_Popup
         NextButton
     }
 
-    enum Sprite
-    {
-        ModelSprite
-    }
-
     [SerializeField] List<Dialogue> _dialogueList = new List<Dialogue>();
     Define.Story currentChapter = Define.Story.None;
-
+    Sprite _a;
+    Sprite _b;
     int _index = 0;
     float _delay = 0.025f;
     bool typing = false;
@@ -53,6 +49,8 @@ public class UI_Dialogue : UI_Popup
     {
         _dialogueList = Managers.Data.dialogueDatas;
         Managers.UI.SetCanvas(gameObject, true);
+        _a = Managers.Resource.Load<Sprite>($"Sprites/Hyeok");
+        _b = Managers.Resource.Load<Sprite>($"Sprites/Young");
 
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Image>(typeof(Images));
@@ -65,7 +63,12 @@ public class UI_Dialogue : UI_Popup
     void ShowDialogue()
     {
         GetText((int)Texts.NameText).text = _dialogueList[_index].name;
-        //GetImage((int)Images.ModelImage).sprite = _dialogueList[_index].sprite;
+
+        if(_dialogueList[_index].name == "방혁")
+            GetImage((int)Images.ModelImage).sprite = _a;
+        else
+            GetImage((int)Images.ModelImage).sprite = _b;
+
         StartCoroutine(TypingEffect(_dialogueList[_index].word));
     }
 
