@@ -22,7 +22,7 @@ public static class MinigameTrigger
             return;
         }
 
-        SceneManager.LoadSceneAsync("MiniGameScene");
+        Managers.Scene.Load(Define.Scene.Minigame);
         Minigame = miniGame;
         Debug.Log("Load MiniGame " + miniGame);
     }

@@ -20,6 +20,4 @@ public abstract class SceneBase : MonoBehaviour
         if(obj == null)
             Managers.Resource.Instantiate("UI/EventSystem").name = "@EventSystem";
     }
-
-    public virtual void OnLoad() { }
 }

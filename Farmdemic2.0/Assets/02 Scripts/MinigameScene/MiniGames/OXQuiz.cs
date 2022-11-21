@@ -4,38 +4,49 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class OXQuiz : MonoBehaviour, IMinigame
+public class OXQuiz : UI_Popup, IMinigame
 {
-    [SerializeField] Button O_Button;
-    [SerializeField] Button X_Button;
-    [SerializeField] TMP_Text pannel_Text;
-    [SerializeField] bool lockButton;
+    Button O_Button;
+    Button X_Button;
+    TextMeshProUGUI pannel_Text;
+    bool lockButton;
 
-    [SerializeField] public List<Quiz_OX> quiz_List = new List<Quiz_OX>();
+    public List<Quiz_OX> quiz_List = new List<Quiz_OX>();
     
-    [SerializeField] int quizIndex = 0;
+    int quizIndex = 0;
     int quizLength = 5;
-
     int point = 20;
 
-    private void Awake()
+    enum Buttons
     {
-        O_Button = GameObject.Find("O_Button").GetComponent<Button>();
-        X_Button = GameObject.Find("X_Button").GetComponent<Button>();
-        pannel_Text = GameObject.Find("Pannel_Text").GetComponent<TMP_Text>();
+        O_Button,
+        X_Button
+    }
+
+    enum Texts
+    {
+        Pannel_Text
+    }
+
+    public override void Init()
+    {
+        base.Init();
+
+        Bind<Button>(typeof(Buttons));
+        Bind<TextMeshProUGUI>(typeof(Texts));
+
+        O_Button = GetButton((int)Buttons.O_Button);
+        X_Button = GetButton((int)Buttons.X_Button);
+        pannel_Text = GetText((int)Texts.Pannel_Text);
+
+        O_Button.onClick.AddListener(() => Input("O"));
+        X_Button.onClick.AddListener(() => Input("X"));
         
-        O_Button.onClick.AddListener(()=>Input("O"));
-        X_Button.onClick.AddListener(()=>Input("X"));
         lockButton = true;
         quizIndex = 0;
         CreateQuiz();
-        
-        Debug.Log("Init!");
-    }
 
-    void Start()
-    {
-        
+        Debug.Log("Init!");
     }
 
     void CreateQuiz()

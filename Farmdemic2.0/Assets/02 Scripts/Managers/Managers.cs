@@ -12,11 +12,13 @@ public class Managers : MonoBehaviour
     ResourceManager _resource = new ResourceManager();
     GameManager _game = new GameManager();
     UIManager _ui = new UIManager();
+    SceneManagerEx _scene = new SceneManagerEx();
 
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static GameManager Game { get { return Instance._game; } }
     public static DataManager Data { get { return Instance._data; } }
     public static UIManager UI { get { return Instance._ui; } }
+    public static SceneManagerEx Scene { get { return Instance._scene; } }
     #endregion
     
     void Start()
