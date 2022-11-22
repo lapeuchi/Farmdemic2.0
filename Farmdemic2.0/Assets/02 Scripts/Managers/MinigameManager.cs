@@ -123,6 +123,4 @@ public class MinigameManager : MonoBehaviour
 
         minigameController.GameStart();
     }
-
-
 }

@@ -4,20 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameEvtUI : MonoBehaviour
+public class GameEvtUI : UI_Popup
 {
-    TMP_Text evt_Text;
+   [SerializeField] TextMeshProUGUI evt_Text;
 
     public bool isZeroCount = false;
     public bool isGameOver = false;
 
     private int count = 3;
-    private float originSize;
-    private float maxSize;
-    
-    private void Awake()
+    [SerializeField] private float originSize;
+    [SerializeField] private float maxSize;
+
+    enum Texts
     {
-        evt_Text = GameObject.Find("Evt_Text").GetComponent<TMP_Text>();
+        Evt_Text
+    }
+
+    public override void Init()
+    {
+        base.Init();
+        Bind<TextMeshProUGUI>(typeof(Texts));
+
+        evt_Text = GetText((int)Texts.Evt_Text);
         originSize = evt_Text.fontSize;
         maxSize = originSize * 2;
         evt_Text.text = "게임이 곧 시작됩니다.";
@@ -62,8 +70,8 @@ public class GameEvtUI : MonoBehaviour
         while(true)
         {
             evt_Text.fontSize = Mathf.Lerp(evt_Text.fontSize, originSize, 0.02f); 
-            
             tiemr += Time.deltaTime;
+
             if(tiemr > 2f)
             {
                 break;

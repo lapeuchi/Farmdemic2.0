@@ -4,27 +4,44 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ResultUI : MonoBehaviour
+public class ResultUI : UI_Popup
 {
-    [SerializeField] TMP_Text result_Text;
-    [SerializeField] TMP_Text score_Text;
-    [SerializeField] TMP_Text rank_Text;
-    [SerializeField] Button restart_Button;
-    [SerializeField] Button exit_Button;
+    TMP_Text result_Text;
+    TMP_Text score_Text;
+    TMP_Text rank_Text;
+    Button restart_Button;
+    Button exit_Button;
 
-    void Awake()
+    public override void Init()
     {
-        result_Text = GameObject.Find("Result_Text").GetComponent<TMP_Text>();
-        score_Text = GameObject.Find("Score_Text").GetComponent<TMP_Text>();
-        rank_Text = GameObject.Find("Rank_Text").GetComponent<TMP_Text>();
+        base.Init();
+        Bind<TextMeshProUGUI>(typeof(Texts));
+        Bind<Button>(typeof(Buttons));
 
-        restart_Button = GameObject.Find("Restart_Button").GetComponent<Button>();
-        exit_Button = GameObject.Find("Exit_Button").GetComponent<Button>();
+        result_Text = GetText((int)Texts.Result_Text);
+        score_Text = GetText((int)Texts.Score_Text);
+        rank_Text = GetText((int)Texts.Rank_Text);
 
-        restart_Button.onClick.AddListener(()=>ClickedRestart());
-        exit_Button.onClick.AddListener(()=>ClickedExit());
+        restart_Button = GetButton((int)Buttons.Restart_Button);
+        exit_Button = GetButton((int)Buttons.Exit_Button);
+
+        restart_Button.onClick.AddListener(() => ClickedRestart());
+        exit_Button.onClick.AddListener(() => ClickedExit());
     }
-    
+
+    enum Texts
+    {
+        Result_Text,
+        Score_Text,
+        Rank_Text
+    }
+
+    enum Buttons
+    {
+        Restart_Button,
+        Exit_Button
+    }
+
     public void SetResult(bool isClear)
     {
         if (isClear)
