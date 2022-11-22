@@ -54,7 +54,7 @@ public class ResultUI : UI_Popup
         restart_Button.onClick.AddListener(() => ClickedRestart());
         exit_Button.onClick.AddListener(() => ClickedExit());
     }
-
+    
     enum Images
     {
         Result_Image,
@@ -66,7 +66,7 @@ public class ResultUI : UI_Popup
         Score_Text,
         Rank_Text
     }
-
+    
     enum Buttons
     {
         Restart_Button,
