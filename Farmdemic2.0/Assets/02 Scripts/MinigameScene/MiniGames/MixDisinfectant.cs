@@ -12,5 +12,6 @@ public class MixDisinfectant : MonoBehaviour, IMinigame
     public void GameOver(bool isClear)
     {
         
-    }   
+    }
+    
 }

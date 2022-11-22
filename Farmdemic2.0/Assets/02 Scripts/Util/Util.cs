@@ -15,7 +15,7 @@ public class Util
     public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
     {
         if (go == null) return null;
-
+        
         if(recursive == false)
         {
             for(int i = 0; i < go.transform.childCount; i++)
@@ -46,4 +46,5 @@ public class Util
         Transform transform = FindChild<GameObject>(go, name, recursive).transform;
         return transform.gameObject;
     }
+    
 }

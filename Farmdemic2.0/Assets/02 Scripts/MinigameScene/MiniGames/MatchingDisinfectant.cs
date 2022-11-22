@@ -41,7 +41,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         canvas = transform.Find("UI").gameObject;
         disinfectantParent = canvas.transform.Find("DisinfectantParent").gameObject;
         wayParent = canvas.transform.Find("WayParent").gameObject;
-
+        
         for (int i = 0; i < 6; i++)
         {
             disinfectant[i] = disinfectantParent.transform.Find($"Disinfectant{i + 1}").gameObject;

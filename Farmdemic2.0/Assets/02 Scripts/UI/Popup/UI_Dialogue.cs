@@ -52,12 +52,13 @@ public class UI_Dialogue : UI_Popup
         _a = Managers.Resource.Load<Sprite>($"Sprites/Hyeok");
         _b = Managers.Resource.Load<Sprite>($"Sprites/Young");
 
-        Bind<TextMeshProUGUI>(typeof(Texts));
+        Bind<TMP_Text>(typeof(Texts));
         Bind<Image>(typeof(Images));
         Bind<Button>(typeof(Buttons));
 
         GetButton((int)Buttons.NextButton).onClick.AddListener(OnNextButtonClicked);
         ShowDialogue();
+        base.Init();
     }
 
     void ShowDialogue()

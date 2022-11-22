@@ -6,9 +6,9 @@ using TMPro;
 
 public class OXQuiz : UI_Popup, IMinigame
 {
-    Button O_Button;
-    Button X_Button;
-    TextMeshProUGUI pannel_Text;
+    [SerializeField] Button O_Button;
+    [SerializeField] Button X_Button;
+    [SerializeField] TMP_Text pannel_Text;
     bool lockButton;
 
     public List<Quiz_OX> quiz_List = new List<Quiz_OX>();
@@ -30,23 +30,22 @@ public class OXQuiz : UI_Popup, IMinigame
 
     public override void Init()
     {
-        base.Init();
-
         Bind<Button>(typeof(Buttons));
         Bind<TextMeshProUGUI>(typeof(Texts));
 
         O_Button = GetButton((int)Buttons.O_Button);
         X_Button = GetButton((int)Buttons.X_Button);
-        pannel_Text = GetText((int)Texts.Pannel_Text);
+        //pannel_Text = GetText((int)Texts.Pannel_Text);
+        pannel_Text = GameObject.Find("Pannel_Text").GetComponent<TMP_Text>();
+    }
 
+    void Start()
+    {
         O_Button.onClick.AddListener(() => Input("O"));
         X_Button.onClick.AddListener(() => Input("X"));
-        
         lockButton = true;
         quizIndex = 0;
         CreateQuiz();
-
-        Debug.Log("Init!");
     }
 
     void CreateQuiz()

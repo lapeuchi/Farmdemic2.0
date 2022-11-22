@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public abstract class UI_Base : MonoBehaviour
 {
     protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();
@@ -29,9 +30,11 @@ public abstract class UI_Base : MonoBehaviour
         return objects[index] as T;
     }
 
-    protected TextMeshProUGUI GetText(int index) { return Get<TextMeshProUGUI>(index); }
+    protected TMP_Text GetText(int index) { return Get<TMP_Text>(index); }
     protected Button GetButton(int index) { return Get<Button>(index); }
     protected Image GetImage(int index) { return Get<Image>(index); }
+    
+    private void Awake() { Init(); }
 
     public abstract void Init();
 }

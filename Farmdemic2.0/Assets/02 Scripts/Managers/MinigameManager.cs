@@ -1,5 +1,5 @@
-//#define Debug
-#define Release
+#define Debug
+//#define Release
 
 using System.Collections;
 using System.Collections.Generic;
@@ -96,23 +96,26 @@ public class MinigameManager : MonoBehaviour
 
     private IEnumerator GameOverEffect(bool isClear)
     {
-        gameEvt_UI.gameObject.SetActive(true);
+        //gameEvt_UI.gameObject.SetActive(true);
         StartCoroutine(gameEvt_UI.GameOverEffect());
         yield return new WaitUntil(()=> gameEvt_UI.isGameOver == true);
-        result_UI.gameObject.SetActive(true);
+
+        //result_UI.gameObject.SetActive(true);
+        yield return null;
         result_UI.SetResult(isClear);
     }
     
     public void GameStart()
     {
         StartCoroutine(GameStartEffect());
+        Debug.Log("GameStart()");
     }
 
     private IEnumerator GameStartEffect()
     {
-        yield return null;
+        yield return new WaitForSeconds(1f);
 
-        gameEvt_UI.gameObject.SetActive(true);
+        // gameEvt_UI.gameObject.SetActive(true);
         StartCoroutine(gameEvt_UI.GameStartEffect());
 
         yield return new WaitUntil(()=> gameEvt_UI.isZeroCount == true);

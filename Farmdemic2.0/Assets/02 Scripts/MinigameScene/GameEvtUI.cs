@@ -6,12 +6,13 @@ using TMPro;
 
 public class GameEvtUI : UI_Popup
 {
-   [SerializeField] TextMeshProUGUI evt_Text;
+    [SerializeField] TMP_Text evt_Text;
+    [SerializeField] Image loading_Image;
 
-    public bool isZeroCount = false;
-    public bool isGameOver = false;
+    [SerializeField] public bool isZeroCount = false;
+    [SerializeField] public bool isGameOver = false;
 
-    private int count = 3;
+    [SerializeField] private int count = 3;
     [SerializeField] private float originSize;
     [SerializeField] private float maxSize;
 
@@ -19,13 +20,26 @@ public class GameEvtUI : UI_Popup
     {
         Evt_Text
     }
+    enum Images
+    {
+        Loading_Image
+    }
 
     public override void Init()
     {
-        base.Init();
-        Bind<TextMeshProUGUI>(typeof(Texts));
+        Bind<TMP_Text>(typeof(Texts));
+        Bind<Image>(typeof(Images));
 
         evt_Text = GetText((int)Texts.Evt_Text);
+
+        loading_Image = GetImage((int)Images.Loading_Image);
+        loading_Image.gameObject.SetActive(false);
+
+        base.Init();
+    }
+
+    void Start()
+    {
         originSize = evt_Text.fontSize;
         maxSize = originSize * 2;
         evt_Text.text = "게임이 곧 시작됩니다.";
@@ -57,7 +71,7 @@ public class GameEvtUI : UI_Popup
         }   
 
         yield return new WaitForEndOfFrame();
-        gameObject.SetActive(false);
+        evt_Text.gameObject.SetActive(false);
         isZeroCount = true;
     }
 
@@ -84,7 +98,7 @@ public class GameEvtUI : UI_Popup
 
         yield return new WaitForSeconds(2f);
         isGameOver = true;
-        gameObject.SetActive(false);
+        evt_Text.gameObject.SetActive(false);
 
     }
 
