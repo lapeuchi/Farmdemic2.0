@@ -6,7 +6,8 @@ using System.Collections.Generic;
 /// </summary>
 public interface IMinigame
 {
+    // MinigameManager.GameStartEffect()에서 호출되는 게임 시작함수
     void GameStart();
-
-    void GameOver(bool isClear);    
+    // MinigameManager.GameOver()에서 호출되는 게임 시작함수
+    void GameOver();    
 }

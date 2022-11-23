@@ -20,12 +20,9 @@ public class Define
     
     public enum Rank
     {
-        None,
-        S,
         A,
         B,
         C,
-        D
     }
 
     public enum DataType

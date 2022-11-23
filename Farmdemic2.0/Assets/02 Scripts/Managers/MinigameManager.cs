@@ -25,8 +25,8 @@ public class MinigameManager : MonoBehaviour
 
     public string[] feedbacks = new string[3];
 
-    private bool isClaer;
-    public bool IsClaer { get { return isClaer; } private set {isClaer = value; } }
+    private bool isClear;
+    public bool IsClear { get { return isClear; } private set {isClear = value; } }
 
     public static bool isGameOver = false;
     public static bool isGameStart = false;
@@ -99,11 +99,13 @@ public class MinigameManager : MonoBehaviour
         feedbacks[2] = str2;
     }
 
-    public void GameOver(bool isClear)
+    public void SetClaer(bool isClear) {IsClear = isClear; }
+
+    public void GameOver()
     {   
-        Debug.Log($"GameOver({isClear})");
+        minigameController.GameOver();
+        Debug.Log($"GameOver()");
         isGameOver = true;
-        this.IsClaer = isClear;
         StartCoroutine(GameOverEffect());
     }
 
@@ -116,7 +118,7 @@ public class MinigameManager : MonoBehaviour
         Managers.UI.ClosePopupUI();
 
         ResultPopup resultPopup = Managers.UI.ShowPopupUI<ResultPopup>();
-        resultPopup.SetResult(IsClaer);
+        resultPopup.SetResult();
     }
     
     public void GameStart()

@@ -44,15 +44,6 @@ public class OXQuiz : UI_Popup, IMinigame
         );
     }
 
-    void Start()
-    {
-        O_Button.onClick.AddListener(() => Input("O"));
-        X_Button.onClick.AddListener(() => Input("X"));
-        lockButton = true;
-        quizIndex = 0;
-        CreateQuiz();
-    }
-
     void CreateQuiz()
     {
         List<Quiz_OX> jsonList = Managers.Data.OXQuizDatas;
@@ -62,38 +53,38 @@ public class OXQuiz : UI_Popup, IMinigame
         {
             quiz_List.Add(jsonList[rands[i]]);
         }
-        
     }
 
     public void GameStart()
     {
+        O_Button.onClick.AddListener(() => Input("O"));
+        X_Button.onClick.AddListener(() => Input("X"));
+        lockButton = true;
+        quizIndex = 0;
+        CreateQuiz();
+
         StartCoroutine(ChangeQuiz());
     }
 
-    public void GameOver(bool isClear)
+    public void GameOver()
     {
         lockButton = true;
         
-        switch(MinigameManager.instance.Score % point)
+        switch(MinigameManager.instance.Score / point)
         {
-            case 0:
+            case 0:case 1:
                 MinigameManager.instance.SetRank(Define.Rank.C);
+                MinigameManager.instance.SetClaer(false);
                 break;
-            case 1:
-                MinigameManager.instance.SetRank(Define.Rank.C);
-                break;
-            case 2:
+            case 2: case 3: case 4:
                 MinigameManager.instance.SetRank(Define.Rank.B);
+                MinigameManager.instance.SetClaer(true);
                 break;
-            case 3:
-                MinigameManager.instance.SetRank(Define.Rank.B);
-                break;
-            case 4:
+            case 5:
                 MinigameManager.instance.SetRank(Define.Rank.A);
+                MinigameManager.instance.SetClaer(true);
                 break;
-        }
-        
-        MinigameManager.instance.GameOver(isClear);
+        }        
     }
     
     void Input(string inputAnswer)
@@ -129,7 +120,8 @@ public class OXQuiz : UI_Popup, IMinigame
             StartCoroutine(ChangeQuiz());
         else
         {
-            GameOver(true);
+            MinigameManager.instance.GameOver();
+            GameOver();
         }
     }
 

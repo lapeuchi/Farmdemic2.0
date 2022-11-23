@@ -65,16 +65,27 @@ public class ResultPopup : UI_Popup
         Exit_Button
     }
  
-    public void SetResult(bool isClear)
+    public void SetResult()
     {
-        StartCoroutine(ResultEffect(isClear));
+        StartCoroutine(ResultEffect());
     }
 
-    IEnumerator ResultEffect(bool isClear)
+    IEnumerator ResultEffect()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);   
+        
+        scoreValue_Text.DOText($"{MinigameManager.instance.Score}", 2f, true, ScrambleMode.Numerals);
 
-        if (isClear)
+        yield return new WaitForSeconds(2.5f);
+
+        rankValue_Image.sprite = Managers.Resource.Load<Sprite>($"Sprites/Rank_{MinigameManager.instance.Rank.ToString()}");
+        rankValue_Image.transform.localScale = rankStartScale;
+        rankValue_Image.enabled = true;
+        rankValue_Image.transform.DOScale(rankOriginScale, 1f);
+
+        yield return new WaitForSeconds(1.5f);
+
+        if (MinigameManager.instance.IsClear)
         {
             result_Text.DOText("CLEAR!!!", 1.5f, true, ScrambleMode.Uppercase);
         }
@@ -82,16 +93,10 @@ public class ResultPopup : UI_Popup
         {
             result_Text.DOText("FAILED...", 1.5f, true, ScrambleMode.Uppercase);
         }
-        
-        scoreValue_Text.DOText($"{MinigameManager.instance.Score}", 1.5f, true, ScrambleMode.Numerals);
 
-        yield return new WaitForSeconds(1.5f);
-        rankValue_Image.sprite = Managers.Resource.Load<Sprite>($"Sprites/Rank_{MinigameManager.instance.Rank.ToString()}");
-        rankValue_Image.transform.localScale = rankStartScale;
-        rankValue_Image.enabled = true;
-        rankValue_Image.transform.DOScale(rankOriginScale, 2f);
+        yield return new WaitForSeconds(2.0f);
 
-        if(MinigameManager.instance.IsClaer)
+        if(MinigameManager.instance.IsClear == false)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -99,7 +104,7 @@ public class ResultPopup : UI_Popup
                 {
                     feedback_Texts[i].text = "● " + MinigameManager.instance.feedbacks[i];
                     feedback_Texts[i].DOFade(1f, 1f);
-                }       
+                }
             }
         }
     }

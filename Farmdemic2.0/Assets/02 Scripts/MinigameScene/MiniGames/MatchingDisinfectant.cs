@@ -77,7 +77,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         SetObjects();
     }
 
-    public void GameOver(bool isClear)
+    public void GameOver()
     {
         
     }   

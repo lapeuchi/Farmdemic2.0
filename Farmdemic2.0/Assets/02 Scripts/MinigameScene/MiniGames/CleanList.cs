@@ -9,7 +9,7 @@ public class CleanList : MonoBehaviour, IMinigame
 
     }
 
-    public void GameOver(bool isClear)
+    public void GameOver()
     {
         
     }   

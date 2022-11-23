@@ -9,7 +9,7 @@ public class RatDefence : MonoBehaviour, IMinigame
 
     }
 
-    public void GameOver(bool isClear)
+    public void GameOver()
     {
         
     }   
