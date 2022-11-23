@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameEvtUI : UI_Popup
+public class GameEvtPopup : UI_Popup
 {
     [SerializeField] TMP_Text evt_Text;
     [SerializeField] Image loading_Image;
 
-    [SerializeField] public bool isZeroCount = false;
-    [SerializeField] public bool isGameOver = false;
+    [SerializeField] public bool isEndCountDown = false;
+    [SerializeField] public bool isEndGameOverEffect = false;
 
     [SerializeField] private int count = 3;
     [SerializeField] private float originSize;
@@ -20,20 +20,12 @@ public class GameEvtUI : UI_Popup
     {
         Evt_Text
     }
-    enum Images
-    {
-        Loading_Image
-    }
 
     public override void Init()
     {
         Bind<TMP_Text>(typeof(Texts));
-        Bind<Image>(typeof(Images));
-
+        
         evt_Text = GetText((int)Texts.Evt_Text);
-
-        loading_Image = GetImage((int)Images.Loading_Image);
-        loading_Image.gameObject.SetActive(false);
 
         base.Init();
     }
@@ -47,6 +39,7 @@ public class GameEvtUI : UI_Popup
 
     public IEnumerator GameStartEffect()
     {   
+        evt_Text.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
 
         for (int i = count; i >= 0; i--)
@@ -72,11 +65,12 @@ public class GameEvtUI : UI_Popup
 
         yield return new WaitForEndOfFrame();
         evt_Text.gameObject.SetActive(false);
-        isZeroCount = true;
+        isEndCountDown = true;
     }
 
     public IEnumerator GameOverEffect()
     {
+        evt_Text.gameObject.SetActive(true);
         evt_Text.fontSize = 1f;
         evt_Text.text = "게임 종료";
         
@@ -97,7 +91,7 @@ public class GameEvtUI : UI_Popup
         evt_Text.fontSize = originSize;
 
         yield return new WaitForSeconds(2f);
-        isGameOver = true;
+        isEndGameOverEffect = true;
         evt_Text.gameObject.SetActive(false);
 
     }

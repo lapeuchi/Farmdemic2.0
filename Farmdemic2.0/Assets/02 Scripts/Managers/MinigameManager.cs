@@ -15,22 +15,26 @@ public class MinigameManager : MonoBehaviour
 
     public Transform minigameParent;
 
-    public ResultUI result_UI;
-    public GameEvtUI gameEvt_UI;
+    public GameEvtPopup gameEvt_UI;
     
     private int _score;
     public int Score {get {return _score;} private set {_score = value;}}
     
-    private Define.Rank _grade;
-    public Define.Rank Grade {get {return _grade;} private set {_grade = value;}}
-    
+    private Define.Rank _rank;
+    public Define.Rank Rank {get {return _rank;} private set {_rank = value;}}
+
+    public string[] feedbacks = new string[3];
+
+    private bool isClaer;
+    public bool IsClaer { get { return isClaer; } private set {isClaer = value; } }
+
     public static bool isGameOver = false;
     public static bool isGameStart = false;
 
     private void Awake()
     {
         Init();
-        FindAndSetGame();
+        FindAndSetGame();    
     }
 
     private void Init()
@@ -38,10 +42,10 @@ public class MinigameManager : MonoBehaviour
         if(instance == null)
             instance = this;
         else Destroy(gameObject);
-
+        
         minigameParent = GameObject.Find("MinigameParent").transform;
-        result_UI = transform.Find("Result_UI").GetComponent<ResultUI>();
-        gameEvt_UI = transform.Find("GameEvt_UI").GetComponent<GameEvtUI>();
+        
+        gameEvt_UI = Managers.UI.ShowPopupUI<GameEvtPopup>();  
     }
 
     private void FindAndSetGame()
@@ -56,6 +60,7 @@ public class MinigameManager : MonoBehaviour
             Debug.LogError("Game is not Selected");
         }
 #endif
+
         GameObject game = minigameParent.Find(curMiniGame.ToString()).gameObject;
         minigameController = game.GetComponent<IMinigame>();
         game.SetActive(true);
@@ -63,8 +68,8 @@ public class MinigameManager : MonoBehaviour
     
     private void Start()
     {
-        GameStart();
         Score = 0;
+        GameStart();
     }
 
     public void AddScore(int score)
@@ -84,29 +89,39 @@ public class MinigameManager : MonoBehaviour
 
     public void SetRank(Define.Rank grade)
     {
-        this.Grade = grade;
+        this.Rank = grade;
+    }
+
+    public void SetFeedback(string str0 = null, string str1 = null, string str2 = null)
+    {
+        feedbacks[0] = str0;
+        feedbacks[1] = str1;
+        feedbacks[2] = str2;
     }
 
     public void GameOver(bool isClear)
     {   
+        Debug.Log($"GameOver({isClear})");
         isGameOver = true;
-        
-        StartCoroutine(GameOverEffect(isClear));
+        this.IsClaer = isClear;
+        StartCoroutine(GameOverEffect());
     }
 
-    private IEnumerator GameOverEffect(bool isClear)
+    private IEnumerator GameOverEffect()
     {
-        //gameEvt_UI.gameObject.SetActive(true);
         StartCoroutine(gameEvt_UI.GameOverEffect());
-        yield return new WaitUntil(()=> gameEvt_UI.isGameOver == true);
 
-        //result_UI.gameObject.SetActive(true);
-        yield return null;
-        result_UI.SetResult(isClear);
+        yield return new WaitUntil(()=> gameEvt_UI.isEndGameOverEffect == true);
+        
+        Managers.UI.ClosePopupUI();
+
+        ResultPopup resultPopup = Managers.UI.ShowPopupUI<ResultPopup>();
+        resultPopup.SetResult(IsClaer);
     }
     
     public void GameStart()
     {
+        
         StartCoroutine(GameStartEffect());
         Debug.Log("GameStart()");
     }
@@ -114,11 +129,10 @@ public class MinigameManager : MonoBehaviour
     private IEnumerator GameStartEffect()
     {
         yield return new WaitForSeconds(1f);
-
-        // gameEvt_UI.gameObject.SetActive(true);
+        
         StartCoroutine(gameEvt_UI.GameStartEffect());
 
-        yield return new WaitUntil(()=> gameEvt_UI.isZeroCount == true);
+        yield return new WaitUntil(()=> gameEvt_UI.isEndCountDown == true);
         
         isGameStart = true;
         

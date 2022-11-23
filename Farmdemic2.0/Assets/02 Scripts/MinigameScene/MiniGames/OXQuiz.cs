@@ -37,6 +37,11 @@ public class OXQuiz : UI_Popup, IMinigame
         X_Button = GetButton((int)Buttons.X_Button);
         //pannel_Text = GetText((int)Texts.Pannel_Text);
         pannel_Text = GameObject.Find("Pannel_Text").GetComponent<TMP_Text>();
+        MinigameManager.instance.SetFeedback
+        (
+            "반복 플레이를 통해 암기를 하세요",
+            "인터넷에서 관련 자료를 검색해보세요."
+        );
     }
 
     void Start()
@@ -72,7 +77,7 @@ public class OXQuiz : UI_Popup, IMinigame
         switch(MinigameManager.instance.Score % point)
         {
             case 0:
-                MinigameManager.instance.SetRank(Define.Rank.D);
+                MinigameManager.instance.SetRank(Define.Rank.C);
                 break;
             case 1:
                 MinigameManager.instance.SetRank(Define.Rank.C);
@@ -81,10 +86,10 @@ public class OXQuiz : UI_Popup, IMinigame
                 MinigameManager.instance.SetRank(Define.Rank.B);
                 break;
             case 3:
-                MinigameManager.instance.SetRank(Define.Rank.A);
+                MinigameManager.instance.SetRank(Define.Rank.B);
                 break;
             case 4:
-                MinigameManager.instance.SetRank(Define.Rank.S);
+                MinigameManager.instance.SetRank(Define.Rank.A);
                 break;
         }
         
