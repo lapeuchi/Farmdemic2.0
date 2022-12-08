@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Trash : MonoBehaviour
 {
-    Dragable drag;
+    Interactable drag;
 
+    public bool isDie = false;
     void Start()
     {
-        
+        isDie = false;
+        drag = GetComponent<Interactable>();
     }
 
     void Update()
     {
         if(drag.isClick)
         {
-            Destroy(gameObject);
+            isDie = false;
         }
     }
 }

@@ -5,16 +5,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Clickable : MonoBehaviour
+public class Interactable : MonoBehaviour
 {
+    [Header("State")]
     public bool isDrag;
     public bool isDragable;
     public bool isOnMouse;
-    public bool isLongRangeDrag; 
     public bool isClick;
 
+    [Header("Options")]
+    // 드래그 중 손가락이 오브젝트에서 떨어져도 드래그가 유지되는 옴션
+    public bool longRangeDrag;
+
     Collider coll;
-    Collider2D coll2D;
 
     Vector3 prevPos;
 
@@ -22,8 +25,6 @@ public class Clickable : MonoBehaviour
     {
         coll = gameObject.GetComponent<Collider>();
 
-        coll2D = gameObject.GetComponent<Collider2D>();
-        
         isDragable = true;
         isDrag = false;
         isOnMouse = false;
@@ -38,7 +39,7 @@ public class Clickable : MonoBehaviour
             return;
         }
         
-        if (isLongRangeDrag == false && isOnMouse == false)
+        if (longRangeDrag == false && isOnMouse == false)
         {
             isDrag = false;
             return;
@@ -56,16 +57,6 @@ public class Clickable : MonoBehaviour
         }
     }
     
-    // private void OnMouseEnter()
-    // {
-    //     isOnMouse = true;
-    // }
-
-    // void OnMouseExit()
-    // {
-    //     isOnMouse = false;
-    // }
-
     void Update()
     {
         if (Input.touchCount > 0)
@@ -95,10 +86,6 @@ public class Clickable : MonoBehaviour
                             isOnMouse = false;
                         }
                     }
-                }
-                else if (coll2D)
-                {
-                    
                 }
             }
             else if (touch.phase == TouchPhase.Ended)
