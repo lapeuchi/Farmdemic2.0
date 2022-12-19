@@ -6,6 +6,7 @@ using TMPro;
 
 public class OXQuiz : UI_Popup, IMinigame
 {
+    
     [SerializeField] Button O_Button;
     [SerializeField] Button X_Button;
     [SerializeField] TMP_Text pannel_Text;
