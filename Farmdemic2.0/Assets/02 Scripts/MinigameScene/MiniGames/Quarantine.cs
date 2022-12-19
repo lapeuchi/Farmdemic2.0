@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CleanList : MonoBehaviour, IMinigame
+public class Quarantine : MonoBehaviour, IMinigame
 {
     public void GameStart()
     {
