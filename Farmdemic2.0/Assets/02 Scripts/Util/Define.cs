@@ -6,15 +6,11 @@ public class Define
     public enum Minigame
     {  
         None = 0,
-        OXQuiz = 1,
-        //BuildingPosPuzzle = 2,
-        CleanList = 3,
-        //CleanSwipe = 4,
-        MatchingDisinfectant = 5,
-        //MixDisinfectant = 6,
-        HarmfulBirds = 7,
-        //RatDefence = 8,
-        //CheckComingAndGoing = 9,
+
+        OXQuiz = 1, // ox퀴즈
+        MatchingDisinfectant = 2, // 소독약 용도 매칭
+        HarmfulBirds = 3, // 해로운 새
+        Disinfectant = 4, // 의심 가축 격리
     }
     
     public enum Rank
