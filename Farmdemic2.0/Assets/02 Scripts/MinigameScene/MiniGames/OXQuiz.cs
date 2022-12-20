@@ -6,7 +6,7 @@ using TMPro;
 
 public class OXQuiz : UI_Popup, IMinigame
 {
-    
+
     [SerializeField] Button O_Button;
     [SerializeField] Button X_Button;
     [SerializeField] TMP_Text pannel_Text;
@@ -71,7 +71,7 @@ public class OXQuiz : UI_Popup, IMinigame
     {
         lockButton = true;
         
-        switch(MinigameManager.instance.Score / point)
+        switch(MinigameManager.instance.Score.Score / point)
         {
             case 0:case 1:
                 MinigameManager.instance.SetRank(Define.Rank.C);
@@ -102,7 +102,7 @@ public class OXQuiz : UI_Popup, IMinigame
         if (inputAnswer == quiz_List[quizIndex].answer)
         {
             pannel_Text.text = "정답입니다!\n";
-            MinigameManager.instance.AddScore(point);
+            MinigameManager.instance.Score.PlusScore(point);
             //Managers.Sound.PlaySFX(Define.SFX.Collect);
         }
         else

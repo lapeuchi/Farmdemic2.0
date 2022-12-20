@@ -5,8 +5,11 @@ using UnityEngine;
 public class HarmfulBirds : MonoBehaviour, IMinigame
 {
     int score;
+   
     public void GameStart()
     {
+        MinigameManager.instance.StartTimer(30f);
+        MinigameManager.instance.StartLife();
         MinigameManager.instance.SetFeedback
         (
             "열심히 좀 해봐요",
@@ -15,23 +18,35 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
         );
     }
 
-    void GameProgress()
+    private void Update()
     {
-        MinigameManager.instance.GameOver();
+        // 게임 진행 코드 작성    
+        MinigameManager.instance.Score.PlusScore(1);
     }
 
     public void GameOver()
     {
-        MinigameManager.instance.SetScore(score);
-        if(score < 50)
+        if (MinigameManager.instance.Timer.isTimerZero)
+        {
+            MinigameManager.instance.SetClaer(true);
+        }
+        
+        else if (MinigameManager.instance.Life.isLifeZero)
+        {
+            MinigameManager.instance.SetClaer(true);
+        }
+
+        if(score < 60)
         {
             MinigameManager.instance.SetRank(Define.Rank.C);
-            MinigameManager.instance.SetClaer(false);
         }
-        else if (score > 500)
+        else if (score < 120)
+        {
+            MinigameManager.instance.SetRank(Define.Rank.B);
+        }
+        else 
         {
             MinigameManager.instance.SetRank(Define.Rank.A);
-            MinigameManager.instance.SetClaer(true);
         }
     }
 }

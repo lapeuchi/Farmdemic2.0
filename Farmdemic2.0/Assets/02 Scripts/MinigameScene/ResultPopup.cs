@@ -74,7 +74,7 @@ public class ResultPopup : UI_Popup
     {
         yield return new WaitForSeconds(1f);   
         
-        scoreValue_Text.DOText($"{MinigameManager.instance.Score}", 2f, true, ScrambleMode.Numerals);
+        scoreValue_Text.DOText($"{MinigameManager.instance.Score.Score}", 2f, true, ScrambleMode.Numerals);
 
         yield return new WaitForSeconds(2.5f);
 
@@ -85,6 +85,7 @@ public class ResultPopup : UI_Popup
 
         yield return new WaitForSeconds(1.5f);
 
+        Debug.Log(MinigameManager.instance.IsClear);
         if (MinigameManager.instance.IsClear)
         {
             result_Text.DOText("CLEAR!!!", 1.5f, true, ScrambleMode.Uppercase);

@@ -21,7 +21,7 @@ public class UIManager
     Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
     UI_Scene _sceneUI = null;
     int _order = 10;
-
+    
 
     public void SetCanvas(GameObject go, bool sort)
     {
@@ -40,7 +40,8 @@ public class UIManager
         }
         else
         {
-            canvas.sortingOrder = 0;
+            return;
+            //canvas.sortingOrder = 0;
         }
     }
 

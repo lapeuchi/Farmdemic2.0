@@ -17,20 +17,21 @@ public class MinigameManager : MonoBehaviour
 
     public GameEvtPopup gameEvt_UI;
     
-    private int _score;
-    public int Score {get {return _score;} private set {_score = value;}}
-    
     private Define.Rank _rank;
     public Define.Rank Rank {get {return _rank;} private set {_rank = value;}}
-
+    
     public string[] feedbacks = new string[3];
 
     private bool isClear;
     public bool IsClear { get { return isClear; } private set {isClear = value; } }
-
+    
     public static bool isGameOver = false;
     public static bool isGameStart = false;
 
+    public MinigameScore Score;
+    public MinigameLife Life;
+    public MinigameTimer Timer;
+    
     private void Awake()
     {
         Init();
@@ -44,8 +45,8 @@ public class MinigameManager : MonoBehaviour
         else Destroy(gameObject);
         
         minigameParent = GameObject.Find("MinigameParent").transform;
-        
-        gameEvt_UI = Managers.UI.ShowPopupUI<GameEvtPopup>();  
+        Score = Managers.UI.ShowSceneUI<MinigameScore>();
+        gameEvt_UI = Managers.UI.ShowPopupUI<GameEvtPopup>();
     }
 
     private void FindAndSetGame()
@@ -68,23 +69,39 @@ public class MinigameManager : MonoBehaviour
     
     private void Start()
     {
-        Score = 0;
         GameStart();
     }
 
-    public void AddScore(int score)
+    void Update()
     {
-        this.Score += score;
-    }
-    
-    public void MultipleScore(int score, int n)
-    {
-        this.Score *= score * n;
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Life.PlusLife();
+        }
+        else if (Input.GetKeyDown(KeyCode.O))
+        {
+            Life.MinusLife();
+        }
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            Timer.PlusTime(5f);
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            Timer.MinusTime(5f);
+        }
     }
 
-    public void SetScore(int score)
+    public void StartLife()
     {
-        this.Score = score;
+        Life = Managers.UI.ShowSceneUI<MinigameLife>();
+        Life.Setting();
+    }
+    public void StartTimer(float time)
+    {
+        Timer = Managers.UI.ShowSceneUI<MinigameTimer>();
+        Timer.Setting(time);
     }
 
     public void SetRank(Define.Rank grade)
@@ -99,13 +116,14 @@ public class MinigameManager : MonoBehaviour
         feedbacks[2] = str2;
     }
 
-    public void SetClaer(bool isClear) {IsClear = isClear; }
+    public void SetClaer(bool isClear) { IsClear = isClear; }
 
     public void GameOver()
     {   
-        minigameController.GameOver();
         Debug.Log($"GameOver()");
+        minigameController.GameOver();
         isGameOver = true;
+        Debug.Log(MinigameManager.instance.IsClear);
         StartCoroutine(GameOverEffect());
     }
 
@@ -117,13 +135,16 @@ public class MinigameManager : MonoBehaviour
         
         Managers.UI.ClosePopupUI();
 
+        Score.gameObject.SetActive(false);
+        Life.gameObject.SetActive(false);
+        Timer.gameObject.SetActive(false);
+
         ResultPopup resultPopup = Managers.UI.ShowPopupUI<ResultPopup>();
         resultPopup.SetResult();
     }
     
     public void GameStart()
     {
-        
         StartCoroutine(GameStartEffect());
         Debug.Log("GameStart()");
     }
@@ -133,7 +154,7 @@ public class MinigameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
         StartCoroutine(gameEvt_UI.GameStartEffect());
-
+        
         yield return new WaitUntil(()=> gameEvt_UI.isEndCountDown == true);
         
         isGameStart = true;

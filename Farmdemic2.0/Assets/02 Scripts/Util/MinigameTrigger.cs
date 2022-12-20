@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 /// <summary> 
 ///      This is a class for running a minigame.
 /// 
@@ -21,7 +20,7 @@ public static class MinigameTrigger
             Debug.Log("MiniGame is not Selected");
             return;
         }
-
+        
         Managers.Scene.Load(Define.Scene.Minigame);
         Minigame = miniGame;
         Debug.Log("Load MiniGame " + miniGame);
