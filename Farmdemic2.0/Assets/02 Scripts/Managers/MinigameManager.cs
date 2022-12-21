@@ -45,7 +45,7 @@ public class MinigameManager : MonoBehaviour
         else Destroy(gameObject);
         
         minigameParent = GameObject.Find("MinigameParent").transform;
-        Score = Managers.UI.ShowSceneUI<MinigameScore>();
+        
         gameEvt_UI = Managers.UI.ShowPopupUI<GameEvtPopup>();
     }
 
@@ -91,6 +91,11 @@ public class MinigameManager : MonoBehaviour
         {
             Timer.MinusTime(5f);
         }
+    }
+
+    public void StartScore()
+    {
+        Score = Managers.UI.ShowSceneUI<MinigameScore>();
     }
 
     public void StartLife()
@@ -146,6 +151,7 @@ public class MinigameManager : MonoBehaviour
     public void GameStart()
     {
         StartCoroutine(GameStartEffect());
+        StartScore();
         Debug.Log("GameStart()");
     }
 
