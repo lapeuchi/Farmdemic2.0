@@ -35,7 +35,8 @@ public class Define
     {
         ClickDialogue,
         Collect,
-        Worth
+        Worth,
+        CrowCrying,
     }
     
     public enum Scene
