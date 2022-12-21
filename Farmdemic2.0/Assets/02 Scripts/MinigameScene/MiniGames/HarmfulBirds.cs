@@ -5,12 +5,23 @@ using UnityEngine;
 public class HarmfulBirds : MonoBehaviour, IMinigame
 {
     [SerializeField] Transform[] spawnPos = new Transform[3];
-    float[] createTime = new float[3] { 1, 2, 3 };
+    float[] createTime = new float[3] { 3f, 2.5f, 1.5f };
     float currentTime = 0f;
+    [SerializeField] Camera gameCamera = null;
+
+    private void Awake()
+    {
+        gameCamera = transform.Find("MinigameCamera").GetComponent<Camera>();
+        Transform spawnPositions = transform.Find("SpawnPositions");
+        Camera.main.gameObject.SetActive(false);
+
+        for (int i = 0; i < spawnPositions.childCount; i++)
+            spawnPos[i] = spawnPositions.GetChild(i);
+    }
 
     public void GameStart()
     {
-        MinigameManager.instance.StartTimer(40f);
+        MinigameManager.instance.StartTimer(30f);
         MinigameManager.instance.StartLife();
         MinigameManager.instance.SetFeedback
         (
@@ -19,37 +30,54 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
             "ㅋ"
         );
 
+        int index = Random.Range(0, spawnPos.Length);
+        Managers.Resource.Instantiate("Minigame/HarmfulBirds/Crow", spawnPos[index].position, Quaternion.identity);
         StartCoroutine(OnRoutine());
     }
 
     private void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if(Physics.Raycast(ray, out hit, Mathf.Infinity))
+        
+        if(Input.GetMouseButtonDown(0))
         {
-            CrowController crow = hit.transform.GetComponent<CrowController>();
+            Ray ray = gameCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-            if (crow != null)
-                crow.ShotDown();
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                CrowController crow = hit.transform.GetComponent<CrowController>();
+
+                if (crow != null)
+                    crow.ShotDown();
+            }
+            else
+            {
+                Debug.Log("Not found");
+            }
         }
     }
 
     IEnumerator OnRoutine()
     {
-        int tmpCreateTimeIdx = Random.Range(0, createTime.Length);
+        int timeIdx = 0;
+        float time = 0;
 
-        while (MinigameManager.instance.Timer.isTimerZero == false)
+        while (MinigameManager.instance.Timer.isTimerZero == false || MinigameManager.isGameOver)
         {
             currentTime += Time.deltaTime;
+            time += Time.deltaTime;
 
-            if (createTime[tmpCreateTimeIdx] <= currentTime)
+            if(time >= 10)
+            {
+                time = 0;
+                timeIdx++;
+            }
+
+            if (createTime[timeIdx] <= currentTime)
             {
                 currentTime = 0;
                 int index = Random.Range(0, spawnPos.Length);
                 Managers.Resource.Instantiate("Minigame/HarmfulBirds/Crow", spawnPos[index].position, Quaternion.identity);
-                tmpCreateTimeIdx = Random.Range(0, createTime.Length);
             }
 
             yield return null;

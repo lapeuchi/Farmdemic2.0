@@ -22,10 +22,10 @@ public class UI_Dialogue : UI_Popup
         NextButton
     }
 
-    [SerializeField] List<Dialogue> _dialogueList = new List<Dialogue>();
+    [SerializeField] Queue<Dialogue> _dialogueQueue = new Queue<Dialogue>();
     Define.Story currentChapter = Define.Story.None;
-    Sprite _a;
-    Sprite _b;
+    Sprite _hyeok;
+    Sprite _young;
     int _index = 0;
     float _delay = 0.025f;
     bool typing = false;
@@ -47,10 +47,13 @@ public class UI_Dialogue : UI_Popup
 
     public override void Init()
     {
-        _dialogueList = Managers.Data.dialogueDatas;
-        Managers.UI.SetCanvas(gameObject, true);
-        _a = Managers.Resource.Load<Sprite>($"Sprites/Hyeok");
-        _b = Managers.Resource.Load<Sprite>($"Sprites/Young");
+        base.Init();
+
+        for(int i = 0; i < (int) currentChapter; i++)
+            _dialogueQueue.Enqueue(Managers.Data.dialogueDatas[i]);
+
+        _hyeok = Managers.Resource.Load<Sprite>($"Sprites/Hyeok");
+        _young = Managers.Resource.Load<Sprite>($"Sprites/Young");
 
         Bind<TMP_Text>(typeof(Texts));
         Bind<Image>(typeof(Images));
@@ -63,14 +66,15 @@ public class UI_Dialogue : UI_Popup
 
     void ShowDialogue()
     {
-        GetText((int)Texts.NameText).text = _dialogueList[_index].name;
+        Dialogue dialgoue = _dialogueQueue.Dequeue();
+        GetText((int)Texts.NameText).text = dialgoue.name;
 
-        if(_dialogueList[_index].name == "방혁")
-            GetImage((int)Images.ModelImage).sprite = _a;
+        if(dialgoue.name == "방혁")
+            GetImage((int)Images.ModelImage).sprite = _hyeok;
         else
-            GetImage((int)Images.ModelImage).sprite = _b;
+            GetImage((int)Images.ModelImage).sprite = _young;
 
-        StartCoroutine(TypingEffect(_dialogueList[_index].word));
+        StartCoroutine(TypingEffect(dialgoue.word));
     }
 
     IEnumerator TypingEffect(string word)
