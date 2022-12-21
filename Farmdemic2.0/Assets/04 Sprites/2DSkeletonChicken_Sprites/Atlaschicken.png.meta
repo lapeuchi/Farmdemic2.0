@@ -1,0 +1,510 @@
+fileFormatVersion: 2
+guid: 6ffd1e7c70f4e36408da95957b9f98ee
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5848455464417902239
+    second: chicken_tail
+  - first:
+      213: 1638324479575972979
+    second: chicken_buri
+  - first:
+      213: 3300229365574494240
+    second: chicken_feather
+  - first:
+      213: -8687965805349710476
+    second: chicken_regBotton
+  - first:
+      213: -1280370962199347392
+    second: chicken_wing2
+  - first:
+      213: 7588654575514028458
+    second: chicken_neck
+  - first:
+      213: 5541180738393011790
+    second: chicken_reg1
+  - first:
+      213: 874760382292601140
+    second: chicken_eye
+  - first:
+      213: 4048927658562871033
+    second: chicken_foot
+  - first:
+      213: 2879644917747194064
+    second: chicken_wing3
+  - first:
+      213: 2041113503983794753
+    second: Atlaschicken_10
+  - first:
+      213: -8550773190657090568
+    second: chicken_wingE
+  - first:
+      213: 9128292372257882818
+    second: 0body
+  - first:
+      213: -2231712289617336109
+    second: chicken_bottom
+  - first:
+      213: 7152569105843478206
+    second: chicken_regTop
+  - first:
+      213: 8698123232213040455
+    second: chicken_head
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: chicken_tail
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 410
+        width: 83
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9e32592243e92150800000000000000
+      internalID: 5848455464417902239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_buri
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 479
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37cd3f71f6f7cb610800000000000000
+      internalID: 1638324479575972979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_feather
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 456
+        width: 42
+        height: 27
+      alignment: 9
+      pivot: {x: 0.59780705, y: 0.2565624}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02861646f15cccd20800000000000000
+      internalID: 3300229365574494240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_regBotton
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 410
+        width: 49
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 475d36f71252e6780800000000000000
+      internalID: -8687965805349710476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_wing2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 423
+        width: 67
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04ff161c4653b3ee0800000000000000
+      internalID: -1280370962199347392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_neck
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 178
+        width: 144
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa908a84121505960800000000000000
+      internalID: 7588654575514028458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_reg1
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 377
+        width: 46
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e46f62ce58a36ec40800000000000000
+      internalID: 5541180738393011790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_eye
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 325
+        width: 41
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 439a22adee5c32c00800000000000000
+      internalID: 874760382292601140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_foot
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 289
+        width: 65
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fed4e9d04ea03830800000000000000
+      internalID: 4048927658562871033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_wing3
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 243
+        width: 56
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d89491bbcd86f720800000000000000
+      internalID: 2879644917747194064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlaschicken_10
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 178
+        width: 82
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14af437eaed735c10800000000000000
+      internalID: 2041113503983794753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_wingE
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 178
+        width: 91
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fb53f7461d855980800000000000000
+      internalID: -8550773190657090568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0body
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 207
+        height: 170
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c2c65e7c853eae70800000000000000
+      internalID: 9128292372257882818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_bottom
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 0
+        width: 162
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d82c782f7d5701e0800000000000000
+      internalID: -2231712289617336109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_regTop
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 106
+        width: 92
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebedb31b4b7034360800000000000000
+      internalID: 7152569105843478206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_head
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 0
+        width: 94
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74d71acbef0f5b870800000000000000
+      internalID: 8698123232213040455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      chicken_wingE: -8550773190657090568
+      chicken_eye: 874760382292601140
+      chicken_neck: 7588654575514028458
+      chicken_regBotton: -8687965805349710476
+      0body: 9128292372257882818
+      chicken_feather: 3300229365574494240
+      Atlaschicken_10: 2041113503983794753
+      chicken_reg1: 5541180738393011790
+      chicken_head: 8698123232213040455
+      chicken_foot: 4048927658562871033
+      chicken_wing3: 2879644917747194064
+      chicken_regTop: 7152569105843478206
+      chicken_buri: 1638324479575972979
+      chicken_bottom: -2231712289617336109
+      chicken_tail: 5848455464417902239
+      chicken_wing2: -1280370962199347392
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

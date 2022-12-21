@@ -6,11 +6,11 @@ public class Quarantine : MonoBehaviour, IMinigame
 {
     public void GameStart()
     {
-        
+        MinigameManager.instance.StartTimer(30);
     }
-
+    
     public void GameOver()
     {
-        
+           
     }   
 }
