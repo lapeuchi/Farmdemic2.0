@@ -7,7 +7,7 @@ using DG.Tweening;
 public class CrowController : MonoBehaviour
 {
     float speed = 5f;
-    float arrivePos = -8;
+    float arrivePos = -9;
     int score = 10;
     bool isDead;
 
@@ -31,7 +31,7 @@ public class CrowController : MonoBehaviour
 
     void Arrive()
     {
-        Managers.Sound.PlaySFX(Define.SFX.CrowCrying);
+        //Managers.Sound.PlaySFX(Define.SFX.CrowCrying);
         MinigameManager.instance.Life.MinusLife();
         Destroy(gameObject);
     }
@@ -39,7 +39,7 @@ public class CrowController : MonoBehaviour
     public void ShotDown()
     {
         isDead = true;
-        MinigameManager.instance.Score.PlusScore(score);
+        //MinigameManager.instance.Score.PlusScore(score);
         anim.SetTrigger("Die");
         SpriteRenderer sp = GetComponent<SpriteRenderer>();
         Collider col = GetComponent<Collider>();

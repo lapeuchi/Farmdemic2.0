@@ -31,6 +31,7 @@ public class SoundManager
         }
 
         GameObject sfxRoot = new GameObject { name = "@SFX" }; ;
+        sfxRoot.transform.parent = root.transform;
 
         for(int i = 0; i < sfxSource.Length; i++)
         {

@@ -8,13 +8,14 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
     float[] createTime = new float[3] { 3f, 2.5f, 1.5f };
     float currentTime = 0f;
     [SerializeField] Camera gameCamera = null;
+    [SerializeField] Transform root;
 
     private void Awake()
     {
         gameCamera = transform.Find("MinigameCamera").GetComponent<Camera>();
         Transform spawnPositions = transform.Find("SpawnPositions");
         Camera.main.gameObject.SetActive(false);
-
+        root = new GameObject { name = "CrowRoot" }.transform;
         for (int i = 0; i < spawnPositions.childCount; i++)
             spawnPos[i] = spawnPositions.GetChild(i);
     }
@@ -31,7 +32,7 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
         );
 
         int index = Random.Range(0, spawnPos.Length);
-        Managers.Resource.Instantiate("Minigame/HarmfulBirds/Crow", spawnPos[index].position, Quaternion.identity);
+        Managers.Resource.Instantiate("Minigame/HarmfulBirds/Crow", spawnPos[index].position, Quaternion.identity, root);
         StartCoroutine(OnRoutine());
     }
 
@@ -48,11 +49,9 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
                 CrowController crow = hit.transform.GetComponent<CrowController>();
 
                 if (crow != null)
+                {
                     crow.ShotDown();
-            }
-            else
-            {
-                Debug.Log("Not found");
+                }
             }
         }
     }
@@ -71,13 +70,17 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
             {
                 time = 0;
                 timeIdx++;
+
+                if (timeIdx >= createTime.Length)
+                    break;
             }
+
 
             if (createTime[timeIdx] <= currentTime)
             {
                 currentTime = 0;
                 int index = Random.Range(0, spawnPos.Length);
-                Managers.Resource.Instantiate("Minigame/HarmfulBirds/Crow", spawnPos[index].position, Quaternion.identity);
+                GameObject go = Managers.Resource.Instantiate("Minigame/HarmfulBirds/Crow", spawnPos[index].position, Quaternion.identity, root);
             }
 
             yield return null;
@@ -86,6 +89,11 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
 
     public void GameOver()
     {
+        for (int i = 0; i < root.transform.childCount; i++)
+        {
+            Destroy(root.transform.GetChild(i).gameObject);
+        }
+
         if (MinigameManager.instance.Timer.isTimerZero)
         {
             MinigameManager.instance.SetClaer(true);
