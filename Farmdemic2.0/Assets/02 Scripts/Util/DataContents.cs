@@ -21,9 +21,9 @@ public struct Dialogue
         this.word  = word;
         this.model = model;
         sprite = Managers.Resource.Load<Sprite>($"Sprites/{model}");
-        Debug.Log($"{model} {sprite}");
     }
 }
+
 [System.Serializable]
 public class DialogueLoader : ILoader<Dialogue>
 {

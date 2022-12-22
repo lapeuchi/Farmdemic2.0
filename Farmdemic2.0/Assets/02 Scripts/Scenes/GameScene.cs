@@ -9,7 +9,12 @@ public class GameScene : SceneBase
         base.Init();
 
         sceneType = Define.Scene.Game;
-        Managers.UI.ShowPopupUI<UI_Dialogue>();
+
+        //if (Managers.Game.CurrentStory == Define.Story.Intro)
+        //    Managers.UI.ShowPopupUI<UI_Intro>();
+        //else
+            Managers.UI.ShowPopupUI<UI_SceneTransition>();
+       
     }
 
 

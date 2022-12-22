@@ -6,7 +6,6 @@ public class Define
     public enum Minigame
     {  
         None = 0,
-
         OXQuiz = 1, // ox퀴즈
         MatchingDisinfectant = 2, // 소독약 용도 매칭
         HarmfulBirds = 3, // 해로운 새
@@ -49,9 +48,9 @@ public class Define
     
     public enum Story
     {
-        None = 0,
-        Chater1 = 11,
-        Chater2,
+        Intro = 7,
+        Chater1 = 8,
+        Chater2, 
     }
 
     public struct Quiz_OX

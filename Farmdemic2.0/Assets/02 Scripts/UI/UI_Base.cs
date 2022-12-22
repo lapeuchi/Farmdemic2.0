@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public abstract class UI_Base : MonoBehaviour
 {
     protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();
-
+    
     protected void Bind<T>(Type type) where T : UnityEngine.Object
     {
         string[] names = System.Enum.GetNames(type);
@@ -33,7 +34,7 @@ public abstract class UI_Base : MonoBehaviour
     protected TMP_Text GetText(int index) { return Get<TMP_Text>(index); }
     protected Button GetButton(int index) { return Get<Button>(index); }
     protected Image GetImage(int index) { return Get<Image>(index); }
-    
+
     private void Awake() { Init(); }
 
     public abstract void Init();
