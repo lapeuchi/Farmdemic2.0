@@ -68,4 +68,11 @@ public class Define
             this.answer = answer;
         }
     }
+
+    public struct Matching_Disfectant
+    {
+        public string cardType;
+        public int returnScore;
+        public bool isSuitableUse;
+    }
 }
