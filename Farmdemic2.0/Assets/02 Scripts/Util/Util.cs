@@ -34,7 +34,11 @@ public class Util
         {
             foreach(T component in go.GetComponentsInChildren<T>())
             {
-                if (string.IsNullOrEmpty(name) || component.name == name) return component;
+                if (string.IsNullOrEmpty(name) || component.name == name) 
+                {
+                    if(component != null) 
+                        return component;
+                }
             }
         }
 
@@ -47,4 +51,25 @@ public class Util
         return transform.gameObject;
     }
     
+    public static int[] RandomF(int maxCount, int n)
+	{
+		int[] defaults = new int[maxCount];
+		int[] results = new int[n];
+
+		for (int i = 0; i < maxCount; ++i)
+		{
+			defaults[i] = i;
+		}
+
+		for (int i = 0; i < n; ++i)
+		{
+			int index = Random.Range(0, maxCount);
+			results[i] = defaults[index];
+			defaults[index] = defaults[maxCount - 1];
+			maxCount--;
+		}
+
+		return results;
+	}
+
 }

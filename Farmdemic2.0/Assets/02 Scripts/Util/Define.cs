@@ -18,6 +18,7 @@ public class Define
         A,
         B,
         C,
+        F
     }
 
     public enum DataType

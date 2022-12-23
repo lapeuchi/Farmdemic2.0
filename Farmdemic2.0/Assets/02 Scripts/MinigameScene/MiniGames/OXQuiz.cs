@@ -48,7 +48,7 @@ public class OXQuiz : UI_Popup, IMinigame
     void CreateQuiz()
     {
         List<Quiz_OX> jsonList = Managers.Data.OXQuizDatas;
-        int[] rands = RandomF(jsonList.Count, quizLength);
+        int[] rands = Util.RandomF(jsonList.Count, quizLength);
 
         for(int i = 0; i < quizLength; i++)
         {
@@ -147,25 +147,6 @@ public class OXQuiz : UI_Popup, IMinigame
         lockButton = false;   
     }
 
-    public int[] RandomF(int maxCount, int n)
-	{
-		int[] defaults = new int[maxCount];
-		int[] results = new int[n];
-
-		for (int i = 0; i < maxCount; ++i)
-		{
-			defaults[i] = i;
-		}
-
-		for (int i = 0; i < n; ++i)
-		{
-			int index = Random.Range(0, maxCount);
-			results[i] = defaults[index];
-			defaults[index] = defaults[maxCount - 1];
-			maxCount--;
-		}
-
-		return results;
-	}
+    
 
 }

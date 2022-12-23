@@ -96,6 +96,7 @@ public class MinigameManager : MonoBehaviour
     public void StartScore()
     {
         Score = Managers.UI.ShowSceneUI<MinigameScore>();
+        Score.Setting();
     }
 
     public void StartLife()
@@ -103,6 +104,7 @@ public class MinigameManager : MonoBehaviour
         Life = Managers.UI.ShowSceneUI<MinigameLife>();
         Life.Setting();
     }
+
     public void StartTimer(float time)
     {
         Timer = Managers.UI.ShowSceneUI<MinigameTimer>();
@@ -129,6 +131,7 @@ public class MinigameManager : MonoBehaviour
         minigameController.GameOver();
         isGameOver = true;
         Debug.Log(MinigameManager.instance.IsClear);
+        if(isClear == false) SetRank(Define.Rank.F);
         StartCoroutine(GameOverEffect());
     }
 
@@ -140,10 +143,6 @@ public class MinigameManager : MonoBehaviour
         
         Managers.UI.ClosePopupUI();
 
-        Score.gameObject.SetActive(false);
-        Life.gameObject.SetActive(false);
-        Timer.gameObject.SetActive(false);
-
         ResultPopup resultPopup = Managers.UI.ShowPopupUI<ResultPopup>();
         resultPopup.SetResult();
     }
@@ -151,7 +150,6 @@ public class MinigameManager : MonoBehaviour
     public void GameStart()
     {
         StartCoroutine(GameStartEffect());
-        StartScore();
         Debug.Log("GameStart()");
     }
 
@@ -168,5 +166,6 @@ public class MinigameManager : MonoBehaviour
         yield return null;
 
         minigameController.GameStart();
+        StartScore();
     }
 }
