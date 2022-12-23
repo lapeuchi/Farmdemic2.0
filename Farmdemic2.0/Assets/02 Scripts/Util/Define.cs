@@ -68,14 +68,4 @@ public class Define
             this.answer = answer;
         }
     }
-
-    public enum Matching_Disfectant
-    {
-        CitricAcid,
-        AceticAacidPeroxide,
-        HypochlorousAcid,
-        SodiumIsocyanate,
-        PotassiumSulfatePeroxide,
-        GlutarAldehyde
-    }
 }

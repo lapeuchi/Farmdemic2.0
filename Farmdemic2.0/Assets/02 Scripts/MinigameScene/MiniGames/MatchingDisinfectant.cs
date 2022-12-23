@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class MatchingDisinfectant : MonoBehaviour, IMinigame
 {
+    private enum Matching_Disfectant
+    {
+        CitricAcid,                 //구연산: Citric acid
+        AceticAacidPeroxide,        //과산화초산: acetic acid peroxide
+        HypochlorousAcid,           //차아염소산: Hypochlorous acid
+        SodiumIsocyanate,           //이소시안산 나트륨: sodium isocyanate
+        PotassiumSulfatePeroxide,   //삼종염: potassium sulfate peroxide
+        GlutarAldehyde              //글루타르 알데하이드: Glutar aldehyde
+    }
+
     private Transform root;
     private Transform useCardParent;
     private Transform gatherPoint; // it's point at which cards gather
@@ -11,26 +21,30 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     private int cardCount = 0;
     private int doneSomethingCards = 0;
 
+    [Space(10)]
+    [Header("[Disinfectacnt Card Table]")]
     [SerializeField]
     private Transform disinfectacntCard;
     [SerializeField]
     private Transform nextDisinfectacntCard;
-
     [SerializeField]
-    private List<List<string>> correctTypes = new List<List<string>>();
+    private List<string> disinfectanctSequence = new List<string>();
+
+    [Space(10)]
+    [Header("[Use Card Table]")]
     [SerializeField]
     private List<string> types = new List<string>(); // type of use card
     [SerializeField]
     private List<Vector3> useCardsPoint = new List<Vector3>();
     [SerializeField]
-    private List<string> disinfectanctSequence = new List<string>();
-    [SerializeField]
     private List<Transform> useCards = new List<Transform>();
 
+    #region Function Trigger Table
     private bool gatherUseCards;
     private bool shuffleUseCards;
+    #endregion
 
-    [Header("Test Table")]
+    [Header("[Function Test Table]")]
     public bool gather;
     public bool shuffle;
 
