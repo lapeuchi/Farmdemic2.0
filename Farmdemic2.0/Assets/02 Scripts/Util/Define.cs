@@ -69,10 +69,13 @@ public class Define
         }
     }
 
-    public struct Matching_Disfectant
+    public enum Matching_Disfectant
     {
-        public string cardType;
-        public int returnScore;
-        public bool isSuitableUse;
+        CitricAcid,
+        AceticAacidPeroxide,
+        HypochlorousAcid,
+        SodiumIsocyanate,
+        PotassiumSulfatePeroxide,
+        GlutarAldehyde
     }
 }

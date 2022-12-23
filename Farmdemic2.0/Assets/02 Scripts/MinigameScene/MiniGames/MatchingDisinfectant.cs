@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MatchingDisinfectant : MonoBehaviour, IMinigame
 {
@@ -9,40 +8,144 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     private Transform useCardParent;
     private Transform gatherPoint; // it's point at which cards gather
 
-    private int lenght;
+    private int cardCount = 0;
+    private int doneSomethingCards = 0;
 
     [SerializeField]
-    private Transform disinfetacntCard;
+    private Transform disinfectacntCard;
     [SerializeField]
-    private Transform nextDisinfetacntCard;
-    [SerializeField]
-    private Transform useCard;
+    private Transform nextDisinfectacntCard;
 
+    [SerializeField]
+    private List<List<string>> correctTypes = new List<List<string>>();
     [SerializeField]
     private List<string> types = new List<string>(); // type of use card
     [SerializeField]
     private List<Vector3> useCardsPoint = new List<Vector3>();
     [SerializeField]
-    private string disinfetanctSequence;
+    private List<string> disinfectanctSequence = new List<string>();
     [SerializeField]
     private List<Transform> useCards = new List<Transform>();
 
+    private bool gatherUseCards;
+    private bool shuffleUseCards;
+
+    [Header("Test Table")]
+    public bool gather;
+    public bool shuffle;
+
+    private void Update()
+    {
+        //test update
+        if (gather)
+        {
+            GatherUseCards();
+            gather = false;
+        }
+
+        if (shuffle)
+        {
+            ShuffleUseCards();
+            shuffle = false;
+        }
+    }
+
     void ShuffleUseCards()
     {
+        shuffleUseCards = true;
+        CommandToUseCards();
 
+        int[] posIndex = RandomF(cardCount, cardCount);
+
+        for (int i = 0; i < cardCount; i++)
+        {
+            useCards[i].GetComponent<UseCardController>().Shuffle(useCardsPoint[posIndex[i]]);
+        }
     }
 
     void GatherUseCards()
     {
+        gatherUseCards = true;
+        CommandToUseCards();
+        for (int i = 0; i < cardCount; i++)
+        {
+            useCards[i].GetComponent<UseCardController>().Gather(gatherPoint.position);
+        }
+    }
 
+    public int[] RandomF(int maxCount, int n)
+    {
+        int[] defaults = new int[maxCount];
+        int[] results = new int[n];
+
+        for (int i = 0; i < maxCount; ++i)
+        {
+            defaults[i] = i;
+        }
+
+        for (int i = 0; i < n; ++i)
+        {
+            int index = Random.Range(0, maxCount);
+            results[i] = defaults[index];
+            defaults[index] = defaults[maxCount - 1];
+            maxCount--;
+        }
+
+        return results;
     }
 
     public void ChangeUseCardInfo()
     {
+        int[] posIndex = RandomF(cardCount, cardCount);
 
+        for(int i = 0; i < cardCount; i++)
+        {
+
+        }
+
+        ShuffleUseCards();
     }
 
-    public void SwitchNextDisinfectantCard()
+    public void CommandToUseCards()
+    {
+        doneSomethingCards = 0;
+    }
+
+    public void AddDoneCard()
+    {
+        doneSomethingCards++;
+        if(doneSomethingCards == cardCount)
+        {
+            DoneSomthing();
+        }
+    }
+
+    void DoneSomthing()
+    {
+        if (gatherUseCards)
+        {
+            ShuffleUseCards();
+            gatherUseCards = false;
+        }
+
+        if (shuffleUseCards)
+        {
+            SwitchNextDisinfectantCard();
+            shuffleUseCards = false;
+        }
+    }
+
+    void SwitchNextDisinfectantCard()
+    {
+        Debug.Log("Switch Next Disinfectant Card");
+
+        if(disinfectanctSequence.Count == 0)
+        {
+            SetDisinfectentSequence();
+        }
+    }
+
+    void SetCorrectTypes()
     {
 
     }
@@ -50,15 +153,28 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     void ScoreCalculation()
     {
 
+        //MinigameManager.instance.Score.PlusScore(0);
     }
 
     public void SelectUseCard(Transform tr)
     {
-        Debug.Log(tr.name);
+        Debug.Log(tr.name + "is clicked");
 
         ScoreCalculation();
 
         GatherUseCards();
+    }
+
+    void SetDisinfectentSequence()
+    {
+        disinfectanctSequence.Clear();
+
+        /*int[] sequenceIndexs = RandomF(cardCount, cardCount);
+        for(int i = 0; i < cardCount; i++)
+        {
+            int index = sequenceIndexs[i];
+            disinfectanctSequence.Add(types[index]);
+        }*/
     }
 
     private void Init()
@@ -70,16 +186,20 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         useCards.Clear();
         types.Clear();
         useCardsPoint.Clear();
+        disinfectanctSequence.Clear();
 
-        lenght = useCardParent.childCount;
-        for (int i = 0; i < lenght; i++)
+        cardCount = useCardParent.childCount;
+        for (int i = 0; i < cardCount; i++)
         {
             Transform discoveredCard = useCardParent.GetChild(i);
 
             useCards.Add(discoveredCard);
             types.Add(discoveredCard.name); // type is card name
             useCardsPoint.Add(discoveredCard.position);
+            discoveredCard.GetComponent<UseCardController>().Init(types[i], this);
         }
+
+        SetDisinfectentSequence();
     }
 
     public void GameStart()
