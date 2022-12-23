@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 enum State
 {
@@ -11,7 +12,7 @@ enum State
 
 public class ChickenAI : MonoBehaviour
 {
-    bool isInfected;
+    public bool isInfected;
     
     Vector2 moveDir;
     float speed;
@@ -24,6 +25,11 @@ public class ChickenAI : MonoBehaviour
     Quarantine quarantine;
     Rigidbody2D rigid;
     Dragable drag;
+    DOTweenAnimation dotAnim;
+
+    [SerializeField] Fence curFence;
+    [SerializeField] bool onFence;
+    [SerializeField] bool inFence;
    
     void Start()
     {
@@ -33,7 +39,7 @@ public class ChickenAI : MonoBehaviour
         drag = Util.GetOrAddComponent<Dragable>(gameObject);
         drag = GetComponent<Dragable>();
         quarantine = GameObject.Find("Quarantine").GetComponent<Quarantine>();
-
+        dotAnim = GetComponent<DOTweenAnimation>();
         SetState(State.Moving);
     }
 
@@ -50,6 +56,11 @@ public class ChickenAI : MonoBehaviour
             case State.Dragging:
                 DraggingUpdate();
                 break;
+        }
+
+        if (state != State.Dragging && drag.isDrag)
+        {
+            SetState(State.Dragging);    
         }
     }
 
@@ -78,6 +89,7 @@ public class ChickenAI : MonoBehaviour
                 break;
             case State.Dragging:
                 anim.CrossFade("Fly", 0.5f);
+                dotAnim.DOPlay();
                 break;
         }
         
@@ -105,7 +117,8 @@ public class ChickenAI : MonoBehaviour
     
     void IdleUpdate()
     {
-        if(actionTimer >= actionTime)
+        actionTimer += Time.deltaTime;
+        if (actionTimer >= actionTime)
         {
             ChangeRandomState();
         }
@@ -118,8 +131,14 @@ public class ChickenAI : MonoBehaviour
     void DraggingUpdate()
     {
         if(drag.isDrag == false)
-        {
-            
+        { 
+            if (onFence)
+            {
+                CheckFence();
+            }
+            ChangeRandomState();
+            dotAnim.DORewind();
+            return;
         }
     }
 
@@ -133,5 +152,51 @@ public class ChickenAI : MonoBehaviour
     public void Infection()
     {
         isInfected = true;
+    }
+
+    void CheckFence()
+    {
+        inFence = true;
+        drag.isDragable = false;
+        transform.position = curFence.transform.position;
+
+        if(curFence.quarantineFence && isInfected)
+        {
+            MinigameManager.instance.Score.PlusScore(quarantine.point);
+        }
+        else if (!curFence.quarantineFence && !isInfected)
+        {
+            MinigameManager.instance.Score.PlusScore(quarantine.point);
+        }
+        else
+        {
+            
+            MinigameManager.instance.Score.PlusScore(-quarantine.point * 2);
+        }
+
+        quarantine.leftChickens.Remove(gameObject);
+        if(quarantine.leftChickens.Count == 0)
+        {
+            MinigameManager.instance.GameOver();
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("GameController"))
+        {
+            curFence = collision.GetComponent<Fence>();
+            onFence = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("GameController"))
+        {
+            curFence = null;
+            onFence = false;
+        }
     }
 }

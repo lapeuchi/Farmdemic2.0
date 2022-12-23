@@ -6,7 +6,7 @@ using TMPro;
 public class MinigameScore : UI_Scene
 {
     private int _score;
-    public int Score {get {return _score;} private set {_score = value;}}
+    public int Score {get {return _score;} private set {_score = value; if (_score < 0) _score = 0; }}
 
     TMP_Text score_Text;
 

@@ -7,34 +7,34 @@ public class Quarantine : MonoBehaviour, IMinigame
     int chickenCount;
     int infectedChickenCount;
 
-    [SerializeField] int outCount = 0;
-    [SerializeField] int inCount = 0;
-
     [SerializeField] Transform spawnPos;
     [SerializeField] GameObject chickenPrefab; 
     [SerializeField] GameObject infectedChicken_Prefab;
 
-    List<ChickenAI> chickens = new List<ChickenAI>();
+    public List<GameObject> leftChickens = new List<GameObject>();
+    GameObject[] chickens;
+    Fence infectedFence;
+
+    public int point = 100;
 
     void Awake()
     {
         Camera.main.gameObject.SetActive(false);
+        infectedFence = GameObject.Find("InfectedFence").GetComponent<Fence>();
+        infectedFence.quarantineFence = true;
     }
 
     public void GameStart()
     {            
-        chickenCount = 15;
-        outCount = 0;
-        inCount = 0;
-
+        chickenCount = 20;
+        infectedChickenCount = 20;
         chickenPrefab = Managers.Resource.Load<GameObject>("Prefabs/Minigame/Quarantine/Chicken");
+       
         infectedChicken_Prefab = Managers.Resource.Load<GameObject>("Prefabs/Minigame/Quarantine/InfectedChicken");
 
         spawnPos = GameObject.Find("SpawnPos").transform;
-        infectedChickenCount = Random.Range(1, chickenCount - (int)(chickenCount / 3));
+        
         Debug.Log("strangeChicken Count: " + infectedChickenCount);
-        outCount = chickenCount;
-        inCount = 0;
         
         SetChicken();
 
@@ -46,37 +46,65 @@ public class Quarantine : MonoBehaviour, IMinigame
     void SetChicken()
     {
         // 일반 닭 소환
-        for(int i = 0; i < chickenCount - infectedChickenCount; i++)
+        for(int i = 0; i < chickenCount; i++)
         {
             GameObject go = Instantiate(chickenPrefab, spawnPos.position, Quaternion.identity);
-            chickens.Add(go.GetComponent<ChickenAI>());
-
-            go.SetActive(false);
         }
 
         // 감염된 닭 소환
         for (int i = 0; i < infectedChickenCount; i++)
         {
             GameObject go = Instantiate(infectedChicken_Prefab, spawnPos.position, Quaternion.identity);
-            ChickenAI chick = go.GetComponent<ChickenAI>();
-            chick.Infection();
-            chickens.Add(go.GetComponent<ChickenAI>());
+            go.GetComponent<ChickenAI>().Infection();
+        }
+
+        chickens = GameObject.FindGameObjectsWithTag("Chicken");
+
+        foreach(GameObject go in chickens)
+        {
+            leftChickens.Add(go);
             go.SetActive(false);
         }
     }
 
     IEnumerator Spwan()
     {
+        int sum = chickenCount + infectedChickenCount;
         yield return new WaitForSeconds(2f);
-        for(int i = 0; i < chickenCount; i++)
+        for(int i = 0; i < sum; i++)
         {
             chickens[i].gameObject.SetActive(true);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
         }    
     }
 
     public void GameOver()
     {
+        int maxScore = (chickenCount+infectedChickenCount) * point;
+        int rank_A = maxScore - (point * 3);
+        int rank_B = maxScore - (point * 6);
+        int rank_C = maxScore - (point * 10);
 
+        
+        if (MinigameManager.instance.Score.Score >= rank_A)
+        {
+            MinigameManager.instance.SetClaer(true);
+            MinigameManager.instance.SetRank(Define.Rank.A);
+        }
+        else if (MinigameManager.instance.Score.Score >= rank_B)
+        {
+            MinigameManager.instance.SetClaer(true);
+            MinigameManager.instance.SetRank(Define.Rank.B);
+        }
+        else if (MinigameManager.instance.Score.Score >= rank_C)
+        {
+            MinigameManager.instance.SetClaer(true);
+            MinigameManager.instance.SetRank(Define.Rank.C);
+        }
+        else
+        {
+            MinigameManager.instance.SetClaer(false);
+            MinigameManager.instance.SetRank(Define.Rank.F);
+        }
     }
 }
