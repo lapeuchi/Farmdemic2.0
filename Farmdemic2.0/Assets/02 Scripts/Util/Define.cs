@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class Define
 {
+    public enum DialogueEvent
+    {
+        MiniGame = 1,
+        InfoPopup,
+        Dialogue
+    }
+
     public enum Minigame
     {  
         None = 0,
@@ -44,13 +51,6 @@ public class Define
         Title,
         Game,
         Minigame
-    }
-    
-    public enum Story
-    {
-        Intro = 7,
-        Chater1 = 8,
-        Chater2, 
     }
 
     public struct Quiz_OX

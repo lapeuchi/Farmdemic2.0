@@ -10,17 +10,17 @@ public interface ILoader<T>
 [System.Serializable]
 public struct Dialogue
 {
+    public int code;
+    public Define.DialogueEvent eventCode;
     public string name;
     public string word;
-    public Sprite sprite;
-    string model;
 
-    public Dialogue(string name, string word, string model)
-    {
+    public Dialogue(int code, Define.DialogueEvent eventCode, string name, string word)
+    { 
+        this.code = code;
+        this.eventCode = eventCode;
         this.name  = name;
         this.word  = word;
-        this.model = model;
-        sprite = Managers.Resource.Load<Sprite>($"Sprites/{model}");
     }
 }
 

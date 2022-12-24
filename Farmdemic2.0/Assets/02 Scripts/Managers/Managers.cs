@@ -45,6 +45,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             Sound.Init();
             Data.Init();
+            Dialogue.Init();        
         }
     }
 }

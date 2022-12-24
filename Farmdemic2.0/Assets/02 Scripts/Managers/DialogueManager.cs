@@ -6,19 +6,41 @@ using UnityEngine.EventSystems;
 
 public class DialogueManager
 {
-    Dictionary<int, Dialogue> _dialogueDic = new Dictionary<int, Dialogue>();
-    public int Index { get; private set; } = 0;
-
+    public Dictionary<int, Queue<Dialogue>> _dialogueDic = new Dictionary<int, Queue<Dialogue>>();
+    public DialogueEvent EventHandler { get { return _dialogueEvent; } }
+    DialogueEvent _dialogueEvent = new DialogueEvent();
+    Define.DialogueEvent CurrentEvent;
+    int maxCode = 5;
+    
     public void Init()
     {
-        for (int i = 0; i < Managers.Data.dialogueDatas.Count; i++)
-            _dialogueDic.Add(i + 1, Managers.Data.dialogueDatas[i]);
+        List<Dialogue> dialogueList = Managers.Data.dialogueDatas;
+
+        for (int i = 1; i <= maxCode; i++)
+        {
+            _dialogueDic.Add(i, new Queue<Dialogue>());
+        }
+
+        foreach (Dialogue dialogue in dialogueList)
+        {
+            _dialogueDic[dialogue.code].Enqueue(dialogue);
+        }
     }
 
     public Dialogue GetDialogue()
     {
-        Dialogue dialogue = _dialogueDic[Index];
-        Index++;
+        Dialogue dialogue = new Dialogue();
+
+        if (_dialogueDic[_dialogueEvent.CurrentChapter].Count == 0)
+        {
+            _dialogueEvent.NextChapter(EventHandler.CurrentEventCode);
+        }
+        else
+        {
+            dialogue = _dialogueDic[_dialogueEvent.CurrentChapter].Dequeue();
+            Managers.Dialogue.EventHandler.CurrentEventCode = dialogue.eventCode;
+        }
+
         return dialogue;
     }
 }

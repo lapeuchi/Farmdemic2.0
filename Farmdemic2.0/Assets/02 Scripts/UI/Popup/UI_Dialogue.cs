@@ -33,21 +33,14 @@ public class UI_Dialogue : UI_Scene
         Bind<TMP_Text>(typeof(Texts));
         Bind<Image>(typeof(Images));
         Bind<Button>(typeof(Buttons));
-
         GetButton((int)Buttons.NextButton).onClick.AddListener(OnNextButtonClicked);
         ShowDialogue();
     }
 
     void ShowDialogue()
     {
-        if (Managers.Dialogue.Index == (int) Managers.Game.CurrentStory)
-        {
-
-        }
-
         Dialogue dialgoue = Managers.Dialogue.GetDialogue();
         GetText((int)Texts.NameText).text = dialgoue.name;
-        GetImage((int)Images.ModelImage).sprite = dialgoue.sprite;
         StartCoroutine(TypingEffect(dialgoue.word));
     }
 
@@ -55,6 +48,7 @@ public class UI_Dialogue : UI_Scene
     {
         WaitForSeconds wait = new WaitForSeconds(_delay);
         typing = true;
+
         for(int i = 0; i < word.Length; i++)
         {
             GetText((int)Texts.WordText).text = word.Substring(0, i);
