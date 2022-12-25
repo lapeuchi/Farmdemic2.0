@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class UseCardController : MonoBehaviour
 {
-    public string _type;
     private Vector3 destination;
     private MatchingDisinfectant root;
     private float moveSpeed = 5;
 
-    public void Init(string type, MatchingDisinfectant main)
+    public void Init(MatchingDisinfectant main)
     {
-        _type = type;
         root = main;
     }
 

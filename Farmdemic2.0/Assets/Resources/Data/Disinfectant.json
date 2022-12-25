@@ -1,0 +1,28 @@
+{
+  "MatchingData": [
+    {
+      "disinfectant": "구연산",
+      "use": [ "CarcassCard", "FecesCard", "ExcrementCard", "HouseCard", "CarCard", "MachineCard", "ClothesCard" ]
+    },
+    {
+      "disinfectant": "과산화초산",
+      "use": [ "FecesCard", "FishTankCard" ]
+    },
+    {
+      "disinfectant": "차아염소산",
+      "use": [ "FarmCard", "HouseCard", "ClothesCard" ]
+    },
+    {
+      "disinfectant": "이소시안산 나트륨",
+      "use": [ "FarmCard", "HouseCard", "ClothesCard" ]
+    },
+    {
+      "disinfectant": "삼종염",
+      "use": [ "FarmCard", "ToolCard", "CarCard" ]
+    },
+    {
+      "disinfectant": "글루타르 알데하이드",
+      "use": [ "FarmCard", "FishTankCard", "CarCard" ]
+    }
+  ]
+}
