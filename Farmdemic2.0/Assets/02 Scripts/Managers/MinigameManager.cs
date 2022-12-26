@@ -125,11 +125,16 @@ public class MinigameManager : MonoBehaviour
 
     public void SetClaer(bool isClear) { IsClear = isClear; }
 
-    public void GameOver()
-    {   
+    public void CloseGamePanels()
+    {
         if(Score != null) Score.gameObject.SetActive(false);
         if(Life != null) Life.gameObject.SetActive(false);
         if(Timer != null) Timer.gameObject.SetActive(false);
+    }
+
+    public void GameOver()
+    {   
+        
         
         Debug.Log($"GameOver()");
         minigameController.GameOver();
@@ -146,7 +151,7 @@ public class MinigameManager : MonoBehaviour
         yield return new WaitUntil(()=> gameEvt_UI.isEndGameOverEffect == true);
         
         Managers.UI.ClosePopupUI();
-
+        CloseGamePanels();
         ResultPopup resultPopup = Managers.UI.ShowPopupUI<ResultPopup>();
         resultPopup.SetResult();
     }
