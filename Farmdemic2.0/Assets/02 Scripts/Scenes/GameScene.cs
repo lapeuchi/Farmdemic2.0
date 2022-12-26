@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CustomDic;
-[System.Serializable]
-public class DialogueDic : SerializableDictionary<int, Queue<Dialogue>> 
-{ 
 
-}
 public class GameScene : SceneBase
 {
     [SerializeField] private List<Dialogue> dialogues = new List<Dialogue>();
-    [SerializeField] DialogueDic _dialogueDic = new DialogueDic();
+    Dictionary<int, Queue<Dialogue>> dialogueDic = new Dictionary<int, Queue<Dialogue>>();
+
     public override void Init()
     {
         base.Init();
@@ -19,14 +16,14 @@ public class GameScene : SceneBase
 
         List<Dialogue> dialogueList = Managers.Data.dialogueDatas;
 
-        for (int i = 1; i <= 5; i++)
+        for (int i = 1; i <= 13; i++)
         {
-            _dialogueDic.Add(i, new Queue<Dialogue>());
+            dialogueDic.Add(i, new Queue<Dialogue>());
         }
 
         foreach (Dialogue dialogue in dialogueList)
         {
-            _dialogueDic[dialogue.code].Enqueue(dialogue);
+            dialogueDic[dialogue.code].Enqueue(dialogue);
         }
 
         //if (Managers.Game.CurrentStory == Define.Story.Intro)
