@@ -21,7 +21,7 @@ public class UI_RealTip : UI_Popup
 
     void OnClickedCloseButton(PointerEventData evtData)
     {
-        Managers.Game.NextChapter();
         Managers.UI.ClosePopupUI();
+        Managers.UI.ShowPopupUI<UI_Dialogue>();
     }
 }
