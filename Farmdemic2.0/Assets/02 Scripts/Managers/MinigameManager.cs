@@ -51,12 +51,17 @@ public class MinigameManager : MonoBehaviour
 
     private void FindAndSetGame()
     {
-        curMiniGame = MinigameTrigger.Minigame;
-        if(curMiniGame == Define.Minigame.None)
+        if(MinigameTrigger.Minigame == Define.Minigame.None)
         {
-            Debug.LogError("Game is not Selected");
+            Debug.Log("Game is not Selected Are you a tester?");
+        }
+        else
+        {
+            curMiniGame = MinigameTrigger.Minigame;
         }
 
+        Debug.Log(curMiniGame);
+        
         GameObject game = minigameParent.Find(curMiniGame.ToString()).gameObject;
         minigameController = game.GetComponent<IMinigame>();
         game.SetActive(true);
