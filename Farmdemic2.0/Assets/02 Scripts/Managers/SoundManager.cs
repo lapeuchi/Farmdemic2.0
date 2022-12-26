@@ -40,7 +40,7 @@ public class SoundManager
             sfxSource[i] = go.AddComponent<AudioSource>();
         }
 
-        for (int i = 0; i < System.Enum.GetValues(typeof(Define.BGM)).Length; i++)
+        for (int i = 0; i < System.Enum.GetValues(typeof(Define.SFX)).Length; i++)
         {
             AudioClip clip = Managers.Resource.Load<AudioClip>($"Sounds/{(Define.SFX) i}");
             sfxs.Add((Define.SFX)i, clip);
