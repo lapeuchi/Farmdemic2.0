@@ -47,16 +47,40 @@ public struct Quiz_OX
         this.text = text;
         this.answer = answer;
         this.explanation = explanation;
-    }   
+    }
 }
 
 [System.Serializable]
 public class OXQuizLoader : ILoader<Quiz_OX>
 {
     public List<Quiz_OX> OXQuiz = new List<Quiz_OX>();
-    
+
     public List<Quiz_OX> MakeList()
     {
         return OXQuiz;
+    }
+}
+
+[System.Serializable]
+public struct Matching
+{
+    public string disinfectant;
+    public string []use;
+
+    public Matching(string disinfectant, string[] use)
+    {
+        this.disinfectant = disinfectant;
+        this.use = use;
+    }
+}
+
+[System.Serializable]
+public class MatchingLoader : ILoader<Matching>
+{
+    public List<Matching> MatchingData = new List<Matching>();
+
+    public List<Matching> MakeList()
+    {
+        return MatchingData;
     }
 }
