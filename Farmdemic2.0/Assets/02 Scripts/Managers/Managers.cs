@@ -24,7 +24,16 @@ public class Managers : MonoBehaviour
     public static SceneManagerEx Scene { get { return Instance._scene; } }
     public static DialogueManager Dialogue { get { return Instance._dialogue; } }
     #endregion
-    
+
+    [SerializeField] Define.Event curEvt;
+    [SerializeField] int curChapter;
+    private void Update()
+    {
+        curEvt = Managers.Game.CurrentEventCode;
+        curChapter = Managers.Game.CurrentChapter;
+    }
+
+
     void Start()
     {
         Init();
@@ -45,7 +54,8 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             Sound.Init();
             Data.Init();
-            Dialogue.Init();        
+            Dialogue.Init();
+            Game.Init();
         }
     }
 }

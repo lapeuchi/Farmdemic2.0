@@ -10,10 +10,10 @@ public class GameManager
     public int CurrentChapter { get { return currentChapter; } }
     public Define.Event CurrentEventCode { get { return eventCode; } set { eventCode = value; } }
     
-    Define.Event eventCode = Define.Event.Cutscene;
+    Define.Event eventCode;
     Transform[] cameraPoints;
     int maxChater;
-    int currentChapter = 1;
+    int currentChapter = 1; 
     int miniGameIdx = 1;
     int popupIdx = 0;
 
@@ -21,20 +21,21 @@ public class GameManager
     {
         maxChater = 13;
         cameraPoints = new Transform[maxChater];
+        eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;
     }
+
     public void NextChapter()
     {
         currentChapter++;
-
+        
         switch (eventCode)
         {
             case Define.Event.MiniGame:
-                Debug.Log(miniGameIdx);
-                MinigameTrigger.LoadMiniGame((Define.Minigame) miniGameIdx);
+                MinigameTrigger.LoadMiniGame((Define.Minigame)miniGameIdx);
                 miniGameIdx++;
                 break;
             case Define.Event.InfoPopup:
-                //Managers.UI.ShowPopupUI<UI_Info>();
+                Managers.UI.ShowPopupUI<UI_RealTip>();
                 popupIdx++;
                 break;
             case Define.Event.Cutscene:
@@ -43,5 +44,7 @@ public class GameManager
                 //Camera.main.transform.rotation = cameraPoints[currentChapter].rotation;
                 break;
         }
+
+        eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;
     }
 }

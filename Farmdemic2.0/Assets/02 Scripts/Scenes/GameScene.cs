@@ -7,12 +7,6 @@ public class GameScene : SceneBase
 {
     [SerializeField] private List<Dialogue> dialogues = new List<Dialogue>();
     Dictionary<int, Queue<Dialogue>> dialogueDic = new Dictionary<int, Queue<Dialogue>>();
-    [SerializeField] Define.Event curEvt;
-
-    private void Update()
-    {
-        curEvt = Managers.Game.CurrentEventCode;
-    }
 
     public override void Init()
     {

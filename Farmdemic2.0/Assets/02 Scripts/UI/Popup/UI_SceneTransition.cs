@@ -15,10 +15,10 @@ public class UI_SceneTransition : UI_Popup
     {
         base.Init();
         Bind<Image>(typeof(Images));
-        GetImage((int)Images.FadeImage).DOFade(0f, 1.5f);
-        Invoke("FadeIn", 1.5f);
+        GetImage((int)Images.FadeImage).DOFade(0f, 5f);
+        Invoke("FadeIn", 5.5f);
     }
-
+    
     void FadeIn()
     {
         Managers.UI.ClosePopupUI();

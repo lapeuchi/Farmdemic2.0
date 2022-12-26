@@ -22,7 +22,6 @@ public class UI_Dialogue : UI_Popup
         NextButton
     }
 
-    int _index = 0;
     float _delay = 0.025f;
     bool typing = false;
 
@@ -60,6 +59,7 @@ public class UI_Dialogue : UI_Popup
         }
 
         GetText((int)Texts.WordText).text = word;
+        yield return wait;
         typing = false;
     }
 
@@ -68,7 +68,6 @@ public class UI_Dialogue : UI_Popup
         if (typing)
             return;
 
-        _index++;
         Managers.Sound.PlaySFX(Define.SFX.ClickDialogue);
         ShowDialogue();
     }
