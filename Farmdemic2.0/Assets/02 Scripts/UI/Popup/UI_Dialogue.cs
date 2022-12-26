@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI_Dialogue : UI_Scene
+public class UI_Dialogue : UI_Popup
 {
     enum Texts
     {
@@ -14,7 +14,7 @@ public class UI_Dialogue : UI_Scene
 
     enum Images
     {
-        ModelImage
+        ModelImage,
     }
 
     enum Buttons
@@ -39,9 +39,13 @@ public class UI_Dialogue : UI_Scene
 
     void ShowDialogue()
     {
-        Dialogue dialgoue = Managers.Dialogue.GetDialogue();
-        GetText((int)Texts.NameText).text = dialgoue.name;
-        StartCoroutine(TypingEffect(dialgoue.word));
+        Dialogue dialogue = Managers.Dialogue.GetDialogue();
+        
+        if(dialogue != null)
+        {
+            GetText((int)Texts.NameText).text = dialogue.name;
+            StartCoroutine(TypingEffect(dialogue.word));
+        }
     }
 
     IEnumerator TypingEffect(string word)

@@ -22,6 +22,6 @@ public class UI_SceneTransition : UI_Popup
     void FadeIn()
     {
         Managers.UI.ClosePopupUI();
-        Managers.UI.ShowSceneUI<UI_Dialogue>();
+        Managers.UI.ShowPopupUI<UI_Dialogue>();
     }
 }

@@ -51,6 +51,19 @@ public class Util
         Transform transform = FindChild<GameObject>(go, name, recursive).transform;
         return transform.gameObject;
     }
+
+    public static void BindEvent(GameObject go, Action<PointerEventData> eventData, Define.InputEvent type = Define.InputEvent.Click)
+    {
+        UI_EventHandler eventHandler = GetOrAddComponent<UI_EventHandler>(go);
+
+        switch(type)
+        {
+            case Define.InputEvent.Click:
+                eventHandler.OnClickHandler -= eventData;
+                eventHandler.OnClickHandler += eventData;
+                break;
+        }
+    }
     
     public static int[] RandomF(int maxCount, int n)
 	{

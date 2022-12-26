@@ -8,7 +8,7 @@ public interface ILoader<T>
 }
 
 [System.Serializable]
-public struct Dialogue
+public class Dialogue
 {
     public int code;
     public Define.Event eventCode;
@@ -32,6 +32,35 @@ public class DialogueLoader : ILoader<Dialogue>
     public List<Dialogue> MakeList()
     {
         return Dialogue;
+    }
+}
+
+[System.Serializable]
+public struct Explanation
+{
+    public int code;
+    public Sprite image;
+    public string explanation;
+    string path;
+
+    public Explanation(int code, string explanation, string path)
+    {
+        this.code = code;
+        this.explanation = explanation;
+        this.path = path;
+        
+        image = Managers.Resource.Load<Sprite>($"Sprite/Popup/{path}");
+    }
+}
+
+[System.Serializable]
+public class ExplanationLoader : ILoader<Explanation>
+{
+    public List<Explanation> Explanation = new List<Explanation>();
+
+    public List<Explanation> MakeList()
+    {
+        return Explanation;
     }
 }
 
