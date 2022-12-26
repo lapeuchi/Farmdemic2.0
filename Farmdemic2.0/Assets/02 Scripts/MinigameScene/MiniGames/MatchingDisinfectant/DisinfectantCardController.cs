@@ -53,26 +53,26 @@ public class DisinfectantCardController : MonoBehaviour
     IEnumerator FadeAnimation()
     {
         Fadeout();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.7f);
         Change();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         FadeIn();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         yield break;
     }
 
     void Fadeout()
     {
-        disinfectantCard.DOMove(fadeOutPoint, 1f);
+        disinfectantCard.DOMove(fadeOutPoint, 0.3f);
     }
 
     void FadeIn()
     {
         disinfectantText.text = next;
         next = "";
-        disinfectantCard.DOMove(originPoint, 0.5f);
-        currentCard.DOSizeDelta(originSize, 0.5f);
-        currentDisinfectantImage.DOColor(originColor, 0.5f);
+        disinfectantCard.DOMove(originPoint, 0.3f);
+        currentCard.DOSizeDelta(originSize, 0.3f);
+        currentDisinfectantImage.DOColor(originColor, 0.3f);
     }
 
     void Change()
