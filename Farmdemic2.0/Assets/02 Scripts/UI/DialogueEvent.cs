@@ -5,20 +5,20 @@ using UnityEngine;
 public class DialogueEvent
 {
     public int CurrentChapter { get; private set; } = 1;
-    public Define.DialogueEvent CurrentEventCode { get { return eventCode; } set { eventCode = value; } }
-    Define.DialogueEvent eventCode;
+    public Define.Event CurrentEventCode { get { return eventCode; } set { eventCode = value; } }
+    Define.Event eventCode;
     int miniGameIdx = 0;
     int popupIdx = 0;
 
-    public void NextChapter(Define.DialogueEvent type)
+    public void NextChapter(Define.Event type)
     {
         switch(type)
         {
-            case Define.DialogueEvent.MiniGame:
+            case Define.Event.MiniGame:
                 MinigameTrigger.LoadMiniGame((Define.Minigame) miniGameIdx);
                 miniGameIdx++;
                 break;
-            case Define.DialogueEvent.InfoPopup:
+            case Define.Event.InfoPopup:
                 //Managers.UI.ShowPopupUI<UI_Info>();
                 popupIdx++;
                 break;

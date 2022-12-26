@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class Define
 {
-    public enum DialogueEvent
+    public enum Event
     {
         MiniGame = 1,
         InfoPopup,
-        Dialogue
+        Cutscene,
+        Ending
     }
 
     public enum Minigame

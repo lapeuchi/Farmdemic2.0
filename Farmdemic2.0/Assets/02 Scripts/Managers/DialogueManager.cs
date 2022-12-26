@@ -9,7 +9,7 @@ public class DialogueManager
     public Dictionary<int, Queue<Dialogue>> _dialogueDic = new Dictionary<int, Queue<Dialogue>>();
     public DialogueEvent EventHandler { get { return _dialogueEvent; } }
     DialogueEvent _dialogueEvent = new DialogueEvent();
-    Define.DialogueEvent CurrentEvent;
+    Define.Event CurrentEvent;
     int maxCode = 5;
     
     public void Init()

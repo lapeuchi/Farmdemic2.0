@@ -11,11 +11,11 @@ public interface ILoader<T>
 public struct Dialogue
 {
     public int code;
-    public Define.DialogueEvent eventCode;
+    public Define.Event eventCode;
     public string name;
     public string word;
 
-    public Dialogue(int code, Define.DialogueEvent eventCode, string name, string word)
+    public Dialogue(int code, Define.Event eventCode, string name, string word)
     { 
         this.code = code;
         this.eventCode = eventCode;
