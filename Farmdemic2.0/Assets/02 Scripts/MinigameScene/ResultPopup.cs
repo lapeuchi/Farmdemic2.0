@@ -79,8 +79,10 @@ public class ResultPopup : UI_Popup
         yield return new WaitForSeconds(1f);   
         
         scoreValue_Text.DOText($"{MinigameManager.instance.Score.Score}", 2f, true, ScrambleMode.Numerals);
-
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.9f);
+        Managers.Sound.PlaySFX(Define.SFX.WriteRank);
+        yield return new WaitForSeconds(0.5f);
+       
 
         rankValue_Image.sprite = Managers.Resource.Load<Sprite>($"Sprites/Rank_{MinigameManager.instance.Rank.ToString()}");
         rankValue_Image.transform.localScale = rankStartScale;
