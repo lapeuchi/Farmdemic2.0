@@ -66,6 +66,8 @@ public class Define
         Chicken,
         Flapping,
 
+
+        Countdown,
         // minigame result
         WriteRank
     }

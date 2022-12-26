@@ -134,8 +134,6 @@ public class MinigameManager : MonoBehaviour
 
     public void GameOver()
     {   
-        
-        
         Debug.Log($"GameOver()");
         minigameController.GameOver();
         isGameOver = true;

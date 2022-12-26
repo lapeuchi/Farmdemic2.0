@@ -41,7 +41,7 @@ public class GameEvtPopup : UI_Popup
     {   
         evt_Text.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
-
+        Managers.Sound.PlaySFX(Define.SFX.Countdown);
         for (int i = count; i >= 0; i--)
         {
             count = i;
