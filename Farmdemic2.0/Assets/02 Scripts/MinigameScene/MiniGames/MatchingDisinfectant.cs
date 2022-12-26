@@ -135,7 +135,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         dataIndex = disinfectanctSequence[0];
         disinfectantController.Switch(matchingData[dataIndex].disinfectant);
         disinfectanctSequence.RemoveAt(0);
-        Invoke("DoneSwitchDisinfectant", 4f);
+        Invoke("DoneSwitchDisinfectant", 2f);
     }
 
     void DoneSwitchDisinfectant()
