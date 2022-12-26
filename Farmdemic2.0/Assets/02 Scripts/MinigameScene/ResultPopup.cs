@@ -118,7 +118,7 @@ public class ResultPopup : UI_Popup
 
     private void ClickedExit()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("LobbyScene");
+        Managers.Scene.Load(Define.Scene.Game);
         MinigameTrigger.Clear();
     } 
 

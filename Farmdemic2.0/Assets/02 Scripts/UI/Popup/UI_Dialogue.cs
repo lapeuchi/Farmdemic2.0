@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI_Dialogue : UI_Scene
+public class UI_Dialogue : UI_Popup
 {
     enum Texts
     {
@@ -14,7 +14,7 @@ public class UI_Dialogue : UI_Scene
 
     enum Images
     {
-        ModelImage
+        ModelImage,
     }
 
     enum Buttons

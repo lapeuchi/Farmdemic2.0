@@ -76,6 +76,11 @@ public class Define
         Minigame
     }
 
+    public enum InputEvent
+    {
+        Click
+    }
+
     public struct Quiz_OX
     {
         public string text;

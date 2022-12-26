@@ -7,24 +7,17 @@ public class GameScene : SceneBase
 {
     [SerializeField] private List<Dialogue> dialogues = new List<Dialogue>();
     Dictionary<int, Queue<Dialogue>> dialogueDic = new Dictionary<int, Queue<Dialogue>>();
+    [SerializeField] Define.Event curEvt;
+
+    private void Update()
+    {
+        curEvt = Managers.Game.CurrentEventCode;
+    }
 
     public override void Init()
     {
         base.Init();
-        dialogues = Managers.Data.dialogueDatas;
         sceneType = Define.Scene.Game;
-
-        List<Dialogue> dialogueList = Managers.Data.dialogueDatas;
-
-        for (int i = 1; i <= 13; i++)
-        {
-            dialogueDic.Add(i, new Queue<Dialogue>());
-        }
-
-        foreach (Dialogue dialogue in dialogueList)
-        {
-            dialogueDic[dialogue.code].Enqueue(dialogue);
-        }
 
         //if (Managers.Game.CurrentStory == Define.Story.Intro)
         //    Managers.UI.ShowPopupUI<UI_Intro>();
