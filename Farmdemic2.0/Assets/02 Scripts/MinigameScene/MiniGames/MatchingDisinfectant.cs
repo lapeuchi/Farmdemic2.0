@@ -25,7 +25,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     private List<int> disinfectanctSequence = new List<int>();
     private int dataIndex;
     private string selectUse;
-    private int addScore;
+    private int addScore = 50;
 
     [Space(10)]
     [Header("[Use Card Table]")]
@@ -68,27 +68,6 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
             switchCard = false;
         }
     }
-
-    public int[] RandomF(int maxCount, int n)
-    {
-        int[] defaults = new int[maxCount];
-        int[] results = new int[n];
-
-        for (int i = 0; i < maxCount; ++i)
-        {
-            defaults[i] = i;
-        }
-
-        for (int i = 0; i < n; ++i)
-        {
-            int index = Random.Range(0, maxCount);
-            results[i] = defaults[index];
-            defaults[index] = defaults[maxCount - 1];
-            maxCount--;
-        }
-
-        return results;
-    }
     #endregion
 
     #region gather and shufful
@@ -97,7 +76,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         shuffleUseCards = true;
         CommandToUseCards();
 
-        int[] posIndex = RandomF(useCardCount, useCardCount);
+        int[] posIndex = Util.RandomF(useCardCount, useCardCount);
 
         for (int i = 0; i < useCardCount; i++)
         {
@@ -171,8 +150,8 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
 
     void ScoreCalculation()
     {
-        //MinigameManager.instance.Score.PlusScore(addScore);
-        Debug.Log(addScore);
+        MinigameManager.instance.Score.PlusScore(addScore);
+        //Debug.Log(addScore);
     }
 
     bool IsCurrectCard()
@@ -225,7 +204,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     {
         disinfectanctSequence.Clear();
 
-        int[] sequenceIndexs = RandomF(disinfectantCardCount, disinfectantCardCount);
+        int[] sequenceIndexs = Util.RandomF(disinfectantCardCount, disinfectantCardCount);
         for(int i = 0; i < disinfectantCardCount; i++)
         {
             disinfectanctSequence.Add(sequenceIndexs[i]);
@@ -293,6 +272,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     {
         Init();
         CloseFade();
+        MinigameManager.instance.StartTimer(60);
     }
 
     public void GameOver()
