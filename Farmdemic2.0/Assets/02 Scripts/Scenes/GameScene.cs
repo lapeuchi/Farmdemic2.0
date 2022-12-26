@@ -30,6 +30,7 @@ public class GameScene : SceneBase
         //    Managers.UI.ShowPopupUI<UI_Intro>();
         //else
         Managers.UI.ShowPopupUI<UI_SceneTransition>();
+        Managers.Sound.PlayBGM(Define.BGM.MainBgm);
        
     }
 

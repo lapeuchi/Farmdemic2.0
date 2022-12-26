@@ -36,7 +36,9 @@ public class Define
     
     public enum BGM
     {
+        MainBgm,
         MinigameBgm
+        
     }
 
     public enum SFX
