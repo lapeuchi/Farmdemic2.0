@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class Util
 {
     public static T GetOrAddComponent<T> (GameObject go) where T : Component
@@ -63,7 +64,7 @@ public class Util
 
 		for (int i = 0; i < n; ++i)
 		{
-			int index = Random.Range(0, maxCount);
+			int index = UnityEngine.Random.Range(0, maxCount);
 			results[i] = defaults[index];
 			defaults[index] = defaults[maxCount - 1];
 			maxCount--;

@@ -3,10 +3,17 @@ using UnityEngine;
 
 public class Define
 {
+    public enum Event
+    {
+        MiniGame = 1,
+        InfoPopup,
+        Cutscene,
+        Ending
+    }
+
     public enum Minigame
     {  
         None = 0,
-
         OXQuiz = 1, // ox퀴즈
         MatchingDisinfectant = 2, // 소독약 용도 매칭
         HarmfulBirds = 3, // 해로운 새
@@ -36,7 +43,8 @@ public class Define
     {
         ClickDialogue,
         Collect,
-        Worth
+        Worth,
+        CrowCrying,
     }
     
     public enum Scene
@@ -45,13 +53,6 @@ public class Define
         Title,
         Game,
         Minigame
-    }
-    
-    public enum Story
-    {
-        None = 0,
-        Chater1 = 11,
-        Chater2,
     }
 
     public struct Quiz_OX

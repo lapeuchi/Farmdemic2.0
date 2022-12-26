@@ -12,15 +12,17 @@ public class Managers : MonoBehaviour
     ResourceManager _resource = new ResourceManager();
     GameManager _game = new GameManager();
     UIManager _ui = new UIManager();
-    //SoundManager _sound = new SoundManager();
+    SoundManager _sound = new SoundManager();
     SceneManagerEx _scene = new SceneManagerEx();
+    DialogueManager _dialogue = new DialogueManager();
 
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static GameManager Game { get { return Instance._game; } }
     public static DataManager Data { get { return Instance._data; } }
     public static UIManager UI { get { return Instance._ui; } }
-    //public static SoundManager Sound { get { return Instance._sound; } }
+    public static SoundManager Sound { get { return Instance._sound; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
+    public static DialogueManager Dialogue { get { return Instance._dialogue; } }
     #endregion
     
     void Start()
@@ -41,8 +43,9 @@ public class Managers : MonoBehaviour
 
             _instance = Util.GetOrAddComponent<Managers>(go);
             DontDestroyOnLoad(go);
-            //Sound.Init();
+            Sound.Init();
             Data.Init();
+            Dialogue.Init();        
         }
     }
 }

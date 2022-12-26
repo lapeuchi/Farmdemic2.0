@@ -6,43 +6,32 @@ public class SoundManager
 {
     private Dictionary<Define.BGM, AudioClip> bgms = new Dictionary<Define.BGM, AudioClip>();
     private Dictionary<Define.SFX, AudioClip> sfxs = new Dictionary<Define.SFX, AudioClip>();
-    private GameObject root;
     private AudioSource bgmSource;
     private AudioSource[] sfxSource = new AudioSource[5];
     
     public void Init()
     {
-        root = GameObject.Find("@Sound");
+        GameObject root = GameObject.Find("@Sound");
 
         if(root == null)
         {
             root = new GameObject { name = "@Sound" };
         }
-        
-        root.transform.parent = GameObject.Find("@Managers").transform;
-        
-        GameObject bgmRoot = GameObject.Find("@BGM"); //root.transform.Find("@BGM").gameObject;
-        
-        if(bgmRoot == null)
-        {
-            bgmRoot = new GameObject { name = "@BGM" };
-            bgmRoot.AddComponent<AudioSource>();
-        }
 
-        bgmSource = bgmRoot.GetComponent<AudioSource>();
+        Object.DontDestroyOnLoad(root);
 
+        GameObject bgmRoot = new GameObject { name = "@BGM" };
+        bgmSource = bgmRoot.AddComponent<AudioSource>();
+        bgmRoot.transform.parent = root.transform;
+        
         for(int i = 0; i < System.Enum.GetValues(typeof(Define.BGM)).Length; i++)
         {
             AudioClip clip = Managers.Resource.Load<AudioClip>($"Sound/{(Define.BGM) i}");
             bgms.Add((Define.BGM) i, clip);
         }
 
-        GameObject sfxRoot = GameObject.Find("@SFX");
-
-        if(sfxRoot == null)
-        {
-            sfxRoot = new GameObject { name = "@SFX" };
-        }
+        GameObject sfxRoot = new GameObject { name = "@SFX" }; ;
+        sfxRoot.transform.parent = root.transform;
 
         for(int i = 0; i < sfxSource.Length; i++)
         {
@@ -51,9 +40,10 @@ public class SoundManager
             sfxSource[i] = go.AddComponent<AudioSource>();
         }
 
-        for(int i = 0; i < sfxSource.Length; i++)
+        for (int i = 0; i < System.Enum.GetValues(typeof(Define.BGM)).Length; i++)
         {
-            
+            AudioClip clip = Managers.Resource.Load<AudioClip>($"Sound/{(Define.SFX) i}");
+            sfxs.Add((Define.SFX)i, clip);
         }
     }
 
