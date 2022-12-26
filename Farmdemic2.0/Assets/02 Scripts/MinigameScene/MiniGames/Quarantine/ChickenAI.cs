@@ -53,6 +53,7 @@ public class ChickenAI : MonoBehaviour
             case State.Moving:
                 MovingUpdate();
                 break;
+                Managers.Sound.PlaySFX(Define.SFX.Flapping);
             case State.Dragging:
                 DraggingUpdate();
                 break;
@@ -138,6 +139,7 @@ public class ChickenAI : MonoBehaviour
             }
             ChangeRandomState();
             dotAnim.DORewind();
+            Managers.Sound.PlaySFX(Define.SFX.Pop);
             return;
         }
     }
@@ -166,11 +168,12 @@ public class ChickenAI : MonoBehaviour
         }
         else if (!curFence.quarantineFence && !isInfected)
         {
+            Managers.Sound.PlaySFX(Define.SFX.Collect);
             MinigameManager.instance.Score.PlusScore(quarantine.point);
         }
         else
         {
-            
+            Managers.Sound.PlaySFX(Define.SFX.Worth);
             MinigameManager.instance.Score.PlusScore(-quarantine.point * 2);
         }
 

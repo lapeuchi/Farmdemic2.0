@@ -40,15 +40,19 @@ public class UI_Dialogue : UI_Scene
     void ShowDialogue()
     {
         Dialogue dialgoue = Managers.Dialogue.GetDialogue();
-        GetText((int)Texts.NameText).text = dialgoue.name;
-        StartCoroutine(TypingEffect(dialgoue.word));
+
+        if(dialgoue != null)
+        {
+            GetText((int)Texts.NameText).text = dialgoue.name;
+            StartCoroutine(TypingEffect(dialgoue.word));
+        }
     }
 
     IEnumerator TypingEffect(string word)
     {
         WaitForSeconds wait = new WaitForSeconds(_delay);
         typing = true;
-
+        Managers.Sound.PlaySFX(Define.SFX.Writting);
         for(int i = 0; i < word.Length; i++)
         {
             GetText((int)Texts.WordText).text = word.Substring(0, i);
@@ -65,7 +69,7 @@ public class UI_Dialogue : UI_Scene
             return;
 
         _index++;
-        
+        Managers.Sound.PlaySFX(Define.SFX.ClickDialogue);
         ShowDialogue();
     }
 }

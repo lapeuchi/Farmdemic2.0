@@ -8,7 +8,7 @@ public interface ILoader<T>
 }
 
 [System.Serializable]
-public struct Dialogue
+public class Dialogue
 {
     public int code;
     public Define.Event eventCode;

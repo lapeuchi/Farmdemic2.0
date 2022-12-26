@@ -41,6 +41,7 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
         
         if(Input.GetMouseButtonDown(0))
         {
+            Managers.Sound.PlaySFX(Define.SFX.Fire);
             Ray ray = gameCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -51,6 +52,7 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
                 if (crow != null)
                 {
                     crow.ShotDown();
+                    Managers.Sound.PlaySFX(Define.SFX.CrowCrying);
                 }
             }
         }

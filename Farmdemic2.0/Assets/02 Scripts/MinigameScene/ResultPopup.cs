@@ -72,6 +72,10 @@ public class ResultPopup : UI_Popup
 
     IEnumerator ResultEffect()
     {
+        if(MinigameManager.instance.IsClear == false)
+        {
+            exit_Button.gameObject.SetActive(false);
+        }
         yield return new WaitForSeconds(1f);   
         
         scoreValue_Text.DOText($"{MinigameManager.instance.Score.Score}", 2f, true, ScrambleMode.Numerals);
@@ -83,7 +87,9 @@ public class ResultPopup : UI_Popup
         rankValue_Image.enabled = true;
         rankValue_Image.transform.DOScale(rankOriginScale, 1f);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
+        Managers.Sound.PlaySFX(Define.SFX.WriteRank);
+        yield return new WaitForSeconds(0.5f);
 
         Debug.Log(MinigameManager.instance.IsClear);
         if (MinigameManager.instance.IsClear)

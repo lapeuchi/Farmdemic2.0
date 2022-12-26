@@ -36,15 +36,34 @@ public class Define
     
     public enum BGM
     {
-        MainBgm
+        MinigameBgm
     }
 
     public enum SFX
     {
+        // main
         ClickDialogue,
+        Writting,
+
+        // Quiz 
         Collect,
         Worth,
+
+        // bird
         CrowCrying,
+        Fire,
+
+        // card
+        CardGather,
+        CardMix,
+
+        // chick
+        Pop,
+        Chicken,
+        Flapping,
+
+        // minigame result
+        WriteRank
     }
     
     public enum Scene

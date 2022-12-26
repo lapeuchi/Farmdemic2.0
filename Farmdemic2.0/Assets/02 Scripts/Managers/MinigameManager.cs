@@ -175,6 +175,7 @@ public class MinigameManager : MonoBehaviour
         yield return null;
 
         minigameController.GameStart();
+        Managers.Sound.PlayBGM(Define.BGM.MinigameBgm);
         StartScore();
     }
 }

@@ -82,6 +82,8 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         {
             useCards[i].GetComponent<UseCardController>().Shuffle(useCardsPoint[posIndex[i]]);
         }
+
+        Managers.Sound.PlaySFX(Define.SFX.CardGather);
     }
 
     void GatherUseCards()
@@ -92,6 +94,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         {
             useCards[i].GetComponent<UseCardController>().Gather(gatherPoint.position);
         }
+        Managers.Sound.PlaySFX(Define.SFX.CardGather);
     }
 
     public void CommandToUseCards()
@@ -175,10 +178,12 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         if (IsCurrectCard())
         {
             addScore = 50;
+            Managers.Sound.PlaySFX(Define.SFX.Collect);
         }
         else
         {
             addScore = -50;
+            Managers.Sound.PlaySFX(Define.SFX.Worth);
         }
 
         ScoreCalculation();

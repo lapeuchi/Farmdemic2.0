@@ -32,7 +32,7 @@ public class DialogueManager
 
     public Dialogue GetDialogue()
     {
-        Dialogue dialogue = new Dialogue();
+        Dialogue dialogue = null;
 
         if (_dialogueDic[_dialogueEvent.CurrentChapter].Count == 0)
         {

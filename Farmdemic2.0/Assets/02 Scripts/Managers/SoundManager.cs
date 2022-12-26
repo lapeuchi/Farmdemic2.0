@@ -26,7 +26,7 @@ public class SoundManager
         
         for(int i = 0; i < System.Enum.GetValues(typeof(Define.BGM)).Length; i++)
         {
-            AudioClip clip = Managers.Resource.Load<AudioClip>($"Sound/{(Define.BGM) i}");
+            AudioClip clip = Managers.Resource.Load<AudioClip>($"Sounds/{(Define.BGM) i}");
             bgms.Add((Define.BGM) i, clip);
         }
 
@@ -42,7 +42,7 @@ public class SoundManager
 
         for (int i = 0; i < System.Enum.GetValues(typeof(Define.BGM)).Length; i++)
         {
-            AudioClip clip = Managers.Resource.Load<AudioClip>($"Sound/{(Define.SFX) i}");
+            AudioClip clip = Managers.Resource.Load<AudioClip>($"Sounds/{(Define.SFX) i}");
             sfxs.Add((Define.SFX)i, clip);
         }
     }
@@ -52,14 +52,15 @@ public class SoundManager
         bgmSource.clip = bgms[type];
         bgmSource.Play();
     }
-
-    public void PlaySFX(Define.SFX type)
+    
+    public void PlaySFX(Define.SFX type, float pitch = 1f)
     {
         for(int i = 0; i < sfxSource.Length; i++)
         {
             if(sfxSource[i].isPlaying == false)
             {
                 sfxSource[i].clip = sfxs[type];
+                sfxSource[i].pitch = pitch;
                 sfxSource[i].Play();
                 return;
             }

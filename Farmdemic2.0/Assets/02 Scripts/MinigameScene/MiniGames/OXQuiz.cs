@@ -95,7 +95,7 @@ public class OXQuiz : UI_Popup, IMinigame
     void Input(string inputAnswer)
     {
         if (lockButton == true) return;
-
+        
         lockButton = true;
 
         StartCoroutine(Explanation(inputAnswer));
@@ -107,12 +107,12 @@ public class OXQuiz : UI_Popup, IMinigame
         {
             pannel_Text.text = "정답입니다!\n";
             MinigameManager.instance.Score.PlusScore(point);
-            //Managers.Sound.PlaySFX(Define.SFX.Collect);
+            Managers.Sound.PlaySFX(Define.SFX.Collect);
         }
         else
         {
             pannel_Text.text = "오답입니다.\n";
-            //Managers.Sound.PlaySFX(Define.SFX.Worth);
+            Managers.Sound.PlaySFX(Define.SFX.Worth);
         }
 
         pannel_Text.text += $"해설: {quiz_List[quizIndex].explanation}";
