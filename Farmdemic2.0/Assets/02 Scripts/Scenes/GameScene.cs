@@ -24,7 +24,7 @@ public class GameScene : SceneBase
 
     public IEnumerator LoadMnigameWithEffect(Define.Minigame game)
     {
-        Camera.main.GetComponent<MainCameraMovement>().ZoomEffect();
+        Camera.main.GetComponent<CameraController>().ZoomEffect();
         yield return new WaitForSeconds(1.5f);
         MinigameTrigger.LoadMiniGame(game);
     }
