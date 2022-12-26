@@ -23,7 +23,7 @@ public class CrowController : MonoBehaviour
         if(isDead == false)
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
-
+            
             if (transform.position.x <= arrivePos)
                 Arrive();
         }
@@ -39,7 +39,7 @@ public class CrowController : MonoBehaviour
     public void ShotDown()
     {
         isDead = true;
-        //MinigameManager.instance.Score.PlusScore(score);
+        MinigameManager.instance.Score.PlusScore(score);
         anim.SetTrigger("Die");
         SpriteRenderer sp = GetComponent<SpriteRenderer>();
         Collider col = GetComponent<Collider>();

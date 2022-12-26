@@ -10,7 +10,7 @@ public class DialogueManager
     public DialogueEvent EventHandler { get { return _dialogueEvent; } }
     DialogueEvent _dialogueEvent = new DialogueEvent();
     Define.Event CurrentEvent;
-    int maxCode = 5;
+    int maxCode = 13;
     
     public void Init()
     {
@@ -23,6 +23,9 @@ public class DialogueManager
 
         foreach (Dialogue dialogue in dialogueList)
         {
+            Debug.Log(_dialogueDic);
+            Debug.Log(dialogueList);
+            Debug.Log(dialogue);
             _dialogueDic[dialogue.code].Enqueue(dialogue);
         }
     }

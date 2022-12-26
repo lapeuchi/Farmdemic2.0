@@ -127,6 +127,10 @@ public class MinigameManager : MonoBehaviour
 
     public void GameOver()
     {   
+        if(Score != null) Score.gameObject.SetActive(false);
+        if(Life != null) Life.gameObject.SetActive(false);
+        if(Timer != null) Timer.gameObject.SetActive(false);
+        
         Debug.Log($"GameOver()");
         minigameController.GameOver();
         isGameOver = true;

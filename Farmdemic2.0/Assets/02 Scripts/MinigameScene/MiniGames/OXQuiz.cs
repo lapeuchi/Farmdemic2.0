@@ -15,8 +15,8 @@ public class OXQuiz : UI_Popup, IMinigame
     public List<Quiz_OX> quiz_List = new List<Quiz_OX>();
     
     int quizIndex = 0;
-    int quizLength = 5;
-    int point = 20;
+    int quizLength = 10;
+    int point = 10;
 
     enum Buttons
     {
@@ -37,14 +37,14 @@ public class OXQuiz : UI_Popup, IMinigame
         O_Button = GetButton((int)Buttons.O_Button);
         X_Button = GetButton((int)Buttons.X_Button);
         //pannel_Text = GetText((int)Texts.Pannel_Text);
-        pannel_Text = GameObject.Find("Pannel_Text").GetComponent<TMP_Text>();
+        pannel_Text = GameObject.Find("Panel_Text").GetComponent<TMP_Text>();
         MinigameManager.instance.SetFeedback
         (
             "반복 플레이를 통해 암기를 하세요",
             "인터넷에서 관련 자료를 검색해보세요."
         );
     }
-
+    
     void CreateQuiz()
     {
         List<Quiz_OX> jsonList = Managers.Data.OXQuizDatas;
@@ -73,17 +73,21 @@ public class OXQuiz : UI_Popup, IMinigame
         
         switch(MinigameManager.instance.Score.Score / point)
         {
-            case 0:case 1:
+            case 5: case 6:
                 MinigameManager.instance.SetRank(Define.Rank.C);
-                MinigameManager.instance.SetClaer(false);
+                MinigameManager.instance.SetClaer(true);
                 break;
-            case 2: case 3: case 4:
+            case 7: case 8:
                 MinigameManager.instance.SetRank(Define.Rank.B);
                 MinigameManager.instance.SetClaer(true);
                 break;
-            case 5:
+            case 9: case 10:
                 MinigameManager.instance.SetRank(Define.Rank.A);
                 MinigameManager.instance.SetClaer(true);
+                break;
+            default:    
+                MinigameManager.instance.SetClaer(false);
+                MinigameManager.instance.SetRank(Define.Rank.F);
                 break;
         }        
     }
