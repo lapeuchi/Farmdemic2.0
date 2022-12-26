@@ -50,9 +50,10 @@ public class SoundManager
     public void PlayBGM(Define.BGM type)
     {
         bgmSource.clip = bgms[type];
+        bgmSource.loop = true;
         bgmSource.Play();
     }
-    
+
     public void PlaySFX(Define.SFX type, float pitch = 1f)
     {
         for(int i = 0; i < sfxSource.Length; i++)
