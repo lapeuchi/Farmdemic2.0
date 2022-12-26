@@ -25,6 +25,7 @@ public class GameManager
     public void NextChapter()
     {
         currentChapter++;
+        eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;
 
         switch (eventCode)
         {
@@ -34,7 +35,7 @@ public class GameManager
                 miniGameIdx++;
                 break;
             case Define.Event.InfoPopup:
-                //Managers.UI.ShowPopupUI<UI_Info>();
+                Managers.UI.ShowPopupUI<UI_RealTip>();
                 popupIdx++;
                 break;
             case Define.Event.Cutscene:

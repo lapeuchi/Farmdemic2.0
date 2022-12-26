@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class DialogueManager
 {
-    public Dictionary<int, Queue<Dialogue>> _dialogueDic = new Dictionary<int, Queue<Dialogue>>();
+    public Dictionary<int, Queue<Dialogue>> DialogueDic { get; private set; } = new Dictionary<int, Queue<Dialogue>>();
     int maxCode = 13;
     
     public void Init()
@@ -15,12 +15,12 @@ public class DialogueManager
 
         for (int i = 1; i <= maxCode; i++)
         {
-            _dialogueDic.Add(i, new Queue<Dialogue>());
+            DialogueDic.Add(i, new Queue<Dialogue>());
         }
 
         foreach (Dialogue dialogue in dialogueList)
         {
-            _dialogueDic[dialogue.code].Enqueue(dialogue);
+            DialogueDic[dialogue.code].Enqueue(dialogue);
         }
     }
 
@@ -28,14 +28,14 @@ public class DialogueManager
     {
         Dialogue dialogue = null;
 
-        if (_dialogueDic[Managers.Game.CurrentChapter].Count == 0)
+        if (DialogueDic[Managers.Game.CurrentChapter].Count == 0)
         {
             Managers.UI.ClosePopupUI();
             Managers.Game.NextChapter();
         }
         else
         {
-            dialogue = _dialogueDic[Managers.Game.CurrentChapter].Dequeue();
+            dialogue = DialogueDic[Managers.Game.CurrentChapter].Dequeue();
             Debug.Log(Managers.Game.CurrentChapter);
             Managers.Game.CurrentEventCode = dialogue.eventCode;
         }
