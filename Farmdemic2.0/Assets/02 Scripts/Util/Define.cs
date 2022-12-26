@@ -53,6 +53,8 @@ public class Define
 
         // bird
         CrowCrying,
+        CrowDying,
+
         Fire,
 
         // card
