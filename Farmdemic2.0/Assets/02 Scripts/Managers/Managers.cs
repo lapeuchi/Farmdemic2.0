@@ -26,10 +26,11 @@ public class Managers : MonoBehaviour
     #endregion
 
     [SerializeField] int curCutScene;
-
+    [SerializeField] List<Tip> tipList = new List<Tip>();
     private void Update()
     {
-        curCutScene = Managers.Game.CurrentCutScene;
+        curCutScene = Game.CurrentCutScene;
+        tipList = Data.tipList;
     }
 
     void Start()

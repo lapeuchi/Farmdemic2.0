@@ -42,13 +42,18 @@ public class DialogueLoader : ILoader<Dialogue>
 }
 
 [System.Serializable]
-public struct Tip
+public class Tip
 {
     public int code;
     public string title;
     public string content;
     public Sprite image;
-    string path;
+    public string path;
+
+    public void Init()
+    {
+        image = Managers.Resource.Load<Sprite>($"Sprites/Popup/{path}");
+    }
 
     public Tip(int code, string title, string content, string path)
     {
@@ -56,8 +61,7 @@ public struct Tip
         this.title = title;
         this.content = content;
         this.path = path;
-
-        image = Managers.Resource.Load<Sprite>($"Sprite/Popup/{path}");
+        image = Managers.Resource.Load<Sprite>($"Sprites/Popup/{path}");
     }
 }
 
@@ -68,6 +72,9 @@ public class TipLoader : ILoader<Tip>
 
     public List<Tip> MakeList()
     {
+        foreach (Tip tip in Tip)
+            tip.Init();
+
         return Tip;
     }
 }

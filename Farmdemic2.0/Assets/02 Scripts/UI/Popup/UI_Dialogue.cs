@@ -18,12 +18,7 @@ public class UI_Dialogue : UI_Popup
         ModelImage,
         BG
     }
-    float _delay
-#if DEBUG
-     = 0f;
-#else
-     = 0.025;
-#endif
+    float _delay = 0.025f;
     bool typing = false;
 
     public override void Init()

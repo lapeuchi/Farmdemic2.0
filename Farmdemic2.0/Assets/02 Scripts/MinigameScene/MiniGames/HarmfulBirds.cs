@@ -95,6 +95,8 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
             Destroy(root.transform.GetChild(i).gameObject);
         }
 
+        Managers.Sound.StopAllSfx();
+
         if (MinigameManager.instance.Timer.isTimerZero)
         {
             MinigameManager.instance.SetClaer(true);

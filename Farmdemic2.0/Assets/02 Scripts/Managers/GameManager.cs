@@ -51,6 +51,9 @@ public class GameManager
             case Define.Event.Fade:
                 Managers.UI.ShowPopupUI<UI_Fade>();
                 break;
+            case Define.Event.Ending:
+                Managers.UI.ShowPopupUI<UI_Ending>();
+                break;
         }
 
         eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;

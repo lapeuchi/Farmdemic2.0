@@ -67,6 +67,7 @@ public class Quarantine : MonoBehaviour, IMinigame
             else if (j==1 && s >= 0)
             {
                 GameObject go = Instantiate(infectedChicken_Prefab, spawnPos.position, Quaternion.identity);
+                go.GetComponent<ChickenAI>().Infection(); 
                 s--;
             }
         }

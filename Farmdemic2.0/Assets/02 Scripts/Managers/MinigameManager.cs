@@ -35,7 +35,9 @@ public class MinigameManager : MonoBehaviour
     private void Awake()
     {
         Init();
-        FindAndSetGame();    
+        FindAndSetGame();
+
+        Managers.Sound.PlayBGM(Define.BGM.MinigameBgm);
     }
 
     private void Init()
@@ -170,7 +172,6 @@ public class MinigameManager : MonoBehaviour
         yield return null;
 
         minigameController.GameStart();
-        Managers.Sound.PlayBGM(Define.BGM.MinigameBgm);
         StartScore();
     }
 }

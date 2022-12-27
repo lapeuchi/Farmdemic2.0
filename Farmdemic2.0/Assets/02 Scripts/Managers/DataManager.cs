@@ -8,13 +8,13 @@ public class DataManager
     public List<Quiz_OX> OXQuizDatas { get; private set; } = new List<Quiz_OX>();
     public List<Matching> MatchingDatas { get; private set; } = new List<Matching>();
     public Dictionary<int, Queue<Tip>> TipDatas { get; private set; } = new Dictionary<int, Queue<Tip>>();
-    
+    public List<Tip> tipList = new List<Tip>();
     public void Init()
     {
         DialogueDatas = Load<DialogueLoader, Dialogue>("Dialogue").MakeList();
         OXQuizDatas = Load<OXQuizLoader, Quiz_OX>("OXQuiz").MakeList();
         MatchingDatas = Load<MatchingLoader, Matching>("Disinfectant").MakeList();
-        List<Tip> tipList = Load<TipLoader, Tip>("Tip").MakeList();
+        tipList = Load<TipLoader, Tip>("Tip").MakeList();
         
         for(int i = 1; i <= 2; i++)
         {

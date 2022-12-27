@@ -58,6 +58,12 @@ public class SoundManager
         bgmSource.Stop();
     }
 
+    public void StopAllSfx()
+    {
+        for (int i = 0; i < sfxSource.Length; i++)
+            sfxSource[i].Stop();
+    }
+
     public void PlaySFX(Define.SFX type, float pitch = 1f)
     {
         for(int i = 0; i < sfxSource.Length; i++)

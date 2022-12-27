@@ -131,12 +131,12 @@ public class OXQuiz : UI_Popup, IMinigame
         {
             pannel_Text.text = "정답입니다!\n";
             MinigameManager.instance.Score.PlusScore(point);
-            Managers.Sound.PlaySFX(Define.SFX.Collect);
+            //Managers.Sound.PlaySFX(Define.SFX.Collect);
         }
         else
         {
             pannel_Text.text = "오답입니다.\n";
-            Managers.Sound.PlaySFX(Define.SFX.Worth);
+            //Managers.Sound.PlaySFX(Define.SFX.Worth);
         }
 
         pannel_Text.text += $"해설: {quiz_List[quizIndex].explanation}";
@@ -161,11 +161,13 @@ public class OXQuiz : UI_Popup, IMinigame
         {
             effect_Image.sprite = collect_Sprite;
             effect_Image.color = Color.green;
+            Managers.Sound.PlaySFX(Define.SFX.Collect);
         }
         else
         {
             effect_Image.sprite = worth_Sprite;
             effect_Image.color = Color.red;
+            Managers.Sound.PlaySFX(Define.SFX.Worth);
         }
         effect_Image.enabled = true;
         
