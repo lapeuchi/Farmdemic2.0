@@ -3,7 +3,7 @@
 
 이 프로젝트는 [Farmdemic2.0](https://github.com/lapeuchi/Farmdemic2.0) 프로젝트로 마이그레이션되어 있습니다.
 
-이 프로젝트의 진행정보는 [VSH팀 X 인플랩 게임사업팀](https://www.notion.so/inplab/VSH-X-706e995c45164cfcb94e4306b274b3c9) 페이지에서 확인하실 수 있습니다.
+이 프로젝트의 진행정보는 [VSH팀 X 인플랩 게임사업팀](https://www.notion.so/gakain-game-develop/VSH-X-f96438900e77488aa343016746a96fc3) 페이지에서 확인하실 수 있습니다.
 
 
 ## Team Information
