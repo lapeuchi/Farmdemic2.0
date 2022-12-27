@@ -2,6 +2,7 @@
 > 경북소프트웨어고등학교 2022년 2학기 캡스톤 팀 VSH Studio의 Farmdemic2.0 프로젝트
 
 이 프로젝트는 [Farmdemic2.0](https://github.com/lapeuchi/Farmdemic2.0) 프로젝트로 마이그레이션되어 있습니다.
+[Farmdemic2.0 Page](https://2422june.github.io/Farmdemic2.0.github.io)
 
 이 프로젝트의 진행정보는 [VSH팀 X 인플랩 게임사업팀](https://www.notion.so/gakain-game-develop/VSH-X-f96438900e77488aa343016746a96fc3) 페이지에서 확인하실 수 있습니다.
 
@@ -18,57 +19,53 @@
 ## Overview
 
 ### 캡스톤 참여 동기
-사업체에 멘토링을 받으면서 우리의 역량과 노하우를 늘리고 실무에 더 가까워 질 수 있을 것이라고 기대하여 이번 캡스톤에 참여하게 되었습니다.
+사업체에 멘토링을 받으면서 우리의 역량과 노하우를 늘리고 실무에 더 가까워 질 수 있을 것이라고 기대하여,
+이번 캡스톤에 참여하게 되었습니다.
 
 ### 프로젝트 실행 동기
-가축 질병으로 인한 재해는 한번의 발생으로 매우 커다란 피해를 
+가축 질병으로 인한 재해는 한번에 매우 커다란 피해를 발생시킵니다.
+그러므로 저희팀과 (주)인플랩은 가축질병 방역에 관한 교육 게임을 만들기로 했습니다.
+
+### 프로젝트 명
+Farmdemic 2.0
+
+### 사용 기술
+Unity, Notion, Photoshop, Github
+
+### 사용 예산
+약 50만원
 
 ### 프로젝트 장르
+가축질병 방역에 관한 교육을 목적으로 하는 시리어스 게임입니다.
 
 ### 프로젝트 목적
+축산업 종사자분들께 교육을 위해 제공되어 가축질병으로 인한 피해를 줄일 수 있는 결과물을 도출하는게 목적입니다.
 
-### 프로젝트 상세 설명(시놉시스, 주요 상호작용, 기타등등)
+### 시놉시스
+해외 여행에 첫 휴가를 갔다온 초보 농장 직원 **방혁**, 농장에 들어서며 농주 *영수 할아버지*와 함께 농장일을 시작하게 되는데...
 
-Some of the files in this archived GitHub project have the same Guid as files in
-the new GitHub project. This allows projects that are using Play assets, such as
-the `LoadingScreen` MonoBehaviour, to still work after migrating.
+### 요구 기능
+1. 대사기능
+2. 로딩 기능
+3. 각 미니 게임 트리거 기능
+4. UI 상호작용
+5. 장면 변경 기능
+6. 각 미니게임
+7. 미니 게임 결과 리턴 기능
+8. 미니 게임 성공
+9. 미니 게임 실패
+10. 팝업 기능
+11. 게임 전체 결과 리턴 기능
+12. 사운드 재생 기능
+13. 비쥬얼 이펙트 재생 기능
 
-The new **Google Play Plugins for Unity** project uses the namespace
-`Google.Play.Instant` instead of `GooglePlayInstant`, so any `using
-GooglePlayInstant;` statements will have to be updated.
+### 개발 일정
+9/2주 - 기획 발표
+9/3주 - 자료 수집 완료, 세부 기획 완료, 프레임워크 개발 완료
+10/5주 - 메인 시스템 완료
+11/1주 - 중간 발표
+11/4주 - UI개발, 그래픽 준비 완료
+12/2주 - 미니게임 완성
+12/4주 - 최종 발표
 
-The new **Google Play Plugins for Unity** no longer supports the ability to set a custom instant apps URL.
-
-## Migration steps
-
-1.  Familiarize yourself with the
-    process for the new plugin, and either download the new `.unitypackage` file
-    or set up the **Game Package Registry for Unity**.
-
-1.  Delete the existing `Assets/GooglePlayInstant` directory (if you previously
-    imported from a `.unitypackage` file) or the
-    `Assets/play-instant-unity-plugin` directory (if you previously imported via
-    `git clone`). Note that at this point there may be errors such as "error
-    CS0103: The name `InstallLauncher' does not exist in the current context" in
-    the project.
-
-1.  Import the `.unitypackage` obtained from the first step or install the
-    **Google Play Instant** package in Unity Package Manager.
-
-1.  Change any `using GooglePlayInstant;` statements to `using
-    Google.Play.Instant;`.
-
-## Known issues
-
-### Launching an instant app from the Play Store redirects to the browser
-
-This issue occurs when launching an instant app if the following is true:
-1. Your currently released instant app is launchable via a custom URL.
-1. You have uploaded a version of your instant app that does not specify a custom URL to alpha or internal test.
-1. You are trying to launch this non-production version of your instant app.
-
-The latest plugin no longer supports the ability to set a custom instant apps URL. If your app previously included a custom instant apps URL, uploading an app built with the latest plugin could trigger this issue.
-
-There are two workarounds:
-1. The issue will not occur for an instant app in production, so release the app to production to eliminate the issue.
-1. If you'd prefer to fix the issue in alpha, add the browsable intent filter and default url tags to the UnityPlayerActivity in your app's manifest:
+본 프로젝트와 결과물에 대한 저작권은 `팀 VSH`와 `경북소프트웨어 고등학교`와 `(주)INPLAB`에 있습니다.
