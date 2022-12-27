@@ -28,7 +28,6 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     private int dataIndex;
     private string selectUse;
     private int addScore = 50;
-    private int score;
 
     [Space(10)]
     [Header("[Use Card Table]")]
@@ -151,7 +150,6 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
 
     void ScoreCalculation()
     {
-        score += addScore;
         MinigameManager.instance.Score.PlusScore(addScore);
     }
 
@@ -274,8 +272,6 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     public void GameStart()
     {
         isGameEnd = false;
-        score = 0;
-
         Init();
         CloseFade();
         MinigameManager.instance.StartTimer(60);
@@ -286,19 +282,18 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     {
         isGameEnd = true;
         ShowFade();
-        MinigameManager.instance.Score.SetScore(score);
 
-        if (score >= 150)
+        if (MinigameManager.instance.Score.Score >= 150)
         {
             MinigameManager.instance.SetRank(Define.Rank.A);
             MinigameManager.instance.SetClaer(true);
         }
-        else if (score >= 100)
+        else if (MinigameManager.instance.Score.Score >= 100)
         {
             MinigameManager.instance.SetRank(Define.Rank.B);
             MinigameManager.instance.SetClaer(true);
         }
-        else if (score >= 50)
+        else if (MinigameManager.instance.Score.Score >= 50)
         {
             MinigameManager.instance.SetRank(Define.Rank.C);
             MinigameManager.instance.SetClaer(true);
