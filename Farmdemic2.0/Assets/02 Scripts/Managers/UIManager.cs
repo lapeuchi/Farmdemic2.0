@@ -68,6 +68,20 @@ public class UIManager
         return sceneUI;
     }
 
+    public T MakeSubitem<T>(Transform parent = null, string name = null) where T : UI_Base
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.Resource.Instantiate($"UI/Subitem/{name}");
+        T subitem = go.GetOrAddComponent<T>();
+
+        if (parent != null)
+            go.transform.SetParent(parent);
+
+        return subitem;
+    }
+
     public void ClosePopupUI()
     {
         if (_popupStack.Count == 0) return;

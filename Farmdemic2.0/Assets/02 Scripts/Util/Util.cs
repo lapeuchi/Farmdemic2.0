@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class Util
+public static class Util
 {
-    public static T GetOrAddComponent<T> (GameObject go) where T : Component
+    public static T GetOrAddComponent<T> (this GameObject go) where T : Component
     {
         T component = go.GetComponent<T>();
 
@@ -13,7 +13,7 @@ public class Util
         return component;
     }
 
-    public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
+    public static T FindChild<T>(this GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
     {
         if (go == null) return null;
         
@@ -46,13 +46,13 @@ public class Util
         return null;
     }
 
-    public static GameObject FindChild(GameObject go, string name = null, bool recursive = false)
+    public static GameObject FindChild(this GameObject go, string name = null, bool recursive = false)
     {
-        Transform transform = FindChild<GameObject>(go, name, recursive).transform;
+        Transform transform = FindChild<Transform>(go, name, recursive);
         return transform.gameObject;
     }
 
-    public static void BindEvent(GameObject go, Action<PointerEventData> eventData, Define.InputEvent type = Define.InputEvent.Click)
+    public static void BindEvent(this GameObject go, Action<PointerEventData> eventData, Define.InputEvent type = Define.InputEvent.Click)
     {
         UI_EventHandler eventHandler = GetOrAddComponent<UI_EventHandler>(go);
 

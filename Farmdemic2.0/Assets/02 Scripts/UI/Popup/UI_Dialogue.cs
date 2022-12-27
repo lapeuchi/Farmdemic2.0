@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class UI_Dialogue : UI_Popup
@@ -15,14 +16,14 @@ public class UI_Dialogue : UI_Popup
     enum Images
     {
         ModelImage,
+        BG
     }
-
-    enum Buttons
-    {
-        NextButton
-    }
-
-    float _delay = 0.025f;
+    float _delay
+#if DEBUG
+     = 0f;
+#else
+     = 0.025;
+#endif
     bool typing = false;
 
     public override void Init()
@@ -31,8 +32,7 @@ public class UI_Dialogue : UI_Popup
         
         Bind<TMP_Text>(typeof(Texts));
         Bind<Image>(typeof(Images));
-        Bind<Button>(typeof(Buttons));
-        GetButton((int)Buttons.NextButton).onClick.AddListener(OnNextButtonClicked);
+        GetImage((int)Images.BG).gameObject.BindEvent(OnNextButtonClicked);
         ShowDialogue();
     }
 
@@ -59,11 +59,11 @@ public class UI_Dialogue : UI_Popup
         }
 
         GetText((int)Texts.WordText).text = word;
-        yield return wait;
+        yield return new WaitForSeconds(0.5f);
         typing = false;
     }
 
-    void OnNextButtonClicked()
+    void OnNextButtonClicked(PointerEventData evtData)
     {
         if (typing)
             return;

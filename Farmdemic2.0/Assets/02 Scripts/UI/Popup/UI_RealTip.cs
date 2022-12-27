@@ -12,11 +12,31 @@ public class UI_RealTip : UI_Popup
         CloseButton
     }
 
+    enum GameObjects
+    {
+        Group
+    }
+
     public override void Init()
     {
         base.Init();
         Bind<Button>(typeof(Buttons));
-        Util.BindEvent(GetButton((int)Buttons.CloseButton).gameObject, OnClickedCloseButton);
+        Bind<GameObject>(typeof(GameObjects));
+
+        GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnClickedCloseButton);
+        Init(1);
+    }
+
+    public void Init(int idx)
+    {
+        GameObject root = Get<GameObject>((int)GameObjects.Group);
+
+        Queue<Tip> tipQueue = Managers.Data.TipDatas[idx];
+;
+        while (tipQueue.Count > 0)
+        {
+            Managers.UI.MakeSubitem<UI_Card>(root.transform).SetInfo(tipQueue.Dequeue());
+        }
     }
 
     void OnClickedCloseButton(PointerEventData evtData)

@@ -25,14 +25,12 @@ public class Managers : MonoBehaviour
     public static DialogueManager Dialogue { get { return Instance._dialogue; } }
     #endregion
 
-    [SerializeField] Define.Event curEvt;
-    [SerializeField] int curChapter;
+    [SerializeField] int curCutScene;
+
     private void Update()
     {
-        curEvt = Managers.Game.CurrentEventCode;
-        curChapter = Managers.Game.CurrentChapter;
+        curCutScene = Managers.Game.CurrentCutScene;
     }
-
 
     void Start()
     {
@@ -52,6 +50,7 @@ public class Managers : MonoBehaviour
 
             _instance = Util.GetOrAddComponent<Managers>(go);
             DontDestroyOnLoad(go);
+
             Sound.Init();
             Data.Init();
             Dialogue.Init();

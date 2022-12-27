@@ -7,6 +7,12 @@ public interface ILoader<T>
     List<T> MakeList();
 }
 
+public interface ILoader<TKey, TValue>
+{
+    Dictionary<TKey, TValue> MakeDic(); 
+}
+
+
 [System.Serializable]
 public class Dialogue
 {
@@ -36,31 +42,33 @@ public class DialogueLoader : ILoader<Dialogue>
 }
 
 [System.Serializable]
-public struct Explanation
+public struct Tip
 {
     public int code;
+    public string title;
+    public string content;
     public Sprite image;
-    public string explanation;
     string path;
 
-    public Explanation(int code, string explanation, string path)
+    public Tip(int code, string title, string content, string path)
     {
         this.code = code;
-        this.explanation = explanation;
+        this.title = title;
+        this.content = content;
         this.path = path;
-        
+
         image = Managers.Resource.Load<Sprite>($"Sprite/Popup/{path}");
     }
 }
 
 [System.Serializable]
-public class ExplanationLoader : ILoader<Explanation>
+public class TipLoader : ILoader<Tip>
 {
-    public List<Explanation> Explanation = new List<Explanation>();
+    public List<Tip> Tip = new List<Tip>();
 
-    public List<Explanation> MakeList()
+    public List<Tip> MakeList()
     {
-        return Explanation;
+        return Tip;
     }
 }
 

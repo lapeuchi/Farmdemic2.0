@@ -16,7 +16,7 @@ public class UI_SceneTransition : UI_Popup
         base.Init();
         Bind<Image>(typeof(Images));
         GetImage((int)Images.FadeImage).DOFade(0f, 5f);
-        Invoke("FadeIn", 5.5f);
+        Invoke("FadeIn", 5.2f);
     }
     
     void FadeIn()
