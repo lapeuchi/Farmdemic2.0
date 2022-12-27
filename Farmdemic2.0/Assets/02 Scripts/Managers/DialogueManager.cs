@@ -8,8 +8,7 @@ public class DialogueManager
 {
     public Dictionary<int, Queue<Dialogue>> DialogueDic { get; private set; } = new Dictionary<int, Queue<Dialogue>>();
     int maxCode = 13;
-    // 1분기 대사 6 - Minigame, Cutscene, popup
-    // 
+
     public void Init()
     {
         List<Dialogue> dialogueList = Managers.Data.dialogueDatas;
