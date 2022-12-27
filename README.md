@@ -2,6 +2,7 @@
 > 경북소프트웨어고등학교 2022년 2학기 캡스톤 Team VSH Studio의 Farmdemic2.0 프로젝트
 
 이 프로젝트는 [Farmdemic2.0](https://github.com/lapeuchi/Farmdemic2.0) 프로젝트로 마이그레이션되어 있습니다.
+이 프로젝트의 진행정보는 [VSH팀 X 인플랩 게임사업팀](https://www.notion.so/gakain-game-develop/VSH-X-f96438900e77488aa343016746a96fc3) 페이지에서 확인하실 수 있습니다.
 
 ## 팀원 정보
 1. 김환희 - 프로그래머
@@ -11,13 +12,18 @@
 5. 홍대연 - 아티스트
 
 
-## 개요
+## Overview
 
-### 캡스톤 동기
-### 캡스톤 목적
+### 캡스톤 참여 동기
+
+### 캡스톤 참여 목적
+
 ### 프로젝트 실행 동기
+
 ### 프로젝트 장르
+
 ### 프로젝트 목적
+
 ### 프로젝트 상세 설명(시놉시스, 주요 상호작용, 기타등등)
 
 Some of the files in this archived GitHub project have the same Guid as files in
@@ -33,7 +39,6 @@ The new **Google Play Plugins for Unity** no longer supports the ability to set 
 ## Migration steps
 
 1.  Familiarize yourself with the
-    [download and import](//developer.android.com/topic/google-play-instant/getting-started/game-unity-plugin#import-plugin)
     process for the new plugin, and either download the new `.unitypackage` file
     or set up the **Game Package Registry for Unity**.
 
@@ -64,32 +69,3 @@ The latest plugin no longer supports the ability to set a custom instant apps UR
 There are two workarounds:
 1. The issue will not occur for an instant app in production, so release the app to production to eliminate the issue.
 1. If you'd prefer to fix the issue in alpha, add the browsable intent filter and default url tags to the UnityPlayerActivity in your app's manifest:
-```xml
-<intent-filter
-    android:autoVerify="true">
-
-    <action
-        android:name="android.intent.action.VIEW" />
-
-    <category
-        android:name="android.intent.category.BROWSABLE" />
-
-    <category
-        android:name="android.intent.category.DEFAULT" />
-
-    <data
-        android:scheme="http"
-        android:host="<url-host>"
-        android:pathPrefix="<url-path-prefix>" />
-
-    <data
-        android:scheme="https"
-        android:host="<url-host>"
-        android:pathPrefix="<url-path-prefix>" />
-</intent-filter>
-
-<meta-data
-    android:name="default-url"
-    android:value="<the-default-url-of-your-released-app>" />
-
-```
