@@ -13,19 +13,25 @@ public class MinigameTimer : UI_Scene
     public override void Init()
     {
         isTimerZero = false;
-        
-        
         base.Init();
     }
     
     public void Setting(float t)
     {
         time = t;
+        isTimerZero = false;
         timer_Text = GameObject.Find("Timer_Text").GetComponent<TMP_Text>();
+        timer_Text.text = ((int)time).ToString();
+
+        // Debug.Log($"Timer.Setting({time})");
+        // Debug.Log(timer_Text);
+        // Debug.Log(isTimerZero = false);
     }
 
     void Update()
-    {
+    {   
+        // Debug.Log("isTimerZero: "+isTimerZero);
+        // Debug.Log("isGameOver: "+MinigameManager.isGameOver);
         if(isTimerZero == false && MinigameManager.isGameOver == false)
         {
             time -= Time.deltaTime;
@@ -60,8 +66,6 @@ public class MinigameTimer : UI_Scene
         isTimerZero = true;
         time = 0;
         timer_Text.text = "0";
-
-        
         MinigameManager.instance.GameOver();
     }
 

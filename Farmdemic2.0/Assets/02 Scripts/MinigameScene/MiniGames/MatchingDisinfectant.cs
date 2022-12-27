@@ -15,7 +15,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     private int doneSomethingCards = 0;
 
     private List<Matching> matchingData = new List<Matching>();
-
+    
     private MatchingFadeController fadeController;
 
     [Space(10)]

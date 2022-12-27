@@ -31,7 +31,7 @@ public class CrowController : MonoBehaviour
 
     void Arrive()
     {
-        //Managers.Sound.PlaySFX(Define.SFX.CrowCrying);
+        Managers.Sound.PlaySFX(Define.SFX.CrowCrying);
         MinigameManager.instance.Life.MinusLife();
         Destroy(gameObject);
     }

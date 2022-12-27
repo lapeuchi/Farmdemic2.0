@@ -70,26 +70,28 @@ public class OXQuiz : UI_Popup, IMinigame
     public void GameOver()
     {
         lockButton = true;
-        
-        switch(MinigameManager.instance.Score.Score / point)
+        float t = MinigameManager.instance.Score.Score / point;
+
+        if (t <= 5)
         {
-            case 5: case 6:
-                MinigameManager.instance.SetRank(Define.Rank.C);
-                MinigameManager.instance.SetClaer(true);
-                break;
-            case 7: case 8:
-                MinigameManager.instance.SetRank(Define.Rank.B);
-                MinigameManager.instance.SetClaer(true);
-                break;
-            case 9: case 10:
-                MinigameManager.instance.SetRank(Define.Rank.A);
-                MinigameManager.instance.SetClaer(true);
-                break;
-            default:    
-                MinigameManager.instance.SetClaer(false);
-                MinigameManager.instance.SetRank(Define.Rank.F);
-                break;
-        }        
+            MinigameManager.instance.SetClaer(false);
+            MinigameManager.instance.SetRank(Define.Rank.F);
+        }
+        else if (t <= 6)
+        {
+            MinigameManager.instance.SetRank(Define.Rank.C);
+            MinigameManager.instance.SetClaer(true);
+        }
+        else if (t <= 8)
+        {
+            MinigameManager.instance.SetRank(Define.Rank.B);
+            MinigameManager.instance.SetClaer(true);
+        }
+        else
+        {
+            MinigameManager.instance.SetRank(Define.Rank.A);
+            MinigameManager.instance.SetClaer(true);
+        }       
     }
     
     void Input(string inputAnswer)
