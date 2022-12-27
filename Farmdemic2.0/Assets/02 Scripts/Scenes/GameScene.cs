@@ -22,7 +22,7 @@ public class GameScene : SceneBase
                 Managers.Game.CameraPoints[i] = cam_root.transform.GetChild(i);
             }
         }
-
+        
         Managers.Game.SetCamera();
     }
 

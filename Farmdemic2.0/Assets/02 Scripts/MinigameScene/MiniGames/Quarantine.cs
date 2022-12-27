@@ -54,18 +54,34 @@ public class Quarantine : MonoBehaviour, IMinigame
     
     void SetChicken()
     {
-        // 일반 닭 소환
-        for(int i = 0; i < chickenCount; i++)
+        int o = chickenCount;
+        int s = infectedChickenCount;
+        for (int i = 0; i < chickenCount+infectedChickenCount; i++)
         {
-            GameObject go = Instantiate(chickenPrefab, spawnPos.position, Quaternion.identity);
+            int j = Random.Range(0,2);
+            if(j==0 && o >= 0)
+            {
+                GameObject go = Instantiate(chickenPrefab, spawnPos.position, Quaternion.identity);
+                o--;
+            }
+            else if (j==1 && s >= 0)
+            {
+                GameObject go = Instantiate(infectedChicken_Prefab, spawnPos.position, Quaternion.identity);
+                s--;
+            }
         }
+        // // 일반 닭 소환
+        // for(int i = 0; i < chickenCount; i++)
+        // {
+        //     GameObject go = Instantiate(chickenPrefab, spawnPos.position, Quaternion.identity);
+        // }
 
-        // 감염된 닭 소환
-        for (int i = 0; i < infectedChickenCount; i++)
-        {
-            GameObject go = Instantiate(infectedChicken_Prefab, spawnPos.position, Quaternion.identity);
-            go.GetComponent<ChickenAI>().Infection();
-        }
+        // // 감염된 닭 소환
+        // for (int i = 0; i < infectedChickenCount; i++)
+        // {
+        //     GameObject go = Instantiate(infectedChicken_Prefab, spawnPos.position, Quaternion.identity);
+        //     go.GetComponent<ChickenAI>().Infection();
+        // }
 
         chickens = GameObject.FindGameObjectsWithTag("Chicken");
 

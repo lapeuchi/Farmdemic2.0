@@ -53,6 +53,7 @@ public class LoadingSceneManager : MonoBehaviour
                 {
                     percent_text.text = $"{100}%";
                     op.allowSceneActivation = true;
+                    Managers.Sound.StopBGM();
                     yield break;
                 }
             }

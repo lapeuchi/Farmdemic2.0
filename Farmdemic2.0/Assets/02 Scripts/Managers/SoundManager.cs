@@ -53,6 +53,10 @@ public class SoundManager
         bgmSource.loop = true;
         bgmSource.Play();
     }
+    public void StopBGM()
+    {
+        bgmSource.Stop();
+    }
 
     public void PlaySFX(Define.SFX type, float pitch = 1f)
     {
