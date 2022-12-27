@@ -1,7 +1,7 @@
 # [VSH Studio]
 > 경북소프트웨어고등학교 2022년 2학기 캡스톤 Team VSH Studio의 Farmdemic2.0 프로젝트
 
-이 프로젝트는 [Farmdemic2.0](//https://github.com/lapeuchi/Farmdemic2.0) 프로젝트로 마이그레이션되어 있습니다.
+이 프로젝트는 [Farmdemic2.0](https://github.com/lapeuchi/Farmdemic2.0) 프로젝트로 마이그레이션되어 있습니다.
 
 ## 팀원 정보
 1. 김환희 - 프로그래머
