@@ -43,6 +43,7 @@ public class MinigameManager : MonoBehaviour
         if(instance == null)
             instance = this;
         else Destroy(gameObject);
+        isGameOver = false;
         
         minigameParent = GameObject.Find("MinigameParent").transform;
         
@@ -74,23 +75,16 @@ public class MinigameManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            Life.PlusLife();
-        }
-        else if (Input.GetKeyDown(KeyCode.O))
-        {
-            Life.MinusLife();
-        }
+        if(Input.GetKeyDown(KeyCode.P)) Life.PlusLife();
+        else if (Input.GetKeyDown(KeyCode.O)) Life.MinusLife();
 
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            Timer.PlusTime(5f);
-        }
-        else if (Input.GetKeyDown(KeyCode.K))
-        {
-            Timer.MinusTime(5f);
-        }
+        if(Input.GetKeyDown(KeyCode.L)) Timer.PlusTime(5f);
+        else if (Input.GetKeyDown(KeyCode.K)) Timer.MinusTime(5f);
+
+        if (Input.GetKeyDown(KeyCode.N)) Score.PlusScore(50);
+        else if (Input.GetKeyDown(KeyCode.M)) Score.PlusScore(-50);
+        
+        if (Input.GetKeyDown(KeyCode.G)) GameOver();
     }
 
     public void StartScore()
@@ -107,7 +101,9 @@ public class MinigameManager : MonoBehaviour
 
     public void StartTimer(float time)
     {
+        Debug.Log($"StartTimer({time})");
         Timer = Managers.UI.ShowSceneUI<MinigameTimer>();
+
         Timer.Setting(time);
     }
 
@@ -134,9 +130,10 @@ public class MinigameManager : MonoBehaviour
 
     public void GameOver()
     {   
+        if(isGameOver == true) return;
+        isGameOver = true;
         Debug.Log($"GameOver()");
         minigameController.GameOver();
-        isGameOver = true;
         Debug.Log(MinigameManager.instance.IsClear);
         if(isClear == false) SetRank(Define.Rank.F);
         StartCoroutine(GameOverEffect());

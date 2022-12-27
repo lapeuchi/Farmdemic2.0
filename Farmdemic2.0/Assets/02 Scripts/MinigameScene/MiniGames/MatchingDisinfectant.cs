@@ -275,7 +275,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
 
     public void GameStart()
     {
-        Init();
+        Init(); 
         CloseFade();
         MinigameManager.instance.StartTimer(60);
     }
