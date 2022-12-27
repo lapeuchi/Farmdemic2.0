@@ -23,7 +23,7 @@ public class SoundManager
         GameObject bgmRoot = new GameObject { name = "@BGM" };
         bgmSource = bgmRoot.AddComponent<AudioSource>();
         bgmRoot.transform.parent = root.transform;
-        
+        bgmSource.volume -= 0.3f;
         for(int i = 0; i < System.Enum.GetValues(typeof(Define.BGM)).Length; i++)
         {
             AudioClip clip = Managers.Resource.Load<AudioClip>($"Sounds/{(Define.BGM) i}");

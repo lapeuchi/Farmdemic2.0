@@ -38,12 +38,13 @@ public class Define
     public enum BGM
     {
         MainBgm,
-        MinigameBgm
-        
+        MinigameBgm,
+        TitleBgm,
     }
 
     public enum SFX
     {
+        
         // main
         ClickDialogue,
         Writting,
@@ -70,7 +71,9 @@ public class Define
 
         Countdown,
         // minigame result
-        WriteRank
+        WriteRank,
+        Hurryup,
+        RemoveLife,
     }
     
     public enum Scene

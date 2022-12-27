@@ -38,10 +38,10 @@ public class UIManager
             canvas.sortingOrder = _order;
             _order++;
         }
-        else
-        {
-            canvas.sortingOrder = 0;
-        }
+        // else
+        // {
+        //     canvas.sortingOrder = 0;
+        // }
     }
 
     public T ShowPopupUI<T>(string name = null) where T : UI_Popup

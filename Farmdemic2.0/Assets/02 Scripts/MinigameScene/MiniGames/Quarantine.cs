@@ -97,7 +97,7 @@ public class Quarantine : MonoBehaviour, IMinigame
     {
         int sum = chickenCount + infectedChickenCount;
         yield return new WaitForSeconds(2f);
-        for(int i = 0; i < sum; i++)
+        for(int i = 0; i < sum-1; i++)
         {
             chickens[i].gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
