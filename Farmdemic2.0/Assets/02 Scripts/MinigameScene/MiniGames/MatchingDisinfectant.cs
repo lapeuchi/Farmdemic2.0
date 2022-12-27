@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MatchingDisinfectant : MonoBehaviour, IMinigame
 {
+    private bool isGameEnd;
+
     private Transform root;
     private Transform useCardParent;
     private Transform disfectantParent;
@@ -26,6 +28,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     private int dataIndex;
     private string selectUse;
     private int addScore = 50;
+    private int score;
 
     [Space(10)]
     [Header("[Use Card Table]")]
@@ -146,15 +149,10 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         switchDisinfectanctCard = false;
     }
 
-    void SetCorrectTypes()
-    {
-
-    }
-
     void ScoreCalculation()
     {
+        score += addScore;
         MinigameManager.instance.Score.PlusScore(addScore);
-        //Debug.Log(addScore);
     }
 
     bool IsCurrectCard()
@@ -171,7 +169,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
 
     public void SelectUseCard(Transform tr)
     {
-        if (switchDisinfectanctCard)
+        if (isGameEnd || switchDisinfectanctCard || gatherUseCards || shuffleUseCards)
             return;
         selectUse = tr.name;
 
@@ -275,13 +273,40 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
 
     public void GameStart()
     {
-        Init(); 
+        isGameEnd = false;
+        score = 0;
+
+        Init();
         CloseFade();
         MinigameManager.instance.StartTimer(60);
+        MinigameManager.instance.SetFeedback("1", "2", "3");
     }
 
     public void GameOver()
     {
-        
-    }   
+        isGameEnd = true;
+        ShowFade();
+        MinigameManager.instance.Score.SetScore(score);
+
+        if (score >= 150)
+        {
+            MinigameManager.instance.SetRank(Define.Rank.A);
+            MinigameManager.instance.SetClaer(true);
+        }
+        else if (score >= 100)
+        {
+            MinigameManager.instance.SetRank(Define.Rank.B);
+            MinigameManager.instance.SetClaer(true);
+        }
+        else if (score >= 50)
+        {
+            MinigameManager.instance.SetRank(Define.Rank.C);
+            MinigameManager.instance.SetClaer(true);
+        }
+        else
+        {
+            MinigameManager.instance.SetRank(Define.Rank.F);
+            MinigameManager.instance.SetClaer(false);
+        }
+    }
 }
