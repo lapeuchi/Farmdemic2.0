@@ -18,6 +18,14 @@ public class MinigameScore : UI_Scene
     public void Setting()
     {
         score_Text = GameObject.Find("Score_Text").GetComponent<TMP_Text>();
+        
+        // RectTransform rt = GameObject.Find("ScorePosition").GetComponent<RectTransform>();
+
+        // if(rt != null) 
+        // {
+        //     Debug.Log(rt);
+        //     score_Text.rectTransform.position = rt.rect.position;
+        // }
         Score = 0;
         score_Text.text = "0";
     }

@@ -6,10 +6,16 @@ using TMPro;
 
 public class OXQuiz : UI_Popup, IMinigame
 {
-
     [SerializeField] Button O_Button;
     [SerializeField] Button X_Button;
     [SerializeField] TMP_Text pannel_Text;
+    [SerializeField] TMP_Text index_Text;
+    [SerializeField] Image effect_Image;
+    [SerializeField] Sprite collect_Sprite;
+    [SerializeField] Sprite worth_Sprite;
+
+    int effect_num = 2;
+
     bool lockButton;
 
     public List<Quiz_OX> quiz_List = new List<Quiz_OX>();
@@ -17,6 +23,9 @@ public class OXQuiz : UI_Popup, IMinigame
     int quizIndex = 0;
     int quizLength = 10;
     int point = 10;
+    
+    float effectTime;
+    float blinkTime = 0.5f;
 
     enum Buttons
     {
@@ -28,7 +37,7 @@ public class OXQuiz : UI_Popup, IMinigame
     {
         Pannel_Text
     }
-
+    
     public override void Init()
     {
         Bind<Button>(typeof(Buttons));
@@ -38,11 +47,20 @@ public class OXQuiz : UI_Popup, IMinigame
         X_Button = GetButton((int)Buttons.X_Button);
         //pannel_Text = GetText((int)Texts.Pannel_Text);
         pannel_Text = GameObject.Find("Panel_Text").GetComponent<TMP_Text>();
+        index_Text = GameObject.Find("Index_Text").GetComponent<TMP_Text>();
+        effect_Image = GameObject.Find("Effect_Image").GetComponent<Image>();
+        effect_Image.enabled = false;
+
+        collect_Sprite = Managers.Resource.Load<Sprite>("Sprites/Check_Sprite");
+        worth_Sprite = Managers.Resource.Load<Sprite>("Sprites/Worth_Sprite");
         MinigameManager.instance.SetFeedback
         (
             "반복 플레이를 통해 암기를 하세요",
             "인터넷에서 관련 자료를 검색해보세요."
         );
+        SetIndexText();
+
+        effectTime = blinkTime * effect_num + 1.5f;
     }
     
     void CreateQuiz()
@@ -97,15 +115,19 @@ public class OXQuiz : UI_Popup, IMinigame
     void Input(string inputAnswer)
     {
         if (lockButton == true) return;
-        
         lockButton = true;
-
         StartCoroutine(Explanation(inputAnswer));
     }
 
+    void SetIndexText()=> index_Text.text = $"{quizIndex+1}/{quizLength}";
+
     IEnumerator Explanation(string inputAnswer)
     {
-        if (inputAnswer == quiz_List[quizIndex].answer)
+        bool isCollect = inputAnswer == quiz_List[quizIndex].answer;
+        StartCoroutine(Effect(isCollect));
+
+        yield return new WaitForSeconds(effectTime);
+        if (isCollect)
         {
             pannel_Text.text = "정답입니다!\n";
             MinigameManager.instance.Score.PlusScore(point);
@@ -132,6 +154,31 @@ public class OXQuiz : UI_Popup, IMinigame
         }
     }
 
+    IEnumerator Effect(bool isCollect)
+    {
+        Debug.Log($"Effect({isCollect})");
+        if (isCollect)
+        {
+            effect_Image.sprite = collect_Sprite;
+            effect_Image.color = Color.green;
+        }
+        else
+        {
+            effect_Image.sprite = worth_Sprite;
+            effect_Image.color = Color.red;
+        }
+        effect_Image.enabled = true;
+        
+        for(int i = 0; i < effect_num; i++)
+        {
+            effect_Image.enabled = false;
+            yield return new WaitForSeconds(blinkTime);
+            effect_Image.enabled = true;
+            yield return new WaitForSeconds(blinkTime);
+        }
+        effect_Image.enabled = false;
+    }
+
     IEnumerator ChangeQuiz()
     {               
         if(quizIndex != 0)
@@ -146,6 +193,8 @@ public class OXQuiz : UI_Popup, IMinigame
         {
             pannel_Text.text = "첫 번째 문제입니다.";
         }
+
+        SetIndexText();
         
         yield return new WaitForSeconds(2f);
 

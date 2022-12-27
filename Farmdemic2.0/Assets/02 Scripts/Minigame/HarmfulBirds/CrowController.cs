@@ -10,7 +10,6 @@ public class CrowController : MonoBehaviour
     float arrivePos = -9;
     int score = 10;
     bool isDead;
-
     Animator anim;
 
     private void Start()
@@ -32,6 +31,7 @@ public class CrowController : MonoBehaviour
     void Arrive()
     {
         Managers.Sound.PlaySFX(Define.SFX.CrawCrying);
+        GameObject go = Managers.Resource.Instantiate("Minigame/HarmfulBirds/Miss", transform.position + new Vector3(1f,0,0), Quaternion.identity);
         MinigameManager.instance.Life.MinusLife();
         Destroy(gameObject);
     }

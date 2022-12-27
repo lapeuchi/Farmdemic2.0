@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Quarantine : MonoBehaviour, IMinigame
 {
@@ -17,8 +18,14 @@ public class Quarantine : MonoBehaviour, IMinigame
 
     public int point = 100;
 
+    DOTweenAnimation leftFence_Anim;
+    DOTweenAnimation rightFence_Anim; 
+
     void Awake()
     {
+        leftFence_Anim = GameObject.Find("LeftFence_Text").GetComponent<DOTweenAnimation>();
+        rightFence_Anim = GameObject.Find("RightFence_Text").GetComponent<DOTweenAnimation>();
+
         Camera.main.gameObject.SetActive(false);
         infectedFence = GameObject.Find("InfectedFence").GetComponent<Fence>();
         infectedFence.quarantineFence = true;
@@ -41,6 +48,8 @@ public class Quarantine : MonoBehaviour, IMinigame
         MinigameManager.instance.StartTimer(60);
 
         StartCoroutine(Spwan());
+        leftFence_Anim.DOPlay();
+        rightFence_Anim.DOPlay();
     }
     
     void SetChicken()

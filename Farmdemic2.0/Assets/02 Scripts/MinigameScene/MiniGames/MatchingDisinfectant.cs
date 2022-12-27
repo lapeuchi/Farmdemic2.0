@@ -49,6 +49,11 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
     #endregion
 
     #region ETC Functions
+
+    [SerializeField] UnityEngine.UI.Image effect_Image;
+    [SerializeField] Sprite collect_Sprite;
+    [SerializeField] Sprite worth_Sprite;
+
     private void update()//Update()
     {
         //test update
@@ -164,7 +169,8 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         }
         return false;
     }
-
+    
+    // Button Event
     public void SelectUseCard(Transform tr)
     {
         if (isGameEnd || switchDisinfectanctCard || gatherUseCards || shuffleUseCards)
@@ -173,18 +179,40 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
 
         if (IsCurrectCard())
         {
-            addScore = 50;
+            StartCoroutine(CheckEffect(true, tr));
+            addScore += 50;
             Managers.Sound.PlaySFX(Define.SFX.Collect);
         }
         else
         {
-            addScore = -50;
+            StartCoroutine(CheckEffect(false, tr));
+            addScore = 0;
             Managers.Sound.PlaySFX(Define.SFX.Worth);
         }
 
         ScoreCalculation();
 
-        GatherUseCards();
+        Invoke("GatherUseCards", 1f);
+        //GatherUseCards();
+    }
+    
+    IEnumerator CheckEffect(bool isCollect, Transform tr)
+    {   
+        effect_Image.transform.position = tr.transform.position;
+        if(isCollect)
+        {
+            effect_Image.sprite = collect_Sprite;
+            effect_Image.color = Color.green;
+        }
+        else
+        {
+            effect_Image.sprite = worth_Sprite;
+            effect_Image.color = Color.red;
+
+        }
+        effect_Image.enabled = true;
+        yield return new WaitForSeconds(0.8f);
+        effect_Image.enabled = false;
     }
 
     #region fade
@@ -276,6 +304,12 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         CloseFade();
         MinigameManager.instance.StartTimer(60);
         MinigameManager.instance.SetFeedback("1", "2", "3");
+        effect_Image = GameObject.Find("Effect_Image").GetComponent<UnityEngine.UI.Image>();
+        collect_Sprite = Managers.Resource.Load<Sprite>("Sprites/Circle_Sprite");
+        worth_Sprite = Managers.Resource.Load<Sprite>("Sprites/Worth_Sprite");
+        MinigameManager.instance.SetFeedback("반복을 통한 암기를 해보세요.",
+        "연속으로 정답을 맞추면 고득점을 할 수 있습니다.");
+
     }
 
     public void GameOver()

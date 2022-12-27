@@ -77,7 +77,8 @@ public class Define
         None,
         Title,
         Game,
-        Minigame
+        Minigame,
+        Loading
     }
 
     public enum InputEvent

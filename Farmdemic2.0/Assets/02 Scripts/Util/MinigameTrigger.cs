@@ -21,7 +21,7 @@ public static class MinigameTrigger
             return;
         }
         
-        Managers.Scene.Load(Define.Scene.Minigame);
+        Managers.Scene.LoadSceneAsync(Define.Scene.Minigame);
         Minigame = miniGame;
         Debug.Log("Load MiniGame " + miniGame);
     }

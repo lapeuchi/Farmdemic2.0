@@ -15,16 +15,14 @@ public class Dragable : MonoBehaviour
 
     Vector3 prevPos;
 
-
     private void Awake()
     {
         coll = gameObject.GetComponent<Collider2D>();
 
         isDragable = true;
         isDrag = false;
-
     }
-
+    
     Vector3 screenSpace;
     Vector3 offset;
     private void OnMouseDown()
@@ -35,7 +33,11 @@ public class Dragable : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (isDragable == false) return;
+        if (isDragable == false) 
+        { 
+            isDrag = false;
+            return;
+        }
 
         isDrag = true;
         var curScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenSpace.z);

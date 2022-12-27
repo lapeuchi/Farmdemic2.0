@@ -56,11 +56,11 @@ public class GameEvtPopup : UI_Popup
             while (timer <= 1)
             {    
                 evt_Text.fontSize = Mathf.Lerp(evt_Text.fontSize, originSize, 0.07f);
-                timer += Time.fixedDeltaTime;
+                timer += Time.deltaTime;
                 yield return null;
             }
 
-            yield return new WaitForSecondsRealtime(1);
+            
         }   
 
         yield return new WaitForEndOfFrame();

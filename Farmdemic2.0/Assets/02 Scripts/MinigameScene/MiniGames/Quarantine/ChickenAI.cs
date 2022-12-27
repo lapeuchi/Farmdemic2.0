@@ -21,7 +21,7 @@ public class ChickenAI : MonoBehaviour
     float actionTimer;
 
     [SerializeField] State state;
-    Animator anim; 
+    Animator anim;
     Quarantine quarantine;
     Rigidbody2D rigid;
     Dragable drag;
@@ -30,7 +30,7 @@ public class ChickenAI : MonoBehaviour
     [SerializeField] Fence curFence;
     [SerializeField] bool onFence;
     [SerializeField] bool inFence;
-   
+    
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
@@ -62,6 +62,10 @@ public class ChickenAI : MonoBehaviour
         if (state != State.Dragging && drag.isDrag)
         {
             SetState(State.Dragging);    
+        }
+        else if (MinigameManager.instance.isGameOver)
+        {
+            drag.isDragable = false;
         }
     }
 
@@ -164,15 +168,19 @@ public class ChickenAI : MonoBehaviour
 
         if(curFence.quarantineFence && isInfected)
         {
+            GameObject go = Managers.Resource.Instantiate("MiniGame/Quarantine/CollectEffect", transform.position, Quaternion.identity);
+            Managers.Sound.PlaySFX(Define.SFX.Collect);
             MinigameManager.instance.Score.PlusScore(quarantine.point);
         }
         else if (!curFence.quarantineFence && !isInfected)
         {
+            GameObject go = Managers.Resource.Instantiate("MiniGame/Quarantine/CollectEffect", transform.position, Quaternion.identity);
             Managers.Sound.PlaySFX(Define.SFX.Collect);
             MinigameManager.instance.Score.PlusScore(quarantine.point);
         }
         else
         {
+            GameObject go = Managers.Resource.Instantiate("MiniGame/Quarantine/VirusEffect");
             Managers.Sound.PlaySFX(Define.SFX.Worth);
             MinigameManager.instance.Score.PlusScore(-quarantine.point * 2);
         }

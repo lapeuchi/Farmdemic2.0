@@ -120,7 +120,7 @@ public class ResultPopup : UI_Popup
 
     private void ClickedExit()
     {
-        Managers.Scene.Load(Define.Scene.Game);
+        Managers.Scene.LoadSceneAsync(Define.Scene.Game);
         MinigameTrigger.Clear();
     } 
 

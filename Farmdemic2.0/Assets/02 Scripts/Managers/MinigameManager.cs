@@ -25,8 +25,8 @@ public class MinigameManager : MonoBehaviour
     private bool isClear;
     public bool IsClear { get { return isClear; } private set {isClear = value; } }
     
-    public static bool isGameOver = false;
-    public static bool isGameStart = false;
+    public bool isGameOver = false;
+    public bool isGameStart = false;
 
     public MinigameScore Score;
     public MinigameLife Life;
@@ -142,7 +142,7 @@ public class MinigameManager : MonoBehaviour
     private IEnumerator GameOverEffect()
     {
         StartCoroutine(gameEvt_UI.GameOverEffect());
-
+        
         yield return new WaitUntil(()=> gameEvt_UI.isEndGameOverEffect == true);
         
         Managers.UI.ClosePopupUI();

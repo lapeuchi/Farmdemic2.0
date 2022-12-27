@@ -32,25 +32,25 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
         );
 
         int index = Random.Range(0, spawnPos.Length);
-        Managers.Resource.Instantiate("Minigame/HarmfulBirds/Crow", spawnPos[index].position, Quaternion.identity, root);
         StartCoroutine(OnRoutine());
     }
 
     private void Update()
-    {
-        
-        if(Input.GetMouseButtonDown(0))
+    {   
+        if(Input.GetMouseButtonDown(0) && !MinigameManager.instance.isGameOver)
         {
             Managers.Sound.PlaySFX(Define.SFX.Fire);
-            Ray ray = gameCamera.ScreenPointToRay(Input.mousePosition);
+            Vector2 mousePos = Input.mousePosition;
+            Ray ray = gameCamera.ScreenPointToRay(mousePos);
             RaycastHit hit;
-
+            
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
+                GameObject go1 = Managers.Resource.Instantiate("Minigame/HarmfulBirds/Fire", hit.point, Quaternion.identity);
                 CrowController crow = hit.transform.GetComponent<CrowController>();
-
                 if (crow != null)
                 {
+                    GameObject go2 = Managers.Resource.Instantiate("Minigame/HarmfulBirds/Explosion", hit.point, Quaternion.identity);
                     crow.ShotDown();
                     Managers.Sound.PlaySFX(Define.SFX.CrawDying);
                 }
@@ -62,8 +62,8 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
     {
         int timeIdx = 0;
         float time = 0;
-
-        while (MinigameManager.instance.Timer.isTimerZero == false || MinigameManager.isGameOver)
+        
+        while (MinigameManager.instance.Timer.isTimerZero == false && !MinigameManager.instance.isGameOver)
         {
             currentTime += Time.deltaTime;
             time += Time.deltaTime;
@@ -77,12 +77,11 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
                     break;
             }
 
-
             if (createTime[timeIdx] <= currentTime)
             {
                 currentTime = 0;
                 int index = Random.Range(0, spawnPos.Length);
-                GameObject go = Managers.Resource.Instantiate("Minigame/HarmfulBirds/Crow", spawnPos[index].position, Quaternion.identity, root);
+                GameObject go = Managers.Resource.Instantiate("Minigame/HarmfulBirds/Crow", spawnPos[index].position + Vector3.back, Quaternion.identity, root);
             }
 
             yield return null;

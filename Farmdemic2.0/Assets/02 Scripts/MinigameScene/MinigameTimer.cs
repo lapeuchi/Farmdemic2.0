@@ -32,7 +32,7 @@ public class MinigameTimer : UI_Scene
     {   
         // Debug.Log("isTimerZero: "+isTimerZero);
         // Debug.Log("isGameOver: "+MinigameManager.isGameOver);
-        if(isTimerZero == false && MinigameManager.isGameOver == false)
+        if(isTimerZero == false)
         {
             time -= Time.deltaTime;
             timer_Text.text = ((int)time).ToString();
