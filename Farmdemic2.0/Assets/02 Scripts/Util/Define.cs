@@ -52,8 +52,8 @@ public class Define
         Worth,
 
         // bird
-        CrowCrying,
-        CrowDying,
+        CrawCrying,
+        CrawDying,
 
         Fire,
 

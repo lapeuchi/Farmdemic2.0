@@ -52,7 +52,7 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
                 if (crow != null)
                 {
                     crow.ShotDown();
-                    Managers.Sound.PlaySFX(Define.SFX.CrowDying);
+                    Managers.Sound.PlaySFX(Define.SFX.CrawDying);
                 }
             }
         }
