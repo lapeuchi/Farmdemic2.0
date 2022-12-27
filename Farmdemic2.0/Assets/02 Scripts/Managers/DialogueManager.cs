@@ -11,7 +11,7 @@ public class DialogueManager
 
     public void Init()
     {
-        List<Dialogue> dialogueList = Managers.Data.dialogueDatas;
+        List<Dialogue> dialogueList = Managers.Data.DialogueDatas;
 
         for (int i = 1; i <= maxCode; i++)
         {
@@ -36,7 +36,6 @@ public class DialogueManager
         else
         {
             dialogue = DialogueDic[Managers.Game.CurrentChapter].Dequeue();
-            Debug.Log(Managers.Game.CurrentChapter);
             Managers.Game.CurrentEventCode = dialogue.eventCode;
         }
 

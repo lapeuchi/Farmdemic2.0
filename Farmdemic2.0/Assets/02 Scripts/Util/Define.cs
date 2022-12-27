@@ -8,6 +8,7 @@ public class Define
         MiniGame = 1,
         InfoPopup,
         Cutscene,
+        Fade,
         Ending
     }
 

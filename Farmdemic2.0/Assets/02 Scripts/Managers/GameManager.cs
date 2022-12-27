@@ -8,19 +8,26 @@ public class GameManager
     public Transform[] CameraPoints { get { return cameraPoints; } set { cameraPoints = value; } }
     public int MaxChaper { get { return maxChater; } }
     public int CurrentChapter { get { return currentChapter; } }
+    public int CurrentCutScene { get { return cutIdx; } set { cutIdx = value; } }
+    public int MaxPopup { get { return maxPopup; } }
     public Define.Event CurrentEventCode { get { return eventCode; } set { eventCode = value; } }
     
     Define.Event eventCode;
     Transform[] cameraPoints;
     int maxChater;
-    int currentChapter = 1; 
-    int miniGameIdx = 1;
-    int popupIdx = 0;
+    int maxPopup = 3;
+    int maxCutScenne = 4;
 
+    int currentChapter = 1; 
+    
+    int miniGameIdx = 1;
+    int popupIdx = 1;
+    int cutIdx = 0;
     public void Init()
     {
         maxChater = 13;
-        cameraPoints = new Transform[maxChater];
+        maxCutScenne = 4;
+        cameraPoints = new Transform[maxCutScenne];
         eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;
     }
 
@@ -35,16 +42,23 @@ public class GameManager
                 miniGameIdx++;
                 break;
             case Define.Event.InfoPopup:
-                Managers.UI.ShowPopupUI<UI_RealTip>();
+                Managers.UI.ShowPopupUI<UI_RealTip>().Init(popupIdx);
                 popupIdx++;
                 break;
             case Define.Event.Cutscene:
-                Managers.UI.ShowPopupUI<UI_Dialogue>();
-                //Camera.main.transform.position = cameraPoints[currentChapter].position;
-                //Camera.main.transform.rotation = cameraPoints[currentChapter].rotation;
+                Managers.UI.ShowPopupUI<UI_Cutscene>();
+                break;
+            case Define.Event.Fade:
+                Managers.UI.ShowPopupUI<UI_Fade>();
                 break;
         }
 
         eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;
+    }
+
+    public void SetCamera()
+    {
+        Camera.main.transform.position = Managers.Game.CameraPoints[Managers.Game.CurrentCutScene].position;
+        Camera.main.transform.rotation = Managers.Game.CameraPoints[Managers.Game.CurrentCutScene].rotation;
     }
 }
