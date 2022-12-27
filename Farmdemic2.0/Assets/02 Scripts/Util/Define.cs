@@ -16,8 +16,8 @@ public class Define
         None = 0,
         OXQuiz = 1, // ox퀴즈
         MatchingDisinfectant = 2, // 소독약 용도 매칭
-        HarmfulBirds = 3, // 해로운 새
-        Quarantine = 4, // 의심 가축 격리
+        Quarantine = 3, // 의심 가축 격리
+        HarmfulBirds = 4, // 해로운 새
     }
     
     public enum Rank
