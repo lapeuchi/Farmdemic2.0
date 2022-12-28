@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MatchingDisinfectant : MonoBehaviour, IMinigame
 {
@@ -50,7 +51,7 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
 
     #region ETC Functions
 
-    [SerializeField] UnityEngine.UI.Image effect_Image;
+    Image[] effect_Image = new Image[10];
     [SerializeField] Sprite collect_Sprite;
     [SerializeField] Sprite worth_Sprite;
 
@@ -182,37 +183,76 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
             StartCoroutine(CheckEffect(true, tr));
             addScore += 50;
             Managers.Sound.PlaySFX(Define.SFX.Collect);
+
+            Invoke("GatherUseCards", 1f);
         }
         else
         {
             StartCoroutine(CheckEffect(false, tr));
             addScore = 0;
             Managers.Sound.PlaySFX(Define.SFX.Worth);
+            StartCoroutine(ShowCorrectCards());
+            Invoke("GatherUseCards", 3.2f);
         }
 
         ScoreCalculation();
-
-        Invoke("GatherUseCards", 1f);
         //GatherUseCards();
     }
-    
+
     IEnumerator CheckEffect(bool isCollect, Transform tr)
-    {   
-        effect_Image.transform.position = tr.transform.position;
-        if(isCollect)
+    {
+        effect_Image[0].transform.position = tr.transform.position;
+        if (isCollect)
         {
-            effect_Image.sprite = collect_Sprite;
-            effect_Image.color = Color.green;
+            effect_Image[0].sprite = collect_Sprite;
+            effect_Image[0].color = Color.green;
         }
         else
         {
-            effect_Image.sprite = worth_Sprite;
-            effect_Image.color = Color.red;
+            effect_Image[0].sprite = worth_Sprite;
+            effect_Image[0].color = Color.red;
 
         }
-        effect_Image.enabled = true;
+        effect_Image[0].enabled = true;
         yield return new WaitForSeconds(0.8f);
-        effect_Image.enabled = false;
+        effect_Image[0].enabled = false;
+    }
+
+    IEnumerator ShowCorrectCards()
+    {
+        yield return new WaitForSeconds(1);
+        int index = 0;
+        foreach (Matching data in matchingData)
+        {
+            if(data.disinfectant.Equals(matchingData[dataIndex].disinfectant))
+            {
+                foreach (string use in matchingData[dataIndex].use)
+                {
+                    //Debug.Log(use);
+                    for(int i = 0; i < useCardCount; i++)
+                    {
+                        if(useCards[i].name.Equals(use))
+                        {
+                            index++;
+                            effect_Image[index].transform.position = useCards[i].position;
+                            effect_Image[index].sprite = collect_Sprite;
+                            effect_Image[index].color = Color.green;
+                        }
+                    }
+                }
+            }
+        }
+
+        for(int i = 1; i < index; i++)
+        {
+            effect_Image[i].enabled = true;
+        }
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 1; i < index; i++)
+        {
+            effect_Image[i].enabled = false;
+        }
     }
 
     #region fade
@@ -304,10 +344,23 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         CloseFade();
         MinigameManager.instance.StartTimer(60);
         MinigameManager.instance.SetFeedback("1", "2", "3");
-        effect_Image = GameObject.Find("Effect_Image").GetComponent<UnityEngine.UI.Image>();
+        effect_Image[0] = root.Find($"Effect_Image1").GetComponent<UnityEngine.UI.Image>();
+        effect_Image[1] = root.Find($"Effect_Image2").GetComponent<UnityEngine.UI.Image>();
+        effect_Image[2] = root.Find($"Effect_Image3").GetComponent<UnityEngine.UI.Image>();
+        effect_Image[3] = root.Find($"Effect_Image4").GetComponent<UnityEngine.UI.Image>();
+        effect_Image[4] = root.Find($"Effect_Image5").GetComponent<UnityEngine.UI.Image>();
+        effect_Image[5] = root.Find($"Effect_Image6").GetComponent<UnityEngine.UI.Image>();
+        effect_Image[6] = root.Find($"Effect_Image7").GetComponent<UnityEngine.UI.Image>();
+        effect_Image[7] = root.Find($"Effect_Image8").GetComponent<UnityEngine.UI.Image>();
+        effect_Image[8] = root.Find($"Effect_Image9").GetComponent<UnityEngine.UI.Image>();
+        effect_Image[9] = root.Find($"Effect_Image10").GetComponent<UnityEngine.UI.Image>();
+        for (int j = 1; j <= 10; j++)
+        {
+            //effect_Image[j - 1] = root.Find($"Effect_Image{j}").GetComponent<UnityEngine.UI.Image>();
+        }
         collect_Sprite = Managers.Resource.Load<Sprite>("Sprites/Circle_Sprite");
         worth_Sprite = Managers.Resource.Load<Sprite>("Sprites/Worth_Sprite");
-        MinigameManager.instance.SetFeedback("반복을 통한 암기를 해보세요.",
+        MinigameManager.instance.SetFeedback("왼쪽의 성분 카드가 어디를 소독할때 쓰이는지 찾아봐요.",
         "연속으로 정답을 맞추면 고득점을 할 수 있습니다.");
 
     }
