@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+   
 public class DialogueManager
 {
     public Dictionary<int, Queue<Dialogue>> DialogueDic { get; private set; } = new Dictionary<int, Queue<Dialogue>>();

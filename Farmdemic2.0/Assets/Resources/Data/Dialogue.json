@@ -196,7 +196,7 @@
     {
       "code": 6,
       "name": "",
-      "word": "(청소 후...)",
+      "word": "(나는 그렇게 축사 청소를 시작하였다.)",
       "eventCode": 4
     },
     {
@@ -312,48 +312,48 @@
       "code": 10,
       "name": "방혁",
       "word": "할아버지께서 말씀하신 대로 격리는 다 했으니까 얼른 알려드려야겠어",
-      "eventCode": 4
+      "eventCode": 3
     },
     {
       "code": 10,
       "name": "방혁",
       "word": "할아버지! 큰일 났어요!",
-      "eventCode": 4
+      "eventCode": 3
     },
     {
       "code": 10,
       "name": "방혁",
       "word": "새로 들어온 가축중에 상태가 이상한 가축들이 몇 마리 있어요!",
-      "eventCode": 4
+      "eventCode": 3
     },
     {
       "code": 10,
       "name": "김영수 할아버지",
       "word": "뭐라고? 큰일이구나 격리는 다 시켜 놨지?",
-      "eventCode": 4
+      "eventCode": 3
     },
     {
       "code": 10,
       "name": "방혁",
       "word": "네, 해놨습니다!",
-      "eventCode": 4
+      "eventCode": 3
     },
     {
       "code": 10,
       "name": "김영수 할아버지",
       "word": "그럼 내가 가서 신고 할 테니 넌 얼른 가서 소독하고 씻으렴.",
-      "eventCode": 4
+      "eventCode": 3
     },
     {
       "code": 10,
       "name": "방혁",
       "word": "넵! 알겠습니다!",
-      "eventCode": 4
+      "eventCode": 3
     },
     {
       "code": 11,
       "name": "방혁",
-      "word": "할아버지! 저기 그물망이 좀 햑해보이는 것 같은데요?",
+      "word": "할아버지! 저기 그물망이 좀 약해보이는 것 같은데요?",
       "eventCode": 1
     },
     {

@@ -16,8 +16,10 @@ public class LoadingSceneManager : MonoBehaviour
         progressBar = GameObject.Find("Slider").GetComponent<Slider>();
         percent_text = GameObject.Find("Percent_Text").GetComponent<TMP_Text>();
         progressBar.value = 0;
-        percent_text.text = "0";
+        percent_text.text = "0%";
         StartCoroutine(LoadScene());
+        Managers.Sound.StopBGM();
+        Managers.Sound.StopAllSfx();
     }
     
     public static void LoadScene(string scene)
