@@ -5,6 +5,7 @@ using CustomDic;
 
 public class GameScene : SceneBase
 {
+    static bool isFirst;
     public override void Init()
     {
         base.Init();
@@ -24,13 +25,31 @@ public class GameScene : SceneBase
         }
         
         Managers.Game.SetCamera();
-    }
+        
+        if(isFirst == false)
+        {
+            isFirst = true;
+        
+            for(int i = 0; i < (int)Define.Rank.F; i++)
+            {
+                GameResult.ranks.Add((Define.Rank)i, 0);
+            }
+        }
 
+    }
 
     public IEnumerator LoadMnigameWithEffect(Define.Minigame game)
     {
         Camera.main.GetComponent<CameraController>().ZoomEffect();
         yield return new WaitForSeconds(1.5f);
         MinigameTrigger.LoadMiniGame(game);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Managers.UI.ShowPopupUI<UI_Ending>();
+        }
     }
 }

@@ -149,7 +149,7 @@ public class MinigameManager : MonoBehaviour
         
         Managers.UI.ClosePopupUI();
         CloseGamePanels();
-        ResultPopup resultPopup = Managers.UI.ShowPopupUI<ResultPopup>();
+        MinigameResultPopup resultPopup = Managers.UI.ShowPopupUI<MinigameResultPopup>();
         resultPopup.SetResult();
     }
     
@@ -158,7 +158,7 @@ public class MinigameManager : MonoBehaviour
         StartCoroutine(GameStartEffect());
         Debug.Log("GameStart()");
     }
-
+    
     private IEnumerator GameStartEffect()
     {
         yield return new WaitForSeconds(1f);

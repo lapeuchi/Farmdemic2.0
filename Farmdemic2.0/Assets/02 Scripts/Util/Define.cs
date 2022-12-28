@@ -11,7 +11,7 @@ public class Define
         Fade,
         Ending
     }
-
+    
     public enum Minigame
     {  
         None = 0,

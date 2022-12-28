@@ -111,7 +111,6 @@ public class Quarantine : MonoBehaviour, IMinigame
         int rank_B = maxScore - (point * 6);
         int rank_C = maxScore - (point * 10);
 
-        
         if (MinigameManager.instance.Score.Score >= rank_A)
         {
             MinigameManager.instance.SetClaer(true);

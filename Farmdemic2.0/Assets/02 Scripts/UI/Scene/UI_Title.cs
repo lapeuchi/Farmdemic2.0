@@ -9,7 +9,9 @@ public class UI_Title : UI_Scene
 {
     enum Buttons
     {
-        Button
+        Button,
+        ExitButton
+
     }
 
     enum Texts
@@ -23,6 +25,7 @@ public class UI_Title : UI_Scene
         Bind<Button>(typeof(Buttons));
         Bind<TMP_Text>(typeof(Texts));
         GetButton((int)Buttons.Button).onClick.AddListener(() => Managers.Scene.LoadSceneAsync(Define.Scene.Game));
+        GetButton((int)Buttons.ExitButton).onClick.AddListener(()=> Application.Quit());
         StartCoroutine(TextEffect());
     }
 
