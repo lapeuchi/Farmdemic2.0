@@ -26,6 +26,10 @@ public class UI_Cutscene : UI_Popup
         Managers.Game.SetCamera();
         GetImage((int)Images.FadeImage).DOFade(0, 1.5f);
         yield return new WaitForSeconds(1.5f);
-        Managers.UI.ShowPopupUI<UI_Dialogue>();
+        
+        if(Managers.Game.CurrentEventCode == Define.Event.Ending)
+            Managers.UI.ShowPopupUI<UI_Ending>();
+        else
+            Managers.UI.ShowPopupUI<UI_Dialogue>();
     }
 }

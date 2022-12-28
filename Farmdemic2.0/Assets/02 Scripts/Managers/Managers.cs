@@ -24,11 +24,12 @@ public class Managers : MonoBehaviour
     public static SceneManagerEx Scene { get { return Instance._scene; } }
     public static DialogueManager Dialogue { get { return Instance._dialogue; } }
     #endregion
-
+    [SerializeField] List<Dialogue> dialogue = new List<Dialogue>();
 
     void Start()
     {
         Init();
+        dialogue = Managers.Data.DialogueDatas;
     }
 
     static void Init()

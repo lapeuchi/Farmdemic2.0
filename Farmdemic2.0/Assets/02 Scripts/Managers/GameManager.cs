@@ -52,11 +52,11 @@ public class GameManager
                 Managers.UI.ShowPopupUI<UI_Fade>();
                 break;
             case Define.Event.Ending:
-                Managers.UI.ShowPopupUI<UI_Ending>();
+                Managers.UI.ShowPopupUI<UI_Cutscene>();
                 break;
         }
-
-        eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;
+        if(eventCode != Define.Event.Ending)
+            eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;
     }
 
     public void SetCamera()
