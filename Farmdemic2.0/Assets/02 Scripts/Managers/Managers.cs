@@ -25,11 +25,19 @@ public class Managers : MonoBehaviour
     public static DialogueManager Dialogue { get { return Instance._dialogue; } }
     #endregion
     [SerializeField] List<Dialogue> dialogue = new List<Dialogue>();
+    [SerializeField] Transform[] CamPoints;
+    [SerializeField] int currentPos;
 
     void Start()
     {
         Init();
         dialogue = Managers.Data.DialogueDatas;
+        CamPoints = Managers.Game.CameraPoints;
+    }
+
+    private void Update()
+    {
+        currentPos = Managers.Game.CurrentCutScene;    
     }
 
     static void Init()
