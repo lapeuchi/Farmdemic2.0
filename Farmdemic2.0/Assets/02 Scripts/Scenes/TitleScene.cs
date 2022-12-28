@@ -9,10 +9,7 @@ public class TitleScene : SceneBase
         base.Init();
         Managers.UI.ShowSceneUI<UI_Title>();
         sceneType = Define.Scene.Title;
-    }
 
-    void Start()
-    {
         Managers.Sound.PlayBGM(Define.BGM.TitleBgm);
     }
 }

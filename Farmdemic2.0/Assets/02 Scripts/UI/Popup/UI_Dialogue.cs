@@ -15,7 +15,7 @@ public class UI_Dialogue : UI_Popup
 
     enum Images
     {
-        ModelImage,
+        FaceChipImage,
         BG
     }
     float _delay = 0.025f;
@@ -38,6 +38,8 @@ public class UI_Dialogue : UI_Popup
         if(dialgoue != null)
         {
             GetText((int)Texts.NameText).text = dialgoue.name;
+            GetImage((int)Images.FaceChipImage).sprite = dialgoue.image;
+
             StartCoroutine(TypingEffect(dialgoue.word));
         }
     }

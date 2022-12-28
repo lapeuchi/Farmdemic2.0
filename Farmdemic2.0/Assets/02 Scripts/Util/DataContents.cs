@@ -20,6 +20,15 @@ public class Dialogue
     public Define.Event eventCode;
     public string name;
     public string word;
+    public Sprite image;
+
+    public void Init()
+    {
+        if (name.Equals("김영수 할아버지"))
+            image = Managers.Resource.Load<Sprite>("Sprites/FaceChip/Youngsu");
+        else
+            image = Managers.Resource.Load<Sprite>("Sprites/FaceChip/Hyeok");
+    }
 
     public Dialogue(int code, Define.Event eventCode, string name, string word)
     { 
@@ -37,6 +46,9 @@ public class DialogueLoader : ILoader<Dialogue>
 
     public List<Dialogue> MakeList()
     {
+        foreach (Dialogue dialogue in Dialogue)
+            dialogue.Init();
+
         return Dialogue;
     }
 }

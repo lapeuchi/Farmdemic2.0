@@ -25,13 +25,6 @@ public class Managers : MonoBehaviour
     public static DialogueManager Dialogue { get { return Instance._dialogue; } }
     #endregion
 
-    [SerializeField] int curCutScene;
-    [SerializeField] List<Tip> tipList = new List<Tip>();
-    private void Update()
-    {
-        curCutScene = Game.CurrentCutScene;
-        tipList = Data.tipList;
-    }
 
     void Start()
     {

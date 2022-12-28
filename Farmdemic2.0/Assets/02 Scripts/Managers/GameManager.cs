@@ -16,7 +16,7 @@ public class GameManager
     Transform[] cameraPoints;
     int maxChater;
     int maxPopup = 3;
-    int maxCutScenne = 4;
+    int maxCutScenne = 5;
 
     int currentChapter = 1; 
     
@@ -26,7 +26,7 @@ public class GameManager
     public void Init()
     {
         maxChater = 13;
-        maxCutScenne = 4;
+        maxCutScenne = 5;
         cameraPoints = new Transform[maxCutScenne];
         eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;
     }
