@@ -26,9 +26,7 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
         MinigameManager.instance.StartLife();
         MinigameManager.instance.SetFeedback
         (
-            "열심히 좀 해봐요",
-            "뭐하냐 (피드백)",
-            "ㅋ"
+            "검지손가락으로 침착하게 새를 터치해 보세요."
         );
 
         int index = Random.Range(0, spawnPos.Length);

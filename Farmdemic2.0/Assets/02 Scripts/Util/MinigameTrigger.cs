@@ -17,13 +17,13 @@ public static class MinigameTrigger
     {
         if (miniGame == Define.Minigame.None)
         {   
-            Debug.Log("MiniGame is not Selected");
+            //Debug.Log("MiniGame is not Selected");
             return;
         }
         
         Managers.Scene.LoadSceneAsync(Define.Scene.Minigame);
         Minigame = miniGame;
-        Debug.Log("Load MiniGame " + miniGame);
+        //Debug.Log("Load MiniGame " + miniGame);
     }
 
     public static void SetMinigame(Define.Minigame game)

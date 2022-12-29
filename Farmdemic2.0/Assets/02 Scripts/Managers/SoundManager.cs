@@ -44,6 +44,7 @@ public class SoundManager
             GameObject go = new GameObject { name = "SFX_Source" };
             go.transform.SetParent(sfxRoot.transform);
             sfxSource[i] = go.AddComponent<AudioSource>();
+            sfxSource[i].loop = false;
         }
 
         for (int i = 0; i < System.Enum.GetValues(typeof(Define.SFX)).Length; i++)

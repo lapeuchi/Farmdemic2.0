@@ -93,7 +93,7 @@ public class MinigameResultPopup : UI_Popup
         Managers.Sound.PlaySFX(Define.SFX.WriteRank);
         yield return new WaitForSeconds(0.5f);
 
-        Debug.Log(MinigameManager.instance.IsClear);
+       // Debug.Log(MinigameManager.instance.IsClear);
         if (MinigameManager.instance.IsClear)
         {
             result_Text.DOText("CLEAR!!!", 1.5f, true, ScrambleMode.Uppercase);
@@ -121,21 +121,21 @@ public class MinigameResultPopup : UI_Popup
     private void ClickedExit()
     {
         Managers.Scene.LoadSceneAsync(Define.Scene.Game);
+        Managers.UI.CloseAllPopupUI();
         bool t = DataSaver.ranks.ContainsKey(MinigameManager.instance.Rank);
         if(t)
         {
             DataSaver.ranks[MinigameManager.instance.Rank] += 1;
            // UI_Ending.ranks[MinigameManager.instance.Rank]++;
-            Debug.Log("recorded rank: " + MinigameManager.instance.Rank);
+           // Debug.Log("recorded rank: " + MinigameManager.instance.Rank);
         }
-        else
-        {
-            Debug.Log("failed record: " + MinigameManager.instance.Rank);
-        }
+      //  else
+       // {
+           // Debug.Log("failed record: " + MinigameManager.instance.Rank);
+      //  }
             
        
         MinigameTrigger.Clear();
-
         Debug.Log("Exit");
     } 
 

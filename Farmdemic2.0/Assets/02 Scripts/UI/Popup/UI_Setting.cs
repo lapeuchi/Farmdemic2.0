@@ -64,7 +64,7 @@ public class UI_Setting : UI_Popup
 
     void OnClickedCloseButton()
     {
-        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ClosePopupUI();
     }
 
     void OnClickedGameOverButton()

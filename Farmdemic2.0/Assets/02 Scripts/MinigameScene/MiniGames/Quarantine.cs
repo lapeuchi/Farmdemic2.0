@@ -41,7 +41,7 @@ public class Quarantine : MonoBehaviour, IMinigame
 
         spawnPos = GameObject.Find("SpawnPos").transform;
         
-        Debug.Log("strangeChicken Count: " + infectedChickenCount);
+        //Debug.Log("strangeChicken Count: " + infectedChickenCount);
         
         SetChicken();
 
@@ -57,29 +57,29 @@ public class Quarantine : MonoBehaviour, IMinigame
         leftFence_Anim.DOPlay();
         rightFence_Anim.DOPlay();
     }
-    
+
     void SetChicken()
     {
         int o = chickenCount;
         int s = infectedChickenCount;
-        for (int i = 0; i < chickenCount+infectedChickenCount; i++)
+        for (int i = 0; i < chickenCount + infectedChickenCount; i++)
         {
-            int j = Random.Range(0,2);
+            int j = Random.Range(0, 2);
+
             //일반닭 소환
-            if(j==0 && o >= 0)
+            if ((j == 0 && o >= 0) || s == 0)
             {
                 GameObject go = Instantiate(chickenPrefab, spawnPos.position, Quaternion.identity);
                 o--;
             }
             // AI 닭 소환
-            else if (j==1 && s >= 0)
+            else if ((j==1 && s >= 0) || o == 0)
             {
                 GameObject go = Instantiate(infectedChicken_Prefab, spawnPos.position, Quaternion.identity);
                 go.GetComponent<ChickenAI>().Infection(); 
                 s--;
             }
         }
-
         chickens = GameObject.FindGameObjectsWithTag("Chicken");
 
         foreach(GameObject go in chickens)
@@ -93,7 +93,7 @@ public class Quarantine : MonoBehaviour, IMinigame
     {
         int sum = chickenCount + infectedChickenCount;
         yield return new WaitForSeconds(2f);
-        for(int i = 0; i < sum-1; i++)
+        for(int i = 0; i < sum; i++)
         {
             chickens[i].gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);

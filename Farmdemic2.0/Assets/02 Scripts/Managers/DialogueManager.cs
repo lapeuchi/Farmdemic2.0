@@ -29,7 +29,7 @@ public class DialogueManager
 
         if (DialogueDic[Managers.Game.CurrentChapter].Count == 0)
         {
-            Managers.UI.ClosePopupUI();
+            Managers.UI.CloseAllPopupUI();
             Managers.Game.NextChapter();
         }
         else
