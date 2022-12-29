@@ -136,7 +136,7 @@ public class MinigameResultPopup : UI_Popup
             
        
         MinigameTrigger.Clear();
-        Debug.Log("Exit");
+       // Debug.Log("Exit");
     } 
 
     private void ClickedRestart()

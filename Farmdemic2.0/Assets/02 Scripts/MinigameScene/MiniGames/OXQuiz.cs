@@ -156,7 +156,7 @@ public class OXQuiz : UI_Popup, IMinigame
 
     IEnumerator Effect(bool isCollect)
     {
-        Debug.Log($"Effect({isCollect})");
+        //Debug.Log($"Effect({isCollect})");
         if (isCollect)
         {
             effect_Image.sprite = collect_Sprite;

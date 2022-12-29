@@ -56,14 +56,14 @@ public class MinigameManager : MonoBehaviour
     {
         if(MinigameTrigger.Minigame == Define.Minigame.None)
         {
-            Debug.Log("Game is not Selected Are you a tester?");
+            //Debug.Log("Game is not Selected Are you a tester?");
         }
         else
         {
             curMiniGame = MinigameTrigger.Minigame;
         }
 
-        Debug.Log(curMiniGame);
+        //Debug.Log(curMiniGame);
         
         GameObject game = minigameParent.Find(curMiniGame.ToString()).gameObject;
         minigameController = game.GetComponent<IMinigame>();
@@ -103,7 +103,7 @@ public class MinigameManager : MonoBehaviour
 
     public void StartTimer(float time)
     {
-        Debug.Log($"StartTimer({time})");
+       // Debug.Log($"StartTimer({time})");
         Timer = Managers.UI.ShowSceneUI<MinigameTimer>();
 
         Timer.Setting(time);
@@ -134,9 +134,9 @@ public class MinigameManager : MonoBehaviour
     {   
         if(isGameOver == true) return;
         isGameOver = true;
-        Debug.Log($"GameOver()");
+        //Debug.Log($"GameOver()");
         minigameController.GameOver();
-        Debug.Log(MinigameManager.instance.IsClear);
+        //Debug.Log(MinigameManager.instance.IsClear);
        
         if(isClear == false) 
         {
@@ -161,7 +161,7 @@ public class MinigameManager : MonoBehaviour
     public void GameStart()
     {
         StartCoroutine(GameStartEffect());
-        Debug.Log("GameStart()");
+        //Debug.Log("GameStart()");
     }
     
     private IEnumerator GameStartEffect()

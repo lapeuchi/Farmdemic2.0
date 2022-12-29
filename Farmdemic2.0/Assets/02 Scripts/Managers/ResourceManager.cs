@@ -10,7 +10,7 @@ public class ResourceManager
 
         if(data == null)
         {
-            Debug.Log($"Failed : This path is null {path}");
+           //Debug.Log($"Failed : This path is null {path}");
         }
 
         return data;

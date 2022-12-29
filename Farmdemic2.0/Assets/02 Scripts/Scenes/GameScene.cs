@@ -30,7 +30,7 @@ public class GameScene : SceneBase
         if(isFirst == false)
         {
             isFirst = true;
-            Debug.Log("start recording Debug.Log");
+            //Debug.Log("start recording Debug.Log");
             DataSaver.Init();
         }
     }

@@ -19,9 +19,9 @@ public static class DataSaver
         
         for(int i = 0; i < (int)Define.Rank.F; i++)
         {
-            Debug.Log((Define.Rank)i);
+            //Debug.Log((Define.Rank)i);
             ranks.Add((Define.Rank)i, 0);
-            Debug.Log(ranks.ContainsKey((Define.Rank)i));
+            //Debug.Log(ranks.ContainsKey((Define.Rank)i));
         }
     }
 }

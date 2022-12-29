@@ -27,7 +27,7 @@ public class MinigameLife : UI_Scene
         life_Images = new Image[maxLife];
         life_Anims = new DOTweenAnimation[maxLife];
 
-        Debug.Log(index);
+        //Debug.Log(index);
 
         for(int i = 0; i < maxLife; i++)
         {
@@ -40,7 +40,7 @@ public class MinigameLife : UI_Scene
 
     void DestroyLife(int i) 
     {
-        Debug.Log(i);
+        //Debug.Log(i);
         life_Images[i].gameObject.SetActive(false);
     } 
 

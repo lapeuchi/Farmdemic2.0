@@ -50,7 +50,7 @@ public class GameEvtPopup : UI_Popup
             if(i == 0) evt_Text.text = "Start";
             else evt_Text.text = $"{count}";
 
-            Debug.Log(i);
+            //Debug.Log(i);
             float timer = 0;
 
             while (timer <= 1)

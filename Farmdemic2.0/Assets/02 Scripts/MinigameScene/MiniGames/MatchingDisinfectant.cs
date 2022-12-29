@@ -370,17 +370,17 @@ public class MatchingDisinfectant : MonoBehaviour, IMinigame
         isGameEnd = true;
         ShowFade();
 
-        if (MinigameManager.instance.Score.Score >= 150)
+        if (MinigameManager.instance.Score.Score >= 500)
         {
             MinigameManager.instance.SetRank(Define.Rank.A);
             MinigameManager.instance.SetClaer(true);
         }
-        else if (MinigameManager.instance.Score.Score >= 100)
+        else if (MinigameManager.instance.Score.Score >= 300)
         {
             MinigameManager.instance.SetRank(Define.Rank.B);
             MinigameManager.instance.SetClaer(true);
         }
-        else if (MinigameManager.instance.Score.Score >= 50)
+        else if (MinigameManager.instance.Score.Score >= 150)
         {
             MinigameManager.instance.SetRank(Define.Rank.C);
             MinigameManager.instance.SetClaer(true);

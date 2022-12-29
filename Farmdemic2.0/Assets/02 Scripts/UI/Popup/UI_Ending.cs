@@ -19,7 +19,7 @@ public class UI_Ending : UI_Popup
     public override void Init()
     {
         base.Init();
-        Debug.Log(DataSaver.ranks.Count);
+       // Debug.Log(DataSaver.ranks.Count);
         rank_Images = new Image[DataSaver.ranks.Count];
         rank_Texts = new TMP_Text[DataSaver.ranks.Count];  
         for(int i = 0; i < DataSaver.ranks.Count; i++)
