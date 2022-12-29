@@ -7,8 +7,6 @@ using DG.Tweening;
 
 public class UI_Ending : UI_Popup
 {
-    public static Dictionary<Define.Rank, int> ranks = new Dictionary<Define.Rank, int>();
-    private Dictionary<Define.Rank, int> rankScore = new Dictionary<Define.Rank, int>();
     private Image[] rank_Images;
     private TMP_Text[] rank_Texts;
     private Button exit_Button;
@@ -21,10 +19,10 @@ public class UI_Ending : UI_Popup
     public override void Init()
     {
         base.Init();
-        Debug.Log(ranks.Count);
-        rank_Images = new Image[ranks.Count];
-        rank_Texts = new TMP_Text[ranks.Count];  
-        for(int i = 0; i < ranks.Count; i++)
+        Debug.Log(DataSaver.ranks.Count);
+        rank_Images = new Image[DataSaver.ranks.Count];
+        rank_Texts = new TMP_Text[DataSaver.ranks.Count];  
+        for(int i = 0; i < DataSaver.ranks.Count; i++)
         {
             rank_Images[i] = GameObject.Find($"Rank_Image_{i}").GetComponent<Image>();
             rank_Texts[i] = GameObject.Find($"Rank_Text_{i}").GetComponent<TMP_Text>();
@@ -34,10 +32,6 @@ public class UI_Ending : UI_Popup
         
         exit_Button = GameObject.Find("Exit_Button").GetComponent<Button>();
         exit_Button.onClick.AddListener(()=>Managers.Scene.LoadSceneAsync(Define.Scene.Title));
-
-        rankScore.Add(Define.Rank.A, 25);
-        rankScore.Add(Define.Rank.B, 20);
-        rankScore.Add(Define.Rank.C, 15);
 
         // 테스트용
         // GameResult.ranks[Define.Rank.A] = 4;
@@ -61,9 +55,9 @@ public class UI_Ending : UI_Popup
     IEnumerator PrintMinigameGrades()
     {
         yield return new WaitForSeconds(1.5f);
-        for(int i = 0; i < ranks.Count; i++)
+        for(int i = 0; i < DataSaver.ranks.Count; i++)
         {
-            for(int j = 0; j < ranks[(Define.Rank)i]; j++)
+            for(int j = 0; j < DataSaver.ranks[(Define.Rank)i]; j++)
             {
                 if (j==0)
                 {
@@ -71,17 +65,22 @@ public class UI_Ending : UI_Popup
                     rank_Texts[i].enabled = true;
                     rank_Images[i].sprite = Managers.Resource.Load<Sprite>($"Sprites/Rank_{(Define.Rank)i}");
                     rank_Texts[i].text = $"X {j+1}";
+                    Managers.Sound.PlaySFX(Define.SFX.WriteRank);
                 }
                 else
                 {
                     rank_Texts[i].text = $"X {j+1}";
+                    Managers.Sound.PlaySFX(Define.SFX.WriteRank);
                 }
-                score += rankScore[(Define.Rank)i];
+                score += DataSaver.rankScore[(Define.Rank)i];
                 yield return new WaitForSeconds(0.5f);
             }
             yield return new WaitForSeconds(1f);
         }
+        
         yield return new WaitForSeconds(1f);
-        finalScore_Text.text = score.ToString();
+        finalScore_Text.enabled = true;
+        finalScore_Text.text = score.ToString() + " / 100";
+        Managers.Sound.PlaySFX(Define.SFX.WriteRank);
     }
 }

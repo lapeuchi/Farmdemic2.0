@@ -29,13 +29,9 @@ public class GameScene : SceneBase
         if(isFirst == false)
         {
             isFirst = true;
-        
-            for(int i = 0; i < (int)Define.Rank.F; i++)
-            {
-                GameResult.ranks.Add((Define.Rank)i, 0);
-            }
+            Debug.Log("start recording Debug.Log");
+            DataSaver.Init();
         }
-
     }
 
     public IEnumerator LoadMnigameWithEffect(Define.Minigame game)

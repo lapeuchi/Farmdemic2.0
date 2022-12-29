@@ -30,7 +30,6 @@ public class GameManager
         cameraPoints = new Transform[6];
         eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;
     }
-
     public void NextChapter()
     {
         currentChapter++;

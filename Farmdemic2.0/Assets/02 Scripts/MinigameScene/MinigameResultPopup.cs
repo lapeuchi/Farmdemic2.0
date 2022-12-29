@@ -120,9 +120,23 @@ public class MinigameResultPopup : UI_Popup
 
     private void ClickedExit()
     {
-        GameResult.ranks[MinigameManager.instance.Rank] += 1;
         Managers.Scene.LoadSceneAsync(Define.Scene.Game);
+        bool t = DataSaver.ranks.ContainsKey(MinigameManager.instance.Rank);
+        if(t)
+        {
+            DataSaver.ranks[MinigameManager.instance.Rank] += 1;
+           // UI_Ending.ranks[MinigameManager.instance.Rank]++;
+            Debug.Log("recorded rank: " + MinigameManager.instance.Rank);
+        }
+        else
+        {
+            Debug.Log("failed record: " + MinigameManager.instance.Rank);
+        }
+            
+       
         MinigameTrigger.Clear();
+
+        Debug.Log("Exit");
     } 
 
     private void ClickedRestart()

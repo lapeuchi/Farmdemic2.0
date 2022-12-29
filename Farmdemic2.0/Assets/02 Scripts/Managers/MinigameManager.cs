@@ -137,7 +137,12 @@ public class MinigameManager : MonoBehaviour
         Debug.Log($"GameOver()");
         minigameController.GameOver();
         Debug.Log(MinigameManager.instance.IsClear);
-        if(isClear == false) SetRank(Define.Rank.F);
+       
+        if(isClear == false) 
+        {
+            SetRank(Define.Rank.F);
+        }
+        
         StartCoroutine(GameOverEffect());
     }
 
