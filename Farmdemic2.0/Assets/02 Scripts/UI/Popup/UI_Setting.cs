@@ -34,8 +34,8 @@ public class UI_Setting : UI_Popup
         GetButton((int)Buttons.CloseButton).onClick.AddListener(OnClickedCloseButton);
         GetButton((int)Buttons.ExitButton).onClick.AddListener(OnClickedGameOverButton);
 
-        Get<Slider>((int)Sliders.BGM_Slider).value = 1f;
-        Get<Slider>((int)Sliders.SFX_Slider).value = 1f;
+        Get<Slider>((int)Sliders.BGM_Slider).value = Managers.Sound.BgmVolume;
+        Get<Slider>((int)Sliders.SFX_Slider).value = Managers.Sound.SfxVolume;
     }
 
     void OnClickedBGMPlus()
