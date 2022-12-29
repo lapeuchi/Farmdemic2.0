@@ -11,6 +11,12 @@ public class Define
         Fade,
         Ending
     }
+
+    public enum Sound
+    {
+        BGM,
+        SFX
+    }
     
     public enum Minigame
     {  

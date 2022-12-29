@@ -64,6 +64,20 @@ public class SoundManager
             sfxSource[i].Stop();
     }
 
+    public void SetVolume(float volume, Define.Sound type)
+    {
+        switch(type)
+        {
+            case Define.Sound.BGM:
+                bgmSource.volume = volume;
+                break;
+            case Define.Sound.SFX:
+                for (int i = 0; i < sfxSource.Length; i++)
+                    sfxSource[i].volume = volume;
+                break;
+        }
+    }
+
     public void PlaySFX(Define.SFX type, float pitch = 1f)
     {
         for(int i = 0; i < sfxSource.Length; i++)

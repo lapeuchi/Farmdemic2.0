@@ -25,6 +25,7 @@ public class GameScene : SceneBase
         }
         
         Managers.Game.SetCamera();
+        Managers.UI.ShowSceneUI<UI_Game>();
         
         if(isFirst == false)
         {
@@ -35,7 +36,6 @@ public class GameScene : SceneBase
                 GameResult.ranks.Add((Define.Rank)i, 0);
             }
         }
-
     }
 
     public IEnumerator LoadMnigameWithEffect(Define.Minigame game)
