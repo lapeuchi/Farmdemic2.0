@@ -180,7 +180,7 @@ public class ChickenAI : MonoBehaviour
         }
         else
         {
-            GameObject go = Managers.Resource.Instantiate("MiniGame/Quarantine/VirusEffect");
+            GameObject go = Managers.Resource.Instantiate("MiniGame/Quarantine/VirusEffect", transform.position, Quaternion.identity);
             Managers.Sound.PlaySFX(Define.SFX.Worth);
             MinigameManager.instance.Score.PlusScore(-quarantine.point * 2);
         }

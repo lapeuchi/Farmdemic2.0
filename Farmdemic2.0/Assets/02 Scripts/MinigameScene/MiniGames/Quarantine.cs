@@ -16,7 +16,7 @@ public class Quarantine : MonoBehaviour, IMinigame
     GameObject[] chickens;
     Fence infectedFence;
 
-    public int point = 100;
+    public int point = 100; 
 
     DOTweenAnimation leftFence_Anim;
     DOTweenAnimation rightFence_Anim; 
@@ -33,10 +33,10 @@ public class Quarantine : MonoBehaviour, IMinigame
 
     public void GameStart()
     {            
-        chickenCount = 20;
-        infectedChickenCount = 20;
+        chickenCount = 15;
+        infectedChickenCount = 15;
         chickenPrefab = Managers.Resource.Load<GameObject>("Prefabs/Minigame/Quarantine/Chicken");
-       
+
         infectedChicken_Prefab = Managers.Resource.Load<GameObject>("Prefabs/Minigame/Quarantine/InfectedChicken");
 
         spawnPos = GameObject.Find("SpawnPos").transform;
@@ -71,18 +71,6 @@ public class Quarantine : MonoBehaviour, IMinigame
                 s--;
             }
         }
-        // // 일반 닭 소환
-        // for(int i = 0; i < chickenCount; i++)
-        // {
-        //     GameObject go = Instantiate(chickenPrefab, spawnPos.position, Quaternion.identity);
-        // }
-
-        // // 감염된 닭 소환
-        // for (int i = 0; i < infectedChickenCount; i++)
-        // {
-        //     GameObject go = Instantiate(infectedChicken_Prefab, spawnPos.position, Quaternion.identity);
-        //     go.GetComponent<ChickenAI>().Infection();
-        // }
 
         chickens = GameObject.FindGameObjectsWithTag("Chicken");
 
