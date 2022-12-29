@@ -8,7 +8,13 @@ public class SoundManager
     private Dictionary<Define.SFX, AudioClip> sfxs = new Dictionary<Define.SFX, AudioClip>();
     private AudioSource bgmSource;
     private AudioSource[] sfxSource = new AudioSource[5];
-    
+
+    public float BgmVolume { get { return bgmVolume; } }
+    public float SfxVolume { get { return sfxVolume; } }
+
+    float bgmVolume;
+    float sfxVolume;
+
     public void Init()
     {
         GameObject root = GameObject.Find("@Sound");
@@ -45,6 +51,9 @@ public class SoundManager
             AudioClip clip = Managers.Resource.Load<AudioClip>($"Sounds/{(Define.SFX) i}");
             sfxs.Add((Define.SFX)i, clip);
         }
+
+        sfxVolume = 1f;
+        bgmVolume = 1f;
     }
 
     public void PlayBGM(Define.BGM type)
@@ -62,6 +71,22 @@ public class SoundManager
     {
         for (int i = 0; i < sfxSource.Length; i++)
             sfxSource[i].Stop();
+    }
+
+    public void SetVolume(float volume, Define.Sound type)
+    {
+        switch(type)
+        {
+            case Define.Sound.BGM:
+                bgmSource.volume = volume;
+                bgmVolume = volume;
+                break;
+            case Define.Sound.SFX:
+                for (int i = 0; i < sfxSource.Length; i++)
+                    sfxSource[i].volume = volume;
+                    sfxVolume = volume;
+                break;
+        }
     }
 
     public void PlaySFX(Define.SFX type, float pitch = 1f)

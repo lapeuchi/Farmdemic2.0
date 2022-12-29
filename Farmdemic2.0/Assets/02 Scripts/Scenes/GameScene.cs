@@ -25,6 +25,7 @@ public class GameScene : SceneBase
         }
         
         Managers.Game.SetCamera();
+        Managers.UI.ShowSceneUI<UI_Game>();
         
         if(isFirst == false)
         {
