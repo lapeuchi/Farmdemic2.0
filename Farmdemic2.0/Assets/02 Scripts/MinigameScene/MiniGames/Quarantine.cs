@@ -45,6 +45,12 @@ public class Quarantine : MonoBehaviour, IMinigame
         
         SetChicken();
 
+        MinigameManager.instance.SetFeedback
+        (
+            "가만히 있는 닭을 최대한 분류해보세요.",
+            "울타리와 같은 분류의 닭들 중 최대한 가까운 닭 먼저 분류해보세요"
+        );
+
         MinigameManager.instance.StartTimer(60);
 
         StartCoroutine(Spwan());
@@ -59,11 +65,13 @@ public class Quarantine : MonoBehaviour, IMinigame
         for (int i = 0; i < chickenCount+infectedChickenCount; i++)
         {
             int j = Random.Range(0,2);
+            //일반닭 소환
             if(j==0 && o >= 0)
             {
                 GameObject go = Instantiate(chickenPrefab, spawnPos.position, Quaternion.identity);
                 o--;
             }
+            // AI 닭 소환
             else if (j==1 && s >= 0)
             {
                 GameObject go = Instantiate(infectedChicken_Prefab, spawnPos.position, Quaternion.identity);

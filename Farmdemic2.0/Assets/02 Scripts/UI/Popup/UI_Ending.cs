@@ -57,6 +57,12 @@ public class UI_Ending : UI_Popup
         yield return new WaitForSeconds(1.5f);
         for(int i = 0; i < DataSaver.ranks.Count; i++)
         {
+            if (DataSaver.ranks[(Define.Rank)i] == 0)
+            {
+                rank_Texts[i].gameObject.SetActive(false);
+                rank_Images[i].gameObject.SetActive(false);
+                continue;
+            }
             for(int j = 0; j < DataSaver.ranks[(Define.Rank)i]; j++)
             {
                 if (j==0)
