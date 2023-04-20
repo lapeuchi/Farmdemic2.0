@@ -44,11 +44,12 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
             
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                GameObject go1 = Managers.Resource.Instantiate("Minigame/HarmfulBirds/Fire", hit.point, Quaternion.identity);
+                Managers.Resource.Instantiate("Minigame/HarmfulBirds/Fire", hit.point, Quaternion.identity);
                 CrowController crow = hit.transform.GetComponent<CrowController>();
+                
                 if (crow != null)
                 {
-                    GameObject go2 = Managers.Resource.Instantiate("Minigame/HarmfulBirds/Explosion", hit.point, Quaternion.identity);
+                    Managers.Resource.Instantiate("Minigame/HarmfulBirds/Explosion", hit.point, Quaternion.identity);
                     crow.ShotDown();
                     Managers.Sound.PlaySFX(Define.SFX.CrawDying);
                 }
@@ -79,7 +80,7 @@ public class HarmfulBirds : MonoBehaviour, IMinigame
             {
                 currentTime = 0;
                 int index = Random.Range(0, spawnPos.Length);
-                GameObject go = Managers.Resource.Instantiate("Minigame/HarmfulBirds/Crow", spawnPos[index].position + Vector3.back, Quaternion.identity, root);
+                Managers.Resource.Instantiate("Minigame/HarmfulBirds/Crow", spawnPos[index].position + Vector3.back, Quaternion.identity, root);
             }
 
             yield return null;

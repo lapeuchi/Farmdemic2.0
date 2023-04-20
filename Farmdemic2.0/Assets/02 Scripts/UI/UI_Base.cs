@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using TMPro;
 
 public abstract class UI_Base : MonoBehaviour
@@ -12,14 +10,16 @@ public abstract class UI_Base : MonoBehaviour
     
     protected void Bind<T>(Type type) where T : UnityEngine.Object
     {
-        string[] names = System.Enum.GetNames(type);
+        string[] names = Enum.GetNames(type);
         UnityEngine.Object[] objects = new UnityEngine.Object[names.Length];
         _objects.Add(typeof(T), objects);
 
         for(int i = 0; i < names.Length; i++)
         {
-            if (typeof(T) == typeof(GameObject)) objects[i] = Util.FindChild(gameObject, names[i], true);
-            else objects[i] = Util.FindChild<T>(gameObject, names[i], true);
+            if (typeof(T) == typeof(GameObject)) 
+                objects[i] = Util.FindChild(gameObject, names[i], true);
+            else 
+                objects[i] = Util.FindChild<T>(gameObject, names[i], true);
         }
     }
 

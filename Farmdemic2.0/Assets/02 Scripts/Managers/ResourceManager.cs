@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class ResourceManager
 {
+    Dictionary<string, GameObject> _gameObjects = new Dictionary<string, GameObject>();
+
     public T Load<T>(string path) where T : Object
     {
-        T data = Resources.Load<T>(path);
-
-        if(data == null)
+        if(typeof(T) == typeof(GameObject))
         {
-           //Debug.Log($"Failed : This path is null {path}");
+            if(_gameObjects.TryGetValue(path, out GameObject go))
+            {
+                return go as T;
+            }
+
+            GameObject origin = Resources.Load<GameObject>(path);
+            _gameObjects.Add(path, origin);
         }
 
-        return data;
+        return Resources.Load<T>(path);
     }
 
     public GameObject Instantiate(string path, Transform parents = null)
@@ -22,6 +28,7 @@ public class ResourceManager
         
         if(prefab == null)
         {
+            Debug.Log($"Failed to load prefab {path}");
             return null;
         }
         

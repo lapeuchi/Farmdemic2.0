@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,11 +26,11 @@ public class UIManager
 
     public void SetCanvas(GameObject go, bool sort)
     {
-        Canvas canvas = Util.GetOrAddComponent<Canvas>(go);
+        Canvas canvas = go.GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.overrideSorting = true;
 
-        CanvasScaler canvasScaler = Util.GetOrAddComponent<CanvasScaler>(go);
+        CanvasScaler canvasScaler = go.GetComponent<CanvasScaler>();
         canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         canvasScaler.referenceResolution = new Vector2(1920, 1080);
 
@@ -38,10 +39,10 @@ public class UIManager
             canvas.sortingOrder = _order;
             _order++;
         }
-        // else
-        // {
-        //     canvas.sortingOrder = 0;
-        // }
+        else
+        {
+            canvas.sortingOrder = 0;
+        }
     }
 
     public T ShowPopupUI<T>(string name = null) where T : UI_Popup

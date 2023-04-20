@@ -26,7 +26,7 @@ public class GameManager
     {
         maxChater = 13;
         cameraPoints = new Transform[6];
-        eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;
+        eventCode = Managers.Dialogue.Dialogues[currentChapter].Peek().eventCode;
     }
     public void NextChapter()
     {
@@ -53,7 +53,7 @@ public class GameManager
                 break;
         }
         if(eventCode != Define.Event.Ending)
-            eventCode = Managers.Dialogue.DialogueDic[currentChapter].Peek().eventCode;
+            eventCode = Managers.Dialogue.Dialogues[currentChapter].Peek().eventCode;
     }
 
     public void SetCamera()

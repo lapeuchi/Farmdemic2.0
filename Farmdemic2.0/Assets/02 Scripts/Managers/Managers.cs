@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Managers : MonoBehaviour
 {
-    #region //Instance
     static Managers Instance { get { Init(); return _instance; } }
     static Managers _instance = null;
+
+    #region //Instance
+
 
     DataManager _data = new DataManager();
     ResourceManager _resource = new ResourceManager();
@@ -24,20 +26,11 @@ public class Managers : MonoBehaviour
     public static SceneManagerEx Scene { get { return Instance._scene; } }
     public static DialogueManager Dialogue { get { return Instance._dialogue; } }
     #endregion
-    [SerializeField] List<Dialogue> dialogue = new List<Dialogue>();
-    [SerializeField] Transform[] CamPoints;
-    [SerializeField] int currentPos;
 
+    
     void Start()
     {
         Init();
-        dialogue = Managers.Data.DialogueDatas;
-        CamPoints = Managers.Game.CameraPoints;
-    }
-
-    private void Update()
-    {
-        currentPos = Managers.Game.CurrentCutScene;    
     }
 
     static void Init()
@@ -52,12 +45,13 @@ public class Managers : MonoBehaviour
             }
 
             _instance = Util.GetOrAddComponent<Managers>(go);
-            DontDestroyOnLoad(go);
-
+            DontDestroyOnLoad(go); 
+            
             Sound.Init();
             Data.Init();
             Dialogue.Init();
             Game.Init();
         }
     }
+
 }
