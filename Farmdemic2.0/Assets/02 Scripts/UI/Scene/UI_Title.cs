@@ -21,7 +21,6 @@ public class UI_Title : UI_Scene
 
     public override void Init()
     {
-        base.Init();
         Bind<Button>(typeof(Buttons));
         Bind<TMP_Text>(typeof(Texts));
         GetButton((int)Buttons.Button).onClick.AddListener(() => Managers.Scene.LoadSceneAsync(Define.Scene.Game));

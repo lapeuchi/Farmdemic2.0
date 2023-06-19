@@ -19,8 +19,6 @@ public class UIManager
         }
     }
 
-    Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
-    UI_Scene _sceneUI = null;
     int _order = 10;
     
 
@@ -45,6 +43,8 @@ public class UIManager
         }
     }
 
+    Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
+
     public T ShowPopupUI<T>(string name = null) where T : UI_Popup
     {
         if (string.IsNullOrEmpty(name) == true) name = typeof(T).Name;
@@ -55,6 +55,8 @@ public class UIManager
         go.transform.SetParent(Root.transform);
         return popup;
     }
+
+    UI_Scene _sceneUI = null;
 
     public T ShowSceneUI<T>(string name = null) where T : UI_Scene
     {

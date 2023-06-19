@@ -5,14 +5,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public static class Util
 {
-    public static T GetOrAddComponent<T> (this GameObject go) where T : Component
-    {
-        T component = go.GetComponent<T>();
-
-        if (component == null) component = go.AddComponent<T>();
-        return component;
-    }
-
     public static T FindChild<T>(this GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
     {
         if (go == null) return null;
@@ -51,6 +43,15 @@ public static class Util
         Transform transform = FindChild<Transform>(go, name, recursive);
         return transform.gameObject;
     }
+
+    public static T GetOrAddComponent<T>(this GameObject go) where T : Component
+    {
+        T component = go.GetComponent<T>();
+
+        if (component == null) component = go.AddComponent<T>();
+        return component;
+    }
+
 
     public static void BindEvent(this GameObject go, Action<PointerEventData> eventData, Define.InputEvent type = Define.InputEvent.Click)
     {
